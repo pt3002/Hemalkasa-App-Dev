@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Patient_Registration_Page2">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DOB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="dd/mm/yyyy"
+        android:background="@drawable/custom_input"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/circle"
+        android:drawablePadding="20dp"
+        android:layout_margin="10dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/MobNo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DOB"
+        android:hint="Mobile Number"
+        android:background="@drawable/custom_input"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/phone"
+        android:drawablePadding="20dp"
+        android:layout_margin="10dp"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/state"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MobNo"
+        android:layout_margin="10dp"
+        android:hint="State"
+        android:background="@drawable/custom_input"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/location_pin"
+        android:drawablePadding="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/district"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/state"
+        android:layout_margin="10dp"
+        android:layout_marginTop="50dp"
+        android:hint="District"
+        android:background="@drawable/custom_input"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/location_pin"
+        android:drawablePadding="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Block"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/district"
+        android:layout_margin="10dp"
+        android:layout_marginTop="50dp"
+        android:hint="Block/Tehsil"
+        android:background="@drawable/custom_input"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/city"
+        android:drawablePadding="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/village"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Block"
+        android:layout_margin="10dp"
+        android:layout_marginTop="50dp"
+        android:hint="Village"
+        android:background="@drawable/custom_input"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/location_pin"
+        android:drawablePadding="20dp" />
+
+
+    <Button
+        android:id="@+id/sumbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

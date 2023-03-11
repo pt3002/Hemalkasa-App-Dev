@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/circle.xml" value="0.1" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_main.xml" value="0.33875338753387535" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient__registration__page1.xml" value="0.152" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient__registration__page2.xml" value="0.1" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient_registration_page.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
