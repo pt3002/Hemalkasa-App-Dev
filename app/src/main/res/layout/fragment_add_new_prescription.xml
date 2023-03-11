@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AddNewPrescription">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/medicineTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medicine"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/medicineEditTxt"
+        app:layout_constraintBottom_toBottomOf="@+id/medicineEditTxt"
+        app:layout_constraintEnd_toStartOf="@+id/medicineEditTxt"/>
+    <EditText
+        android:id="@+id/medicineEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Medicine"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/medicineTxt"
+        app:layout_constraintTop_toTopOf="parent" />
+<!--        android:layout_marginStart="10dp"/>-->
+    <TextView
+        android:id="@+id/doseTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dose"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/doseEditTxt"
+        app:layout_constraintBottom_toBottomOf="@+id/doseEditTxt"
+        app:layout_constraintEnd_toStartOf="@+id/doseEditTxt"/>
+    <EditText
+        android:id="@+id/doseEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter dose"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/doseTxt"
+        app:layout_constraintTop_toBottomOf="@+id/medicineEditTxt"
+        android:layout_marginStart="20dp"/>
+    <TextView
+        android:id="@+id/dayTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Day"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/showDayTxt"
+        app:layout_constraintBottom_toBottomOf="@+id/showDayTxt"
+        app:layout_constraintEnd_toStartOf="@+id/showDayTxt"/>
+    <TextView
+        android:id="@+id/showDayTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="byee"
+        app:layout_constraintStart_toEndOf="@+id/dayTxt"
+        app:layout_constraintTop_toBottomOf="@+id/doseEditTxt"
+        android:layout_marginStart="30dp"
+        android:drawableLeft="@drawable/calendar"/>
+    <TextView
+        android:id="@+id/timeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medicine"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/showTimeTxt"
+        app:layout_constraintBottom_toBottomOf="@+id/showTimeTxt"
+        app:layout_constraintEnd_toStartOf="@+id/showTimeTxt"/>
+    <TextView
+        android:id="@+id/showTimeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="hi"
+        app:layout_constraintStart_toEndOf="@+id/timeTxt"
+        app:layout_constraintTop_toBottomOf="@+id/showDayTxt"
+        android:layout_marginStart="10dp"
+        android:drawableLeft="@drawable/time"/>
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showTimeTxt"
+        android:text="Save"
+        android:textSize="20dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

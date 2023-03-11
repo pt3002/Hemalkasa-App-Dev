@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "459078826700",
+    "project_id": "prescriptionrecyclerapp",
+    "storage_bucket": "prescriptionrecyclerapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459078826700:android:11e58b94d7cf2e97c6e069",
+        "android_client_info": {
+          "package_name": "com.example.prescriptionrecyclerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459078826700-61hh1d0upleknf6qk0ihg3aqqcp51sbu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3evQOc_T6warMbWGGiStbf80FAaC78HU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459078826700-61hh1d0upleknf6qk0ihg3aqqcp51sbu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
