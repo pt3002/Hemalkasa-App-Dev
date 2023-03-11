@@ -27,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        addMedicinePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,Add_Medicines.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

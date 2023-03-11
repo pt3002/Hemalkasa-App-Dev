@@ -22,5 +22,12 @@
         android:text="Add Medicine"
         android:layout_marginTop="10dp"/>
 
+    <Button
+        android:id="@+id/set_Alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Alarm"
+        android:layout_marginTop="10dp"/>
+
 
 </LinearLayout>

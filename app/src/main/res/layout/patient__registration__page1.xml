@@ -19,7 +19,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name"
+        android:id="@+id/fullname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_image"
@@ -35,10 +35,10 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/m_name"
+        android:id="@+id/MotherName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/fullname"
         android:hint="Mother's Full Name"
         android:background="@drawable/custom_input"
         android:textColor="@color/white"
@@ -54,7 +54,7 @@
         android:id="@+id/HospRegNo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/m_name"
+        app:layout_constraintTop_toBottomOf="@+id/MotherName"
         android:hint="Hospital Registration Number"
         android:background="@drawable/custom_input"
         android:textColor="@color/white"
@@ -67,7 +67,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/blood_grp"
+        android:id="@+id/BloodGroup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HospRegNo"
@@ -97,8 +97,20 @@
         android:text="Next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="20dp"/>
+        app:layout_constraintStart_toEndOf="@+id/show"
+        android:layout_marginBottom="10dp"/>
+
+
+    <Button
+        android:id="@+id/show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/next"
+        android:layout_marginBottom="10dp"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
