@@ -15,8 +15,11 @@ import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.util.Pair;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 public class EditMedicine extends BottomSheetDialogFragment {
     String medicineVal;
@@ -81,37 +84,24 @@ public class EditMedicine extends BottomSheetDialogFragment {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Map<String, Object> map = new HashMap<>();
-//                map.put("medicine", medET.getText().toString());
-//                map.put("dose", doseET.getText().toString());
-//                map.put("day", dayTxt.getText().toString());
-//                map.put("time", timeTxt.getText().toString());
-//                FirebaseDatabase.getInstance().getReference().child("entries").child(path).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        dismiss();
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        dismiss();
-//                    }
-//                });
                 add_medicines.editMedicineArrData(medET.getText().toString(), doseET.getText().toString(), dayTxt.getText().toString(), timeTxt.getText().toString(), position);
                 dismiss();
 
             }
         });
+        MaterialDatePicker.Builder<Pair<Long, Long>> materialDateBuilder = MaterialDatePicker.Builder.dateRangePicker();
+
+        MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                dayTxt.setText(materialDatePicker.getHeaderText());
+            }
+        });
         day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog((Context) add_medicines, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        dayTxt.setText(Integer.toString(dayOfMonth) + " - " + Integer.toString(month + 1) + " - " + Integer.toString(year));
-                    }
-                }, 2023, 0, 1);
-                datePickerDialog.show();
+                materialDatePicker.show(add_medicines.getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
             }
         });
         time.setOnClickListener(new View.OnClickListener() {
