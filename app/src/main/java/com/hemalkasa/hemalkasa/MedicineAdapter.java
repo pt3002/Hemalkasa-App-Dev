@@ -34,6 +34,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.dose.setText(medicineArr.get(position).dose);
         holder.day.setText(medicineArr.get(position).day);
         holder.time.setText(medicineArr.get(position).time);
+        holder.frequency.setText(medicineArr.get(position).frequency);
         int p = position;
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +45,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditMedicine editMedicine = EditMedicine.newInstance(holder.med.getText().toString(), holder.dose.getText().toString(), holder.day.getText().toString(), holder.time.getText().toString(), add_medicines, p);
+                EditMedicine editMedicine = EditMedicine.newInstance(holder.med.getText().toString(), holder.dose.getText().toString(), holder.day.getText().toString(), holder.time.getText().toString(), holder.frequency.getText().toString(), add_medicines, p);
                 editMedicine.show(add_medicines.getSupportFragmentManager(), "test");
             }
         });
@@ -56,7 +57,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView med, dose, day, time;
+        TextView med, dose, day, time, frequency;
         FloatingActionButton editBtn, deleteBtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +65,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
             dose = itemView.findViewById(R.id.dose);
             day = itemView.findViewById(R.id.day);
             time = itemView.findViewById(R.id.time);
+            frequency = itemView.findViewById(R.id.frequency);
             editBtn = itemView.findViewById(R.id.edit);
             deleteBtn = itemView.findViewById(R.id.delete);
         }

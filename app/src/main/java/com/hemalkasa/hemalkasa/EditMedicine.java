@@ -26,7 +26,10 @@ public class EditMedicine extends BottomSheetDialogFragment {
     String doseVal;
     String dayVal;
     String timeVal;
+    String frequencyVal;
     EditText medET, doseET;
+    EditText frequencyET;
+    TextView frequencyTxt;
     TextView dayTxt, timeTxt;
     Button saveBtn;
     Add_Medicines add_medicines;
@@ -37,13 +40,14 @@ public class EditMedicine extends BottomSheetDialogFragment {
         this.add_medicines = add_medicines;
         this.position = position;
     }
-    public static EditMedicine newInstance(String m, String dose, String day, String time, Add_Medicines add_medicines, int position){
+    public static EditMedicine newInstance(String m, String dose, String day, String time, String frequency,Add_Medicines add_medicines, int position){
         EditMedicine frag = new EditMedicine(add_medicines, position);
         Bundle args = new Bundle();
         args.putString("medicine", m);
         args.putString("dose", dose);
         args.putString("day", day);
         args.putString("time", time);
+        args.putString("frequency", frequency);
         frag.setArguments(args);
         return frag;
     }
@@ -56,6 +60,7 @@ public class EditMedicine extends BottomSheetDialogFragment {
             this.doseVal = getArguments().getString("dose");
             this.dayVal = getArguments().getString("day");
             this.timeVal = getArguments().getString("time");
+            this.frequencyVal = getArguments().getString("frequency");
         }
 
     }
@@ -76,15 +81,17 @@ public class EditMedicine extends BottomSheetDialogFragment {
         saveBtn = view.findViewById(R.id.saveBtn);
         day = view.findViewById(R.id.dayTxt);
         time = view.findViewById(R.id.timeTxt);
+        frequencyET = view.findViewById(R.id.frequencyEditTxt);
+        frequencyTxt = view.findViewById(R.id.frequencyTxt);
         medET.setText(this.medicineVal);
         doseET.setText(this.doseVal);
         dayTxt.setText(this.dayVal);
         timeTxt.setText(this.timeVal);
-
+        frequencyET.setText(this.frequencyVal);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_medicines.editMedicineArrData(medET.getText().toString(), doseET.getText().toString(), dayTxt.getText().toString(), timeTxt.getText().toString(), position);
+                add_medicines.editMedicineArrData(medET.getText().toString(), doseET.getText().toString(), dayTxt.getText().toString(), timeTxt.getText().toString(), frequencyET.getText().toString(), position);
                 dismiss();
 
             }

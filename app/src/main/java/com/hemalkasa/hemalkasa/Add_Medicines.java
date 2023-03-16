@@ -20,11 +20,11 @@ public class Add_Medicines extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_medicines);
-        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00"));
-        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00"));
-        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00"));
-        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00"));
-        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00"));
+        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
+        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
+        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
+        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
+        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
         medicineRecyclerView = findViewById(R.id.RecyclerView);
         addMedicineBtn = findViewById(R.id.addMedBtn);
         medicineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -39,12 +39,12 @@ public class Add_Medicines extends AppCompatActivity {
         });
 
     }
-    public void addMedicineArrData(String medicine, String dose, String day, String time){
-        medicineArr.add(new MedicineModel(medicine, dose, day, time));
+    public void addMedicineArrData(String medicine, String dose, String day, String time, String frequency){
+        medicineArr.add(new MedicineModel(medicine, dose, day, time, frequency));
         medicineAdapter.notifyDataSetChanged();
     }
-    public void editMedicineArrData(String medicine, String dose, String day, String time, int position){
-        medicineArr.set(position, new MedicineModel(medicine, dose, day, time));
+    public void editMedicineArrData(String medicine, String dose, String day, String time, String frequency, int position){
+        medicineArr.set(position, new MedicineModel(medicine, dose, day, time, frequency));
         medicineAdapter.notifyDataSetChanged();
     }
     public void delMedicineArrData(int position){

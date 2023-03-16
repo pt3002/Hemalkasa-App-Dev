@@ -27,6 +27,8 @@ public class AddNewMedicine extends BottomSheetDialogFragment {
     Button savebtn;
     EditText medicineET;
     EditText doseET;
+    EditText frequencyET;
+    TextView frequencyTxt;
     TextView dayTxt, timeTxt;
     Add_Medicines add_medicines;
     TextView day;
@@ -68,10 +70,12 @@ public class AddNewMedicine extends BottomSheetDialogFragment {
         timeTxt = view.findViewById(R.id.showTimeTxt);
         day = view.findViewById(R.id.dayTxt);
         time = view.findViewById(R.id.timeTxt);
+        frequencyET = view.findViewById(R.id.frequencyEditTxt);
+        frequencyTxt = view.findViewById(R.id.frequencyTxt);
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_medicines.addMedicineArrData(medicineET.getText().toString(), doseET.getText().toString(), dayTxt.getText().toString(), timeTxt.getText().toString());
+                add_medicines.addMedicineArrData(medicineET.getText().toString(), doseET.getText().toString(), dayTxt.getText().toString(), timeTxt.getText().toString(), frequencyET.getText().toString());
                 dismiss();
             }
         });
