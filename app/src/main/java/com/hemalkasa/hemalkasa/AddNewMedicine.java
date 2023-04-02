@@ -13,9 +13,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -25,8 +28,8 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 
 public class AddNewMedicine extends BottomSheetDialogFragment {
     Button savebtn;
-    EditText medicineET;
-    EditText doseET;
+    Spinner medicineSpinner;
+    Spinner doseSpinner;
     EditText frequencyET;
     TextView frequencyTxt;
     TextView dayTxt, timeTxt;
@@ -64,18 +67,49 @@ public class AddNewMedicine extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         savebtn = view.findViewById(R.id.saveBtn);
-        medicineET = view.findViewById(R.id.medicineEditTxt);
-        doseET = view.findViewById(R.id.doseEditTxt);
+        medicineSpinner = view.findViewById(R.id.medicineSpinner);
+        doseSpinner = view.findViewById(R.id.doseSpinner);
         dayTxt = view.findViewById(R.id.showDayTxt);
         timeTxt = view.findViewById(R.id.showTimeTxt);
         day = view.findViewById(R.id.dayTxt);
         time = view.findViewById(R.id.timeTxt);
         frequencyET = view.findViewById(R.id.frequencyEditTxt);
         frequencyTxt = view.findViewById(R.id.frequencyTxt);
+        final String[] selected = {"1 tablet", "Medicine 1"};
+        ArrayAdapter<CharSequence> doseAdapter = ArrayAdapter.createFromResource((Context) add_medicines, R.array.dose, android.R.layout.simple_spinner_item);
+        doseAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        doseSpinner.setAdapter(doseAdapter);
+        doseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                doseSpinner.setSelection(i);
+                selected[0] = doseSpinner.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                selected[0] = "1/2 tablet";
+            }
+        });
+        ArrayAdapter<CharSequence> medicineAdapter = ArrayAdapter.createFromResource((Context) add_medicines, R.array.medicine, android.R.layout.simple_spinner_item);
+        medicineAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        medicineSpinner.setAdapter(medicineAdapter);
+        medicineSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                medicineSpinner.setSelection(i);
+                selected[1] = medicineSpinner.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                selected[1] = "Medicine 1";
+            }
+        });
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_medicines.addMedicineArrData(medicineET.getText().toString(), doseET.getText().toString(), dayTxt.getText().toString(), timeTxt.getText().toString(), frequencyET.getText().toString());
+                add_medicines.addMedicineArrData(selected[1], selected[0], dayTxt.getText().toString(), timeTxt.getText().toString(), frequencyET.getText().toString());
                 dismiss();
             }
         });
