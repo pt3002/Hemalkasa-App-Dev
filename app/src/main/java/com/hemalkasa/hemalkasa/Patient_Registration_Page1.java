@@ -1,6 +1,5 @@
 package com.hemalkasa.hemalkasa;
 
-import android.app.Activity;
 import static android.app.Activity.RESULT_OK;
 import android.content.Intent;
 import android.net.Uri;
@@ -33,7 +32,7 @@ public class Patient_Registration_Page1 extends Fragment {
     ImageView proImg;
     FloatingActionButton fab;
     Button nextpage,showPatients;
-    EditText FullName,MotherName,HospRegNo,BloodGroup;
+    EditText FullName,MotherName, MobNo, HospRegNo;
     int SEC = 1;
     String TAG="Pratik";
 
@@ -61,8 +60,8 @@ public class Patient_Registration_Page1 extends Fragment {
         showPatients=(Button) view.findViewById(R.id.show);
         FullName=(EditText) view.findViewById(R.id.fullname);
         MotherName=(EditText) view.findViewById(R.id.MotherName);
-        HospRegNo=(EditText) view.findViewById(R.id.HospRegNo);
-        BloodGroup=(EditText) view.findViewById(R.id.BloodGroup);
+        MobNo=(EditText) view.findViewById(R.id.MobNo);
+        HospRegNo =(EditText) view.findViewById(R.id.HospRegNo);
 
 
         fab.setOnClickListener(view ->{
@@ -76,19 +75,20 @@ public class Patient_Registration_Page1 extends Fragment {
 
                 String fullname=FullName.getText().toString();
                 String mothername=MotherName.getText().toString();
-                String hospiregno=HospRegNo.getText().toString();
-                String bloodgrp=BloodGroup.getText().toString();
+                String mobno= MobNo.getText().toString();
+                String hospRegNo=HospRegNo.getText().toString();
 
-                Log.d(TAG, "onClick: Started");
-
-                PatientDetails patientDetails = new PatientDetails(fullname,mothername,hospiregno,bloodgrp);
-                InsertAsyncTask insertAsyncTask = new InsertAsyncTask();
-                insertAsyncTask.execute(patientDetails);
-
-                Log.d(TAG, "onClick: Ended");
-//                Patient_Registration_Page2 patient_registration_page2=new Patient_Registration_Page2();
-//                FragmentTransaction fragmentTransaction=getActivity().getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
+                if(isEmpty()) {
+                    Bundle bundle=new Bundle();
+                    bundle.putString("FullName", fullname);
+                    bundle.putString("MotherName", mothername);
+                    bundle.putString("MobNo", mobno);
+                    bundle.putString("HospRegNo", hospRegNo);
+                    getParentFragmentManager().setFragmentResult("Page1", bundle);
+                    Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
+                }
             }
         });
 
@@ -99,8 +99,27 @@ public class Patient_Registration_Page1 extends Fragment {
             }
         });
 
-
         return view;
+    }
+
+    private boolean isEmpty() {
+        if(FullName.getText().toString().isEmpty()){
+            Toast.makeText(getContext(), "Enter Full Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(MotherName.getText().toString().isEmpty()){
+            Toast.makeText(getContext(), "Enter Mother's Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(MobNo.getText().toString().isEmpty()){
+            Toast.makeText(getContext(), "Enter Mobile No", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(HospRegNo.getText().toString().isEmpty()){
+            Toast.makeText(getContext(), "Enter Hospital No", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     public void getAllPatientDetails() {
@@ -116,19 +135,19 @@ public class Patient_Registration_Page1 extends Fragment {
         });
         thread.start();
     }
-
-    class InsertAsyncTask extends AsyncTask<PatientDetails, Void, Void> {
-
-        @Override
-        protected Void doInBackground(PatientDetails... patientDetails) {
-
-            PatientDetails_Database.getInstance(getContext())
-                    .patientDetails_dao()
-                    .insertPatientDetails(patientDetails[0]);
-
-            Log.d(TAG, "doInBackground: Successful");
-            return null;
-        }
-    }
+//
+//    class InsertAsyncTask extends AsyncTask<PatientDetails, Void, Void> {
+//
+//        @Override
+//        protected Void doInBackground(PatientDetails... patientDetails) {
+//
+//            PatientDetails_Database.getInstance(getContext())
+//                    .patientDetails_dao()
+//                    .insertPatientDetails(patientDetails[0]);
+//
+//            Log.d(TAG, "doInBackground: Successful");
+//            return null;
+//        }
+//    }
 
 }

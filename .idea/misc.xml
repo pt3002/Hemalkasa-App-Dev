@@ -4,10 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/circle.xml" value="0.1" />
-        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_main.xml" value="0.33875338753387535" />
-        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient__registration__page1.xml" value="0.152" />
-        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient__registration__page2.xml" value="0.1" />
-        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient_registration_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_destination.xml" value="0.1" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_main.xml" value="0.2650273224043716" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/fragment_add_new_medicine.xml" value="0.21467391304347827" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient__registration__page1.xml" value="0.2" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient__registration__page2.xml" value="0.264" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient_registration_page.xml" value="0.144" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/set_alarm.xml" value="0.20697463768115942" />
       </map>
     </option>
   </component>

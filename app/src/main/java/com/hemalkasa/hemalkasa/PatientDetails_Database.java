@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {PatientDetails.class},version = 1)
+@Database(entities = {PatientDetails.class},version = 1 ,exportSchema = false)
 public abstract class PatientDetails_Database extends RoomDatabase{
 
     public abstract PatientDetails_DAO patientDetails_dao();
