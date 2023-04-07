@@ -122,7 +122,7 @@ public class Patient_Registration_Page2 extends Fragment {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                List<PatientDetails> patientDetailsList = PatientDetails_Database.getInstance(getContext())
+                List<PatientDetails> patientDetailsList = Database.getInstance(getContext())
                         .patientDetails_dao()
                         .getAllPatientDetails();
 
@@ -137,7 +137,7 @@ public class Patient_Registration_Page2 extends Fragment {
         @Override
         protected Void doInBackground(PatientDetails... patientDetails) {
 
-            PatientDetails_Database.getInstance(getContext())
+            Database.getInstance(getContext())
                     .patientDetails_dao()
                     .insertPatientDetails(patientDetails[0]);
 

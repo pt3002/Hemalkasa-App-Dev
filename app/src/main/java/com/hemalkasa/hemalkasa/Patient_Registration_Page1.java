@@ -3,7 +3,6 @@ package com.hemalkasa.hemalkasa;
 import static android.app.Activity.RESULT_OK;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -126,7 +125,7 @@ public class Patient_Registration_Page1 extends Fragment {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                List<PatientDetails> patientDetailsList = PatientDetails_Database.getInstance(getContext())
+                List<PatientDetails> patientDetailsList = Database.getInstance(getContext())
                         .patientDetails_dao()
                         .getAllPatientDetails();
 
@@ -141,7 +140,7 @@ public class Patient_Registration_Page1 extends Fragment {
 //        @Override
 //        protected Void doInBackground(PatientDetails... patientDetails) {
 //
-//            PatientDetails_Database.getInstance(getContext())
+//            Database.getInstance(getContext())
 //                    .patientDetails_dao()
 //                    .insertPatientDetails(patientDetails[0]);
 //

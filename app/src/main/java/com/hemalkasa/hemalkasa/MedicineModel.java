@@ -6,8 +6,9 @@ public class MedicineModel {
     String day;
     String time;
     String frequency;
-    public MedicineModel(String m, String dose, String day, String time, String frequency){
-        this.medicine = m;
+
+    public MedicineModel(String medicine, String dose, String day, String time, String frequency){
+        this.medicine = medicine;
         this.dose = dose;
         this.day = day;
         this.time = time;
@@ -46,6 +47,7 @@ public class MedicineModel {
     public void setTime(String time) {
         this.time = time;
     }
+
     public void setFrequency(String frequency){
         this.frequency = frequency;
     }
