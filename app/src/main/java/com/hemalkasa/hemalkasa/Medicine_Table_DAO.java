@@ -28,5 +28,9 @@ public interface Medicine_Table_DAO {
     LiveData<List<Medicine_Table>> getAllMedicines();
 
 
+    @Query("SELECT * FROM MEDICINE ORDER BY TIME")
+    List<Medicine_Table> getAll();
+
+
 
 }

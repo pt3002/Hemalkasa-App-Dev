@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.lifecycle.LiveData;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -91,45 +92,31 @@ public class Patient_Registration_Page2 extends Fragment {
     }
 
     private boolean isEmpty() {
-        if(DOB.getText().toString().isEmpty()){
+        if(DOB.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Birth Date", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(BloodGroup.getText().toString().isEmpty()){
+        else if(BloodGroup.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Blood Group", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(State.getText().toString().isEmpty()){
+        else if(State.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter State", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(District.getText().toString().isEmpty()){
+        else if(District.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter District", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(Block.getText().toString().isEmpty()){
+        else if(Block.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Block", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(Village.getText().toString().isEmpty()){
+        else if(Village.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Village", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
-    }
-
-    public void getAllPatientDetails() {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                List<PatientDetails> patientDetailsList = Database.getInstance(getContext())
-                        .patientDetails_dao()
-                        .getAllPatientDetails();
-
-                Log.d(TAG, "run: " + patientDetailsList.toString());
-            }
-        });
-        thread.start();
     }
 
     class InsertAsyncTask extends AsyncTask<PatientDetails, Void, Void> {

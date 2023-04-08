@@ -24,6 +24,7 @@ public class Medcine_Table_Repository {
     }
 
     public void insertMedicine(Medicine_Table medicineTable){
+        Log.d(TAG, "Function Started");
         InsertAsyncMedicine insertAsyncMedicine=new InsertAsyncMedicine(medicineTableDao);
         insertAsyncMedicine.execute(medicineTable);
     }
@@ -50,11 +51,13 @@ public class Medcine_Table_Repository {
     private static class InsertAsyncMedicine extends AsyncTask<Medicine_Table,Void,Void> {
         private Medicine_Table_DAO medicineTableDao;
         private InsertAsyncMedicine(Medicine_Table_DAO medicineTableDao){
+            Log.d(TAG, "Inside Asyn Constructor");
             this.medicineTableDao=medicineTableDao; //Using the constructor we are actually getting the DAO of Medicine which we have already taken while initializing the repository class
         }
 
         @Override
         protected Void doInBackground(Medicine_Table... medicine_tables) {
+            Log.d(TAG, "Async Started");
             medicineTableDao.insertMedicine(medicine_tables[0]);
             Log.d(TAG, "Medicine Added: Successful");
             return null;

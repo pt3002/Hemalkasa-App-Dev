@@ -1,6 +1,5 @@
 package com.hemalkasa.hemalkasa;
 
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,7 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
-public class AddNewMedicine extends BottomSheetDialogFragment {
+public class AddNewMedicine_BottomSheet extends BottomSheetDialogFragment {
     Button savebtn;
     Spinner medicineSpinner;
     Spinner doseSpinner;
@@ -36,7 +33,7 @@ public class AddNewMedicine extends BottomSheetDialogFragment {
     Add_Medicines add_medicines;
     TextView day;
     TextView time;
-    public AddNewMedicine(Add_Medicines add_medicines) {
+    public AddNewMedicine_BottomSheet(Add_Medicines add_medicines) {
         // Required empty public constructor
         this.add_medicines = add_medicines;
     }
@@ -60,11 +57,12 @@ public class AddNewMedicine extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_new_medicine, container, false);
+        return inflater.inflate(R.layout.fragment_add_new_medicine_bottomsheet, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
         super.onViewCreated(view, savedInstanceState);
         savebtn = view.findViewById(R.id.saveBtn);
         medicineSpinner = view.findViewById(R.id.medicineSpinner);

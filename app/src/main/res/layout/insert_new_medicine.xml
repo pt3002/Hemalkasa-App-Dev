@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InsertNewMedicine">
+
+    <TextView
+        android:id="@+id/medicineTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medicine"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/medicineSpinner"
+        app:layout_constraintEnd_toStartOf="@+id/medicineSpinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/medicineSpinner" />
+
+    <Spinner
+        android:id="@+id/medicineSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/medicineTxt"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--         android:layout_marginStart="10dp"/> -->
+    <TextView
+        android:id="@+id/doseTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dose"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/doseSpinner"
+        app:layout_constraintEnd_toStartOf="@+id/doseSpinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/doseSpinner" />
+
+    <Spinner
+        android:id="@+id/doseSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/doseTxt"
+        app:layout_constraintTop_toBottomOf="@+id/medicineSpinner" />
+
+    <TextView
+        android:id="@+id/frequencyTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Frequncy"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/frequencyEditTxt"
+        app:layout_constraintEnd_toStartOf="@+id/frequencyEditTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frequencyEditTxt" />
+
+    <EditText
+        android:id="@+id/frequencyEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:hint="Enter Frequency"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/frequencyTxt"
+        app:layout_constraintTop_toBottomOf="@+id/doseSpinner" />
+
+    <TextView
+        android:id="@+id/dayTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/calendar"
+        android:text="Date"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/showDayTxt"
+        app:layout_constraintEnd_toStartOf="@+id/showDayTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/showDayTxt" />
+
+    <TextView
+        android:id="@+id/showDayTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text=""
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/dayTxt"
+        app:layout_constraintTop_toBottomOf="@+id/frequencyEditTxt" />
+
+    <TextView
+        android:id="@+id/timeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_baseline_access_time_24"
+        android:text="Time"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/showTimeTxt"
+        app:layout_constraintEnd_toStartOf="@+id/showTimeTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/showTimeTxt" />
+
+    <TextView
+        android:id="@+id/showTimeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text=""
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/timeTxt"
+        app:layout_constraintTop_toBottomOf="@+id/showDayTxt" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showTimeTxt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

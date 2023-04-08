@@ -9,6 +9,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -102,19 +103,20 @@ public class Patient_Registration_Page1 extends Fragment {
     }
 
     private boolean isEmpty() {
-        if(FullName.getText().toString().isEmpty()){
+            //.trim Removes leading empty Spaces..
+        if(FullName.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Full Name", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(MotherName.getText().toString().isEmpty()){
+        else if(MotherName.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Mother's Name", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(MobNo.getText().toString().isEmpty()){
+        else if(MobNo.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Mobile No", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(HospRegNo.getText().toString().isEmpty()){
+        else if(HospRegNo.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Hospital No", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -134,19 +136,6 @@ public class Patient_Registration_Page1 extends Fragment {
         });
         thread.start();
     }
-//
-//    class InsertAsyncTask extends AsyncTask<PatientDetails, Void, Void> {
-//
-//        @Override
-//        protected Void doInBackground(PatientDetails... patientDetails) {
-//
-//            Database.getInstance(getContext())
-//                    .patientDetails_dao()
-//                    .insertPatientDetails(patientDetails[0]);
-//
-//            Log.d(TAG, "doInBackground: Successful");
-//            return null;
-//        }
-//    }
+
 
 }
