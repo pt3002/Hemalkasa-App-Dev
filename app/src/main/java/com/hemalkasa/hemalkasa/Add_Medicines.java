@@ -25,9 +25,9 @@ import java.util.List;
 
 public class Add_Medicines extends AppCompatActivity {
     public static final int INSERT_MEDICINE=1;
+    public static final int EDIT_MEDICINE=2;
     FloatingActionButton addMedicineBtn;
     RecyclerView medicineRecyclerView;
-//    ArrayList<MedicineModel> medicineArr = new ArrayList<>();
     MedicineAdapter medicineAdapter;
     private Medicine_Table_ViewModel medicineTableViewModel;
     private static final String TAG = "pratik";
@@ -36,11 +36,6 @@ public class Add_Medicines extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_medicines);
-//        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
-//        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
-//        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
-//        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
-//        medicineArr.add(new MedicineModel("Paracetamol", "2", "22 - 2 - 2023", "06 : 00", "2"));
         addMedicineBtn = findViewById(R.id.addMedBtn);
 
         medicineAdapter = new MedicineAdapter();
@@ -54,9 +49,7 @@ public class Add_Medicines extends AppCompatActivity {
         addMedicineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                AddNewMedicine_BottomSheet addNewMedicine = new AddNewMedicine_BottomSheet(Add_Medicines.this);
-//                addNewMedicine.show(getSupportFragmentManager(), "test");
-                Intent intent=new Intent(Add_Medicines.this,InsertNewMedicine.class);
+                Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
                 startActivityForResult(intent, INSERT_MEDICINE);
             }
         });
@@ -85,35 +78,28 @@ public class Add_Medicines extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 Medicine_Table medicineTable=medicineAdapter.getMedicalTableAt(viewHolder.getAdapterPosition());
+                // TODO Delete Medicines using the delete button of the recycler item
                 medicineTableViewModel.deleteMedicine(medicineTable);
             }
         }).attachToRecyclerView(medicineRecyclerView);
 
+        medicineAdapter.setOnItemClickListener(new MedicineAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Medicine_Table medicineTable) {
+                Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
+
+                intent.putExtra("Id", medicineTable.getId());
+                intent.putExtra("Medicine", medicineTable.getName());
+                intent.putExtra("Dose", medicineTable.getDose());
+                intent.putExtra("Day", medicineTable.getDate());
+                intent.putExtra("Time", medicineTable.getTime());
+                intent.putExtra("Frequency", medicineTable.getFrequency());
+                startActivityForResult(intent, EDIT_MEDICINE);
+            }
+        });
+
+
     }
-
-    public void addMedicineArrData(String medicine, String dose, String day, String time, String frequency){
-        Log.d(TAG, "Medicine" + medicine);
-        Log.d(TAG, "Dose" + dose);
-        Log.d(TAG, "Day" + day);
-        Log.d(TAG, "Time" + time);
-        Log.d(TAG, "Frequency" + frequency);
-
-//        Medicine_Table medicineTable=new Medicine_Table(medicine, dose, frequency, day, time);
-//        InsertAsyncMedicine insertAsyncMedicine=new InsertAsyncMedicine();
-//        insertAsyncMedicine.execute(medicineTable);
-
-//        medicineArr.add(new MedicineModel(medicine, dose, day, time, frequency));
-//        medicineAdapter.notifyDataSetChanged();
-    }
-
-    public void editMedicineArrData(String medicine, String dose, String day, String time, String frequency, int position){
-//        medicineArr.set(position, new MedicineModel(medicine, dose, day, time, frequency));
-//        medicineAdapter.notifyDataSetChanged();
-    }
-//    public void delMedicineArrData(int position){
-//        medicineArr.remove(position);
-//        medicineAdapter.notifyDataSetChanged();
-//    }
 
 
     @Override
@@ -131,6 +117,25 @@ public class Add_Medicines extends AppCompatActivity {
 
             Medicine_Table medicineTable=new Medicine_Table(medicine, dose, frequency, day, time);
             medicineTableViewModel.insertMedicine(medicineTable);
+        }
+        else if(requestCode==EDIT_MEDICINE && resultCode==RESULT_OK){
+            int id=data.getIntExtra("Id", -1);
+
+            if(id==-1){
+                Log.d(TAG, "Not Edited");
+                return;
+            }
+
+            String medicine=data.getStringExtra("Medicine");
+            String dose=data.getStringExtra("Dose");
+            String day=data.getStringExtra("Day");
+            String time=data.getStringExtra("Time");
+            String frequency=data.getStringExtra("Frequency");
+
+            Medicine_Table medicineTable=new Medicine_Table(medicine, dose, frequency, day, time);
+            medicineTable.setId(id);
+            medicineTableViewModel.updateMedicine(medicineTable);
+            Log.d(TAG, "Edited");
         }
         else{
             Log.d(TAG, "Medicine Not Added");

@@ -1,6 +1,5 @@
 package com.hemalkasa.hemalkasa;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,29 +17,28 @@ import java.util.List;
 public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHolder> {
     private static final String TAG = "pratik";
 
+    private List<Medicine_Table> medicineList = new ArrayList<>();
+    private OnItemClickListener listener;
+
     // No need for separate Model Class
     //Here Medicine_Table(Entitiy) can work the same way as the modal class used to work
     //Since it also has the required struct and getter/setter methods implemented
-    private List<Medicine_Table> medicineList=new ArrayList<>();
-    Add_Medicines add_medicines;
 
     //If we pass array from the constructor then the medicineList will get initialized only once
     public MedicineAdapter(){
 //        this.add_medicines = add_medicines;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View v = LayoutInflater.from((Context) add_medicines).inflate(R.layout.each_row, parent, false);
-        View v = LayoutInflater.from(parent.getContext())
+        View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.each_row, parent, false);
-//        Log.d(TAG, "onCreateViewHolder: ");
-        return new ViewHolder(v);
+        return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        Log.d(TAG, String.valueOf(medicineList.size()));
         Medicine_Table medicineTable=medicineList.get(position);
         holder.med.setText(medicineTable.getName());
         holder.dose.setText(medicineTable.getDose());
@@ -82,10 +80,11 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         return medicineList.get(position);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView med, dose, day, time, frequency;
         FloatingActionButton editBtn, deleteBtn;
-        public ViewHolder(@NonNull View itemView) {
+
+        public ViewHolder(View itemView) {
             super(itemView);
             med = itemView.findViewById(R.id.medicine);
             dose = itemView.findViewById(R.id.dose);
@@ -94,6 +93,26 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
             frequency = itemView.findViewById(R.id.frequency);
             editBtn = itemView.findViewById(R.id.edit);
             deleteBtn = itemView.findViewById(R.id.delete);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(medicineList.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    //Interface classs implemented here itself
+    public interface OnItemClickListener {
+        //Work of iterface is to just define methods
+        void onItemClick(Medicine_Table medicineTable);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;   //Initializing listener of interface
     }
 }

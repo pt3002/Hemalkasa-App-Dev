@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Hemalkasa"
         tools:targetApi="31">
         <activity
-            android:name=".InsertNewMedicine"
+            android:name=".InsertEditMedicine"
             android:parentActivityName=".Add_Medicines" />
         <activity
             android:name=".Add_Medicines"
