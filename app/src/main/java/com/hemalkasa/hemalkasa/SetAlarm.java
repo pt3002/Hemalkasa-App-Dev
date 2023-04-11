@@ -41,6 +41,8 @@ public class SetAlarm extends AppCompatActivity {
         cancelAlarmBtn=findViewById(R.id.cancelAlarmBtn);
         selectedTime=findViewById(R.id.selectedTime);
 
+        createNotificationChannel();
+
         selectTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

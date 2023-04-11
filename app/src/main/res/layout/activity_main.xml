@@ -13,21 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registration Page"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"/>
 
     <Button
         android:id="@+id/addMedicinePage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Medicine"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"/>
 
     <Button
         android:id="@+id/set_Alarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Set Alarm"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"/>
 
 
 </LinearLayout>

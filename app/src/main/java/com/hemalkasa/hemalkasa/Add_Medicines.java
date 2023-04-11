@@ -1,5 +1,8 @@
 package com.hemalkasa.hemalkasa;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class Add_Medicines extends AppCompatActivity {
@@ -50,6 +54,7 @@ public class Add_Medicines extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
+                Log.d(TAG, "Fab Button");
                 startActivityForResult(intent, INSERT_MEDICINE);
             }
         });
@@ -117,6 +122,13 @@ public class Add_Medicines extends AppCompatActivity {
 
             Medicine_Table medicineTable=new Medicine_Table(medicine, dose, frequency, day, time);
             medicineTableViewModel.insertMedicine(medicineTable);
+
+            int hour=Integer.parseInt(time.substring(0,2));
+            int minute=Integer.parseInt(time.substring(5).trim());
+            setAlarm(hour,minute);
+            Log.d(TAG, String.valueOf(hour));
+            Log.d(TAG, String.valueOf(minute));
+
         }
         else if(requestCode==EDIT_MEDICINE && resultCode==RESULT_OK){
             int id=data.getIntExtra("Id", -1);
@@ -141,6 +153,36 @@ public class Add_Medicines extends AppCompatActivity {
             Log.d(TAG, "Medicine Not Added");
             Toast.makeText(this, "Medicine Not Added", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void setAlarm(int hour, int minute) {
+        Calendar calendar=Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+
+        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent alarmReceiver=new Intent(this,AlarmReceiver.class);
+            // TODO Use appropriate Flags
+            //  TODO pass the id of medicie added inplace of "1"
+        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,1, alarmReceiver, 0);
+
+            // At the time of filling medicine if time is already pass then we pass +1 day
+        if(calendar.before(Calendar.getInstance())){
+            calendar.add(Calendar.DATE, 1);
+        }
+
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastIntent);
+        Log.d(TAG, "setAlarm: " + String.valueOf(calendar.getTimeInMillis()));
+    }
+
+    private void cancelAlarm(){
+        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent alarmReceiver=new Intent(this,AlarmReceiver.class);
+        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,1, alarmReceiver, 0);
+
+        alarmManager.cancel(broadcastIntent);
+        Log.d(TAG, "cancelAlarm");
     }
 
     @Override
