@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,8 +25,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Add_Medicines extends AppCompatActivity {
     public static final int INSERT_MEDICINE=1;
@@ -172,8 +177,31 @@ public class Add_Medicines extends AppCompatActivity {
             calendar.add(Calendar.DATE, 1);
         }
 
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastIntent);
-        Log.d(TAG, "setAlarm: " + String.valueOf(calendar.getTimeInMillis()));
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastIntent);
+//        Log.d(TAG, "setTime " + calendar.getTimeInMillis());
+//        Log.d(TAG, "CurrentTime " + Calendar.getInstance().getTimeInMillis());
+        Long remainingTime=calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
+        Log.d(TAG, "setTime " +
+                String.valueOf(remainingTime));
+        counter(remainingTime);
+    }
+
+    private void counter(Long remainingTime) {
+
+        new CountDownTimer(remainingTime, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Used for formatting digit to be in 2 digits only
+                NumberFormat f = new DecimalFormat("00");
+                long hour = (millisUntilFinished / 3600000) % 24;
+                long min = (millisUntilFinished / 60000) % 60;
+                long sec = (millisUntilFinished / 1000) % 60;
+                Log.d(TAG, (f.format(hour) + ":" + f.format(min) + ":" + f.format(sec)));
+            }
+            // When the task is over it will print 00:00:00 there
+            public void onFinish() {
+                Log.d(TAG, "Timer Finished");
+            }
+        }.start();
     }
 
     private void cancelAlarm(){
