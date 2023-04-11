@@ -134,8 +134,6 @@ public class SetAlarm extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
 
         }
-
-
     }
 
 }

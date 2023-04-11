@@ -1,10 +1,14 @@
 package com.hemalkasa.hemalkasa;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,12 +19,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -42,6 +50,8 @@ public class Add_Medicines extends AppCompatActivity {
         setContentView(R.layout.add_medicines);
         addMedicineBtn = findViewById(R.id.addMedBtn);
 
+        createNotificationChannel();
+
         medicineAdapter = new MedicineAdapter();
         medicineRecyclerView = findViewById(R.id.RecyclerView);
         medicineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -53,9 +63,30 @@ public class Add_Medicines extends AppCompatActivity {
         addMedicineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
-                Log.d(TAG, "Fab Button");
-                startActivityForResult(intent, INSERT_MEDICINE);
+//                Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
+//                Log.d(TAG, "Fab Button");
+//                startActivityForResult(intent, INSERT_MEDICINE);
+
+
+                AlarmManager alarmManager;
+                int ALARAM_REQ_CODE=121;    //Different code for different alarm
+                alarmManager=(AlarmManager) getSystemService(ALARM_SERVICE);
+
+                int time=10;
+                long triggerTime=System.currentTimeMillis() + (time *1000);
+                Intent intent=new Intent(Add_Medicines.this,AlarmReceiver.class);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(Add_Medicines.this, ALARAM_REQ_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                Log.d(TAG, "Intent 1   " + String.valueOf(Calendar.getInstance().getTimeInMillis()));
+
+                alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime,pendingIntent);
+
+                long triggerTime1=System.currentTimeMillis() + ((time+30)*1000);
+                PendingIntent pendingIntent1=PendingIntent.getBroadcast(Add_Medicines.this, ALARAM_REQ_CODE+8, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                Log.d(TAG, "Intent 2   " +String.valueOf(Calendar.getInstance().getTimeInMillis()));
+
+                alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime1,pendingIntent1);
+                counter((long) (1000*100));
+
             }
         });
 
@@ -173,7 +204,31 @@ public class Add_Medicines extends AppCompatActivity {
         }
 
 //        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastIntent);
-        Log.d(TAG, "setAlarm: " + String.valueOf(calendar.getTimeInMillis()));
+
+        Log.d(TAG, "setTime " + calendar.getTimeInMillis());
+//        Log.d(TAG, "CurrentTime " + Calendar.getInstance().getTimeInMillis());
+        Long remainingTime=calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
+        Log.d(TAG, "setTime " +
+                String.valueOf(remainingTime));
+        counter(remainingTime);
+    }
+
+    private void counter(Long remainingTime) {
+
+        new CountDownTimer(remainingTime, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Used for formatting digit to be in 2 digits only
+                NumberFormat f = new DecimalFormat("00");
+                long hour = (millisUntilFinished / 3600000) % 24;
+                long min = (millisUntilFinished / 60000) % 60;
+                long sec = (millisUntilFinished / 1000) % 60;
+                Log.d(TAG, (f.format(hour) + ":" + f.format(min) + ":" + f.format(sec)));
+            }
+            // When the task is over it will print 00:00:00 there
+            public void onFinish() {
+                Log.d(TAG, "Timer Finished");
+            }
+        }.start();
     }
 
     private void cancelAlarm(){
@@ -203,6 +258,24 @@ public class Add_Medicines extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
 
+    // TODO Notification channel should be created once the app gets installed. Notificaton_Channel extends Application
+    private void createNotificationChannel() {
+
+            // foxandroid is the channel id
+            // Once channel id is changed everything is changed
+            
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Channel Name....";
+            String description = "Channel Description in short words...";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("foxandroid", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+        }
     }
 }
