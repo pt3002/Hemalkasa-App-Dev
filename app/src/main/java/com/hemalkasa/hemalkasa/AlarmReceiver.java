@@ -23,19 +23,29 @@ public class AlarmReceiver extends BroadcastReceiver {
     public static final String TAG="pratik";
 //    private NotificationManager notificationManager;
     private NotificationManager manager;
-    private String medicineName="Dummy";
+    private static String medicineName="Dummy";
+    public static int id=-1;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        if(intent!=null){
+            if(intent.hasExtra("MedicineName")){
+                medicineName=intent.getStringExtra("MedicineName");
+            }
+            if(intent.hasExtra("Id")){
+                id=intent.getIntExtra("Id", -1);
+            }
+        }
+
         Intent destinationIntent = new Intent(context,DestinationActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingdestinationIntent = PendingIntent.getActivity(context,0,destinationIntent,0);
+        PendingIntent pendingdestinationIntent = PendingIntent.getActivity(context,id,destinationIntent,0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"foxandroid")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Medicine Reminder")
-                .setContentText("2 Tablets with Warm Water")
+                .setContentText("Reminder for " + medicineName)
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

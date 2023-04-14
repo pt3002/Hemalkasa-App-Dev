@@ -31,6 +31,10 @@ public class Medicine_Table_ViewModel extends AndroidViewModel {
         medcineTableRepository.deleteMedicine(medicineTable);
     }
 
+    public int getMedicineById(String medicineName){
+        return medcineTableRepository.getMedicineById(medicineName);
+    }
+
     public void deleteAllMedicines(){
         medcineTableRepository.deleteAllMedicines();
     }

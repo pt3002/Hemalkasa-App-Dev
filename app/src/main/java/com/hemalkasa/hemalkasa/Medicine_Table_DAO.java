@@ -31,6 +31,8 @@ public interface Medicine_Table_DAO {
     @Query("SELECT * FROM MEDICINE ORDER BY TIME")
     List<Medicine_Table> getAll();
 
+    @Query("SELECT ID FROM MEDICINE WHERE NAME= :name ORDER BY ID DESC LIMIT 1")
+    Integer getMedicineById(String name);
 
 
 }

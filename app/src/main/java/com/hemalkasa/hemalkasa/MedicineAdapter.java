@@ -40,27 +40,12 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Medicine_Table medicineTable=medicineList.get(position);
+        Log.d(TAG, String.valueOf(medicineTable.getId()) + "  " + medicineTable.getName());
         holder.med.setText(medicineTable.getName());
         holder.dose.setText(medicineTable.getDose());
         holder.day.setText(medicineTable.getDate());
         holder.time.setText(medicineTable.getTime());
         holder.frequency.setText(medicineTable.getFrequency());
-//        Log.d(TAG, "onBindViewHolder: "+ medicineTable.getName());
-
-//        int p = position;
-//        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                add_medicines.delMedicineArrData(p);
-//            }
-//        });
-//        holder.editBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                EditMedicine editMedicine = EditMedicine.newInstance(holder.med.getText().toString(), holder.dose.getText().toString(), holder.day.getText().toString(), holder.time.getText().toString(), holder.frequency.getText().toString(), add_medicines, p);
-//                editMedicine.show(add_medicines.getSupportFragmentManager(), "test");
-//            }
-//        });
     }
 
     @Override
@@ -103,6 +88,17 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
                     }
                 }
             });
+
+            editBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(medicineList.get(position));
+                    }
+                }
+            });
+
         }
     }
 

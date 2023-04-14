@@ -34,6 +34,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 public class Add_Medicines extends AppCompatActivity {
     public static final int INSERT_MEDICINE=1;
@@ -43,6 +44,7 @@ public class Add_Medicines extends AppCompatActivity {
     MedicineAdapter medicineAdapter;
     private Medicine_Table_ViewModel medicineTableViewModel;
     private static final String TAG = "pratik";
+    private Random randomId=new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,30 +65,8 @@ public class Add_Medicines extends AppCompatActivity {
         addMedicineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
-//                Log.d(TAG, "Fab Button");
-//                startActivityForResult(intent, INSERT_MEDICINE);
-
-
-                AlarmManager alarmManager;
-                int ALARAM_REQ_CODE=121;    //Different code for different alarm
-                alarmManager=(AlarmManager) getSystemService(ALARM_SERVICE);
-
-                int time=10;
-                long triggerTime=System.currentTimeMillis() + (time *1000);
-                Intent intent=new Intent(Add_Medicines.this,AlarmReceiver.class);
-                PendingIntent pendingIntent=PendingIntent.getBroadcast(Add_Medicines.this, ALARAM_REQ_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                Log.d(TAG, "Intent 1   " + String.valueOf(Calendar.getInstance().getTimeInMillis()));
-
-                alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime,pendingIntent);
-
-                long triggerTime1=System.currentTimeMillis() + ((time+30)*1000);
-                PendingIntent pendingIntent1=PendingIntent.getBroadcast(Add_Medicines.this, ALARAM_REQ_CODE+8, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                Log.d(TAG, "Intent 2   " +String.valueOf(Calendar.getInstance().getTimeInMillis()));
-
-                alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime1,pendingIntent1);
-                counter((long) (1000*100));
-
+                Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
+                startActivityForResult(intent, INSERT_MEDICINE);
             }
         });
 
@@ -98,7 +78,6 @@ public class Add_Medicines extends AppCompatActivity {
                 //Passing the Arraylist of adapter here cuz everytime Live data changes we can change the adapter list automatically
                 // No need for managing the adpter list again and again
                 medicineAdapter.setMedicines(medicine_tables);
-//                Log.d(TAG, "Observing Live Data");
                 medicineAdapter.notifyDataSetChanged();
             }
         });
@@ -149,17 +128,23 @@ public class Add_Medicines extends AppCompatActivity {
             String time=data.getStringExtra("Time");
             String frequency=data.getStringExtra("Frequency");
 
-            Log.d(TAG, "Data Received");
-
             Medicine_Table medicineTable=new Medicine_Table(medicine, dose, frequency, day, time);
             medicineTableViewModel.insertMedicine(medicineTable);
 
+            int medicineId;
+            try{
+                medicineId=medicineTableViewModel.getMedicineById(medicine);
+            }catch (Exception exception){
+                Log.d(TAG, "Error getting ID");
+                Log.d(TAG, exception.getMessage());
+                medicineId=randomId.nextInt();
+            }
+
+            Log.d(TAG,"Heloooo    " +  String.valueOf(medicineId));
+
             int hour=Integer.parseInt(time.substring(0,2));
             int minute=Integer.parseInt(time.substring(5).trim());
-            setAlarm(hour,minute);
-            Log.d(TAG, String.valueOf(hour));
-            Log.d(TAG, String.valueOf(minute));
-
+            setAlarm(hour,minute,medicineId,medicine);
         }
         else if(requestCode==EDIT_MEDICINE && resultCode==RESULT_OK){
             int id=data.getIntExtra("Id", -1);
@@ -186,30 +171,31 @@ public class Add_Medicines extends AppCompatActivity {
         }
     }
 
-    private void setAlarm(int hour, int minute) {
+    private void setAlarm(int hour, int minute, int id, String medicineName) {
         Calendar calendar=Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
 
-        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent alarmReceiver=new Intent(this,AlarmReceiver.class);
-            // TODO Use appropriate Flags
-            //  TODO pass the id of medicie added inplace of "1"
-        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,1, alarmReceiver, 0);
-
-            // At the time of filling medicine if time is already pass then we pass +1 day
+        // At the time of filling medicine if time is already pass then we pass +1 day
         if(calendar.before(Calendar.getInstance())){
             calendar.add(Calendar.DATE, 1);
         }
 
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastIntent);
+        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent alarmReceiverIntent=new Intent(Add_Medicines.this,AlarmReceiver.class);
+        alarmReceiverIntent.putExtra("MedicineName", medicineName);
+        alarmReceiverIntent.putExtra("Id", id);
+            // TODO Use appropriate Flags
+        PendingIntent broadcastPendingIntent=PendingIntent.getBroadcast(Add_Medicines.this,id, alarmReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),broadcastPendingIntent);
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastPendingIntent);
+        Log.d(TAG, String.valueOf(id) + "  " + medicineName);
         Log.d(TAG, "setTime " + calendar.getTimeInMillis());
-//        Log.d(TAG, "CurrentTime " + Calendar.getInstance().getTimeInMillis());
         Long remainingTime=calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
-        Log.d(TAG, "setTime " +
-                String.valueOf(remainingTime));
+        Log.d(TAG, "remainingTime " +String.valueOf(remainingTime));
         counter(remainingTime);
     }
 
@@ -265,7 +251,7 @@ public class Add_Medicines extends AppCompatActivity {
 
             // foxandroid is the channel id
             // Once channel id is changed everything is changed
-            
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Channel Name....";
             String description = "Channel Description in short words...";
