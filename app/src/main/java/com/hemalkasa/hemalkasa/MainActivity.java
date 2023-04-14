@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         registrationPage=findViewById(R.id.registrationPage);
         addMedicinePage=findViewById(R.id.addMedicinePage);
-        AlarmPage=findViewById(R.id.set_Alarm);
+//        AlarmPage=findViewById(R.id.set_Alarm);
 
         registrationPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        AlarmPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,SetAlarm.class);
-                startActivity(intent);
-            }
-        });
+//        AlarmPage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(MainActivity.this,SetAlarm.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
     }
