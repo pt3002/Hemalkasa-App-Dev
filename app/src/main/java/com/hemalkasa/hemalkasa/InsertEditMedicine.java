@@ -97,12 +97,6 @@ public class InsertEditMedicine extends AppCompatActivity {
                 String time=timeTxt.getText().toString();
                 String frequency=frequencyET.getText().toString();
 
-//                Log.d(TAG, "Medicine # " + medicine);
-//                Log.d(TAG, "Dose # " + dose);
-//                Log.d(TAG, "Day # " + day);
-//                Log.d(TAG, "Time # " + time);
-//                Log.d(TAG, "Frequency # " + frequency);
-
                 Intent data=new Intent();
                 data.putExtra("Medicine", medicine);
                 data.putExtra("Dose", dose);

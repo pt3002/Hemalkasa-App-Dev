@@ -84,7 +84,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(medicineList.get(position));
+                        listener.editClick(medicineList.get(position));
                     }
                 }
             });
@@ -94,7 +94,17 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(medicineList.get(position));
+                        listener.editClick(medicineList.get(position));
+                    }
+                }
+            });
+
+            deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.deleteClick(medicineList.get(position));
                     }
                 }
             });
@@ -105,7 +115,8 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     //Interface classs implemented here itself
     public interface OnItemClickListener {
         //Work of iterface is to just define methods
-        void onItemClick(Medicine_Table medicineTable);
+        void editClick(Medicine_Table medicineTable);
+        void deleteClick(Medicine_Table medicineTable);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

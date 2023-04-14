@@ -93,14 +93,26 @@ public class Add_Medicines extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 Medicine_Table medicineTable=medicineAdapter.getMedicalTableAt(viewHolder.getAdapterPosition());
-                // TODO Delete Medicines using the delete button of the recycler item
+
+                String medicine=medicineTable.getName();
+                int medicineId;
+                try{
+                    medicineId=medicineTableViewModel.getMedicineById(medicine);
+                }catch (Exception exception){
+                    Log.d(TAG, "Error getting ID");
+                    Log.d(TAG, exception.getMessage());
+                    medicineId=randomId.nextInt();
+                }
+                cancelAlarm(medicineId);
                 medicineTableViewModel.deleteMedicine(medicineTable);
             }
         }).attachToRecyclerView(medicineRecyclerView);
 
+
+
         medicineAdapter.setOnItemClickListener(new MedicineAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Medicine_Table medicineTable) {
+            public void editClick(Medicine_Table medicineTable) {
                 Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
 
                 intent.putExtra("Id", medicineTable.getId());
@@ -110,6 +122,21 @@ public class Add_Medicines extends AppCompatActivity {
                 intent.putExtra("Time", medicineTable.getTime());
                 intent.putExtra("Frequency", medicineTable.getFrequency());
                 startActivityForResult(intent, EDIT_MEDICINE);
+            }
+
+            @Override
+            public void deleteClick(Medicine_Table medicineTable) {
+                String medicine=medicineTable.getName();
+                int medicineId;
+                try{
+                    medicineId=medicineTableViewModel.getMedicineById(medicine);
+                }catch (Exception exception){
+                    Log.d(TAG, "Error getting ID");
+                    Log.d(TAG, exception.getMessage());
+                    medicineId=randomId.nextInt();
+                }
+                cancelAlarm(medicineId);
+                medicineTableViewModel.deleteMedicine(medicineTable);
             }
         });
 
@@ -164,6 +191,10 @@ public class Add_Medicines extends AppCompatActivity {
             medicineTable.setId(id);
             medicineTableViewModel.updateMedicine(medicineTable);
             Log.d(TAG, "Edited");
+
+            int hour=Integer.parseInt(time.substring(0,2));
+            int minute=Integer.parseInt(time.substring(5).trim());
+            setAlarm(hour,minute,id,medicine);
         }
         else{
             Log.d(TAG, "Medicine Not Added");
@@ -217,12 +248,14 @@ public class Add_Medicines extends AppCompatActivity {
         }.start();
     }
 
-    private void cancelAlarm(){
+    private void cancelAlarm(int id){
+        Log.d(TAG, "Cancel " + id);
         AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent alarmReceiver=new Intent(this,AlarmReceiver.class);
-        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,1, alarmReceiver, 0);
+        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,id, alarmReceiver, 0);
 
         alarmManager.cancel(broadcastIntent);
+        Toast.makeText(this, "Removed Successfully", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "cancelAlarm");
     }
 
@@ -236,6 +269,7 @@ public class Add_Medicines extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
+            // TODO Once all medicines are cleared, delete the alarm which has being assigned to them
         switch (item.getItemId()){
             case R.id.Delete_All_Medicines:
                 medicineTableViewModel.deleteAllMedicines();

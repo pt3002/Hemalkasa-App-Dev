@@ -18,15 +18,14 @@
             android:parentActivityName=".Add_Medicines" />
         <activity
             android:name=".Add_Medicines"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".Patient_Registration_Page"
             android:exported="false" />
-
         <activity android:name=".DestinationActivity" />
         <activity android:name=".SetAlarm" />
 
-        <receiver android:name=".AlarmReceiver"/>
+        <receiver android:name=".AlarmReceiver" />
 
         <activity
             android:name=".MainActivity"

@@ -69,7 +69,8 @@ public class Patient_Registration_Page2 extends Fragment {
                     InsertAsyncTask insertAsyncTask = new InsertAsyncTask();
                     insertAsyncTask.execute(patientDetails);
 
-                Log.d(TAG, "onClick: Ended");
+                    Toast.makeText(getContext(), patientDetails.toString(), Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onClick: Ended");
                 }
             }
         });
