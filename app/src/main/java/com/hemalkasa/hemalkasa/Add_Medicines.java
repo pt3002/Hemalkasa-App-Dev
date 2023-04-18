@@ -219,10 +219,10 @@ public class Add_Medicines extends AppCompatActivity {
         alarmReceiverIntent.putExtra("MedicineName", medicineName);
         alarmReceiverIntent.putExtra("Id", id);
             // TODO Use appropriate Flags
-        PendingIntent broadcastPendingIntent=PendingIntent.getBroadcast(Add_Medicines.this,id, alarmReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent broadcastPendingIntent=PendingIntent.getBroadcast(Add_Medicines.this,id, alarmReceiverIntent, PendingIntent.FLAG_MUTABLE);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),broadcastPendingIntent);
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastPendingIntent);
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),broadcastPendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastPendingIntent);
         Log.d(TAG, String.valueOf(id) + "  " + medicineName);
         Log.d(TAG, "setTime " + calendar.getTimeInMillis());
         Long remainingTime=calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
@@ -252,7 +252,7 @@ public class Add_Medicines extends AppCompatActivity {
         Log.d(TAG, "Cancel " + id);
         AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent alarmReceiver=new Intent(this,AlarmReceiver.class);
-        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,id, alarmReceiver, 0);
+        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,id, alarmReceiver, PendingIntent.FLAG_MUTABLE);
 
         alarmManager.cancel(broadcastIntent);
         Toast.makeText(this, "Removed Successfully", Toast.LENGTH_SHORT).show();

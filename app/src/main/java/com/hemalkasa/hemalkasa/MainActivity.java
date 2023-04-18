@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button addMedicinePage,registrationPage,AlarmPage;
+    Button addMedicinePage,registrationPage, VideoPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         registrationPage=findViewById(R.id.registrationPage);
         addMedicinePage=findViewById(R.id.addMedicinePage);
-//        AlarmPage=findViewById(R.id.set_Alarm);
+        VideoPage =findViewById(R.id.video);
 
         registrationPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        AlarmPage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(MainActivity.this,SetAlarm.class);
-//                startActivity(intent);
-//            }
-//        });
+        VideoPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,Video_MainScreen.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

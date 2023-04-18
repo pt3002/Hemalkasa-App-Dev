@@ -40,7 +40,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Intent destinationIntent = new Intent(context,DestinationActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingdestinationIntent = PendingIntent.getActivity(context,id,destinationIntent,0);
+        PendingIntent pendingdestinationIntent = PendingIntent.getActivity(context,id,destinationIntent,PendingIntent.FLAG_MUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"foxandroid")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
