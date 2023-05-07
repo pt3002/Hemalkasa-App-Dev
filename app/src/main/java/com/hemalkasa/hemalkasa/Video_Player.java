@@ -4,29 +4,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 
 public class Video_Player extends AppCompatActivity {
 
     public static final String TAG="pratik";
     String path;
     VideoView videoView;
-    ImageButton pausePlay;
+    ImageButton share_btn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_player);
-
+        share_btn = findViewById(R.id.shareBtn);
         videoView = findViewById(R.id.videoView);
-        pausePlay = findViewById(R.id.pausePlay);
 
         Intent intent=getIntent();
         if(intent!=null){
@@ -37,18 +38,17 @@ public class Video_Player extends AppCompatActivity {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
                     mp.start();
-
-                    pausePlay.setOnClickListener(new View.OnClickListener() {
+                    MediaController mediaController = new MediaController(Video_Player.this);
+                    mediaController.setAnchorView(videoView);
+                    videoView.setMediaController(mediaController);
+                    share_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
-                            if(videoView.isPlaying()){
-                                videoView.pause();
-                                Glide.with(Video_Player.this).load(R.drawable.ic_baseline_play_circle_24).into(pausePlay);
-                            }
-                            else {
-                                videoView.resume();
-                                Glide.with(Video_Player.this).load(R.drawable.ic_baseline_pause_circle_24).into(pausePlay);
-                            }
+                        public void onClick(View view) {
+                            Uri uri = Uri.parse(path);
+                            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                            shareIntent.setType("video/*");
+                            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                            startActivity(Intent.createChooser(shareIntent, "Share Via "));
                         }
                     });
                 }
