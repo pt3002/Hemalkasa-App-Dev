@@ -13,11 +13,11 @@
 
         <ImageView
             android:id="@+id/ThumbNail"
-            android:layout_width="80sp"
-            android:layout_height="60sp"
+            android:layout_width="90sp"
+            android:layout_height="70sp"
             android:layout_centerVertical="true"
             android:layout_marginStart="20sp"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/Title"
@@ -36,12 +36,6 @@
             android:layout_below="@id/Title"
             android:layout_toEndOf="@id/ThumbNail"
             android:layout_marginStart="10sp"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/Title"
-            android:id="@+id/delteBtn"
-            android:src="@drawable/ic_baseline_delete_24"/>
 
     </RelativeLayout>
 

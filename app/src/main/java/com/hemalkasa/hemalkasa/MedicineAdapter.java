@@ -33,7 +33,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.each_row, parent, false);
+                .inflate(R.layout.medicine_item, parent, false);
         return new ViewHolder(itemView);
     }
 

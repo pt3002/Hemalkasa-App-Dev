@@ -56,8 +56,8 @@ public abstract class Database extends RoomDatabase{
 
         @Override
         protected Void doInBackground(Void... voids) {
-            medicineTableDao.insertMedicine(new Medicine_Table("Medicine 111", "AAA", "BB", "CC", "DDD"));
-            medicineTableDao.insertMedicine(new Medicine_Table("Medicine 222", "zzz", "yy", "xx", "hh"));
+//            medicineTableDao.insertMedicine(new Medicine_Table("Medicine 111", "AAA", "BB", "CC", "DDD"));
+//            medicineTableDao.insertMedicine(new Medicine_Table("Medicine 222", "zzz", "yy", "xx", "hh"));
             return null;
         }
 
