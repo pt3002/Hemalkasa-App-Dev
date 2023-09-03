@@ -19,9 +19,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -32,7 +35,8 @@ public class Patient_Registration_Page1 extends Fragment {
     ImageView proImg;
     FloatingActionButton fab;
     Button nextpage,showPatients;
-    EditText FullName,MotherName, MobNo, HospRegNo;
+    EditText HospRegNo, FullName,MotherName,BloodGroup,State,District,Block,Village,MobNo;
+    TextView DateOfBirth;
     int SEC = 1;
     String TAG="Pratik";
 
@@ -58,10 +62,37 @@ public class Patient_Registration_Page1 extends Fragment {
         fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
         nextpage=(Button) view.findViewById(R.id.next);
         showPatients=(Button) view.findViewById(R.id.show);
+        HospRegNo =(EditText) view.findViewById(R.id.HospRegNo);
         FullName=(EditText) view.findViewById(R.id.fullname);
         MotherName=(EditText) view.findViewById(R.id.MotherName);
+        BloodGroup=(EditText) view.findViewById(R.id.BloodGroup);
+        State=(EditText) view.findViewById(R.id.State);
+        District=(EditText) view.findViewById(R.id.District);
+        Block=(EditText) view.findViewById(R.id.Block);
+        Village=(EditText) view.findViewById(R.id.Village);
         MobNo=(EditText) view.findViewById(R.id.MobNo);
-        HospRegNo =(EditText) view.findViewById(R.id.HospRegNo);
+        DateOfBirth=(TextView) view.findViewById(R.id.DateOfBirth);
+
+
+        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+        materialDateBuilder.setTitleText("Select Date of Birth");
+        MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                DateOfBirth.setText(materialDatePicker.getHeaderText());
+            }
+        });
+
+        DateOfBirth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
+                materialDatePicker.show(getParentFragmentManager(), "DOB_DATE_PICKER");
+            }
+        });
+
+
 
 
         fab.setOnClickListener(view ->{
@@ -73,17 +104,25 @@ public class Patient_Registration_Page1 extends Fragment {
             @Override
             public void onClick(View v) {
 
+                String hospRegNo=HospRegNo.getText().toString();
                 String fullname=FullName.getText().toString();
                 String mothername=MotherName.getText().toString();
+                String dateofbirth=DateOfBirth.getText().toString();
+                String bloodgroup=BloodGroup.getText().toString();
+                String state=State.getText().toString();
+                String district=District.getText().toString();
+                String block=Block.getText().toString();
+                String village=Village.getText().toString();
                 String mobno= MobNo.getText().toString();
-                String hospRegNo=HospRegNo.getText().toString();
 
-                if(isEmpty()) {
+                if(!isEmpty()) {
                     Bundle bundle=new Bundle();
+                    bundle.putString("HospRegNo", hospRegNo);
                     bundle.putString("FullName", fullname);
                     bundle.putString("MotherName", mothername);
                     bundle.putString("MobNo", mobno);
-                    bundle.putString("HospRegNo", hospRegNo);
+                    bundle.putString("DateOfBirth", dateofbirth);
+                    // TODO Save in saved preferences. Get Unique Key. Search from DB and assign it to patient
                     getParentFragmentManager().setFragmentResult("Page1", bundle);
                     Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -104,23 +143,47 @@ public class Patient_Registration_Page1 extends Fragment {
 
     private boolean isEmpty() {
             //.trim Removes leading empty Spaces..
-        if(FullName.getText().toString().trim().isEmpty()){
+        if(HospRegNo.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Enter Hospital No", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(FullName.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Full Name", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         else if(MotherName.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Mother's Name", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
+        }
+        else if(DateOfBirth.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Enter Date of Birth", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(BloodGroup.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Enter Blood Group", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(State.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Enter State", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(District.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Enter District", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(Block.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Enter Block", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(Village.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Enter Village", Toast.LENGTH_SHORT).show();
+            return true;
         }
         else if(MobNo.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Mobile No", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
-        else if(HospRegNo.getText().toString().trim().isEmpty()){
-            Toast.makeText(getContext(), "Enter Hospital No", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
+        return false;
     }
 
     public void getAllPatientDetails() {

@@ -1,128 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".Patient_Registration_Page2">
 
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/DOB"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="dd/mm/yyyy"
-        android:background="@drawable/custom_input"
-        android:textColor="@color/white"
-        android:inputType="date"
-        android:padding="20dp"
-        android:drawableLeft="@drawable/circle"
-        android:drawablePadding="20dp"
-        android:layout_margin="10dp"/>
+        android:layout_height="match_parent">
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/BloodGroup"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DOB"
-        android:hint="Blood Group"
-        android:background="@drawable/custom_input"
-        android:textColor="@color/white"
-        android:padding="20dp"
-        android:drawableLeft="@drawable/hospital"
-        android:drawablePadding="20dp"
-        android:layout_marginVertical="20dp"
-        android:layout_marginHorizontal="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/EDD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="20dp"
+                android:hint="EDD"
+                android:padding="20dp"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/POGWeeks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="20dp"
+                android:hint="POG Weeks"
+                android:padding="20dp"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/POGDays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="20dp"
+                android:hint="POG Days"
+                android:padding="20dp"
+                android:textColor="@color/white" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/Back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/Submit"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/Submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Submit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Back" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/State"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BloodGroup"
-        android:layout_margin="10dp"
-        android:hint="State"
-        android:background="@drawable/custom_input"
-        android:textColor="@color/white"
-        android:padding="20dp"
-        android:drawableLeft="@drawable/location_pin"
-        android:drawablePadding="20dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/District"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/State"
-        android:layout_margin="10dp"
-        android:layout_marginTop="50dp"
-        android:hint="District"
-        android:background="@drawable/custom_input"
-        android:textColor="@color/white"
-        android:padding="20dp"
-        android:drawableLeft="@drawable/location_pin"
-        android:drawablePadding="20dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Block"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/District"
-        android:layout_margin="10dp"
-        android:layout_marginTop="50dp"
-        android:hint="Block/Tehsil"
-        android:background="@drawable/custom_input"
-        android:textColor="@color/white"
-        android:padding="20dp"
-        android:drawableLeft="@drawable/city"
-        android:drawablePadding="20dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Village"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Block"
-        android:layout_margin="10dp"
-        android:layout_marginTop="50dp"
-        android:hint="Village"
-        android:background="@drawable/custom_input"
-        android:textColor="@color/white"
-        android:padding="20dp"
-        android:drawableLeft="@drawable/location_pin"
-        android:drawablePadding="20dp" />
-
-
-    <Button
-        android:id="@+id/Back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/Submit"
-        android:layout_marginBottom="10dp"/>
-
-    <Button
-        android:id="@+id/Submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Back"
-        android:layout_marginBottom="10dp"/>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
