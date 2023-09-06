@@ -115,19 +115,24 @@ public class Patient_Registration_Page1 extends Fragment {
                 String village=Village.getText().toString();
                 String mobno= MobNo.getText().toString();
 
-                if(!isEmpty()) {
-                    Bundle bundle=new Bundle();
-                    bundle.putString("HospRegNo", hospRegNo);
-                    bundle.putString("FullName", fullname);
-                    bundle.putString("MotherName", mothername);
-                    bundle.putString("MobNo", mobno);
-                    bundle.putString("DateOfBirth", dateofbirth);
-                    // TODO Save in saved preferences. Get Unique Key. Search from DB and assign it to patient
-                    getParentFragmentManager().setFragmentResult("Page1", bundle);
-                    Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
-                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
-                }
+
+                Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
+
+//                if(!isEmpty()) {h
+//                    Bundle bundle=new Bundle();
+//                    bundle.putString("HospRegNo", hospRegNo);
+//                    bundle.putString("FullName", fullname);
+//                    bundle.putString("MotherName", mothername);
+//                    bundle.putString("MobNo", mobno);
+//                    bundle.putString("DateOfBirth", dateofbirth);
+//                    // TODO Save in saved preferences. Get Unique Key. Search from DB and assign it to patient
+//                    getParentFragmentManager().setFragmentResult("Page1", bundle);
+//                    Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
+//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                    fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
+//                }
             }
         });
 

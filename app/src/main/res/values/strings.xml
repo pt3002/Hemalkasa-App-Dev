@@ -14,4 +14,9 @@
         <item>Medicine 3</item>
         <item>Medicine 4</item>
     </string-array>
+
+    <string-array name="testResult">
+        <item>Positive</item>
+        <item>Negative</item>
+    </string-array>
 </resources>
