@@ -1,4 +1,5 @@
 package com.hemalkasa.hemalkasa;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -8,25 +9,22 @@ public class PatientDetails {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID")
-    private int id;
+    private Integer id;
 
-    @ColumnInfo(name="FULL_NAME")
+    @ColumnInfo(name = "FULL_NAME")
     private String full_name;
 
-    @ColumnInfo(name="MOTHER_NAME")
+    @ColumnInfo(name = "MOTHER_NAME")
     private String mother_name;
 
     @ColumnInfo(name = "HOSPITAL_NO")
     private String hospital_no;
 
-    @ColumnInfo(name = "BLOOD_GROUP")
-    private String blood_group;
-
-    @ColumnInfo(name="DOB")
+    @ColumnInfo(name = "DOB")
     private String dob;
 
-    @ColumnInfo(name="PHONE_NO")
-    private String phone_no;
+    @ColumnInfo(name = "BLOOD_GROUP")
+    private String blood_group;
 
     @ColumnInfo(name = "STATE")
     private String state;
@@ -40,10 +38,13 @@ public class PatientDetails {
     @ColumnInfo(name = "VILLAGE")
     private String village;
 
-    public PatientDetails(String full_name, String mother_name, String phone_no,String hospital_no, String blood_group, String dob, String state, String district, String tehsil, String village) {
+    @ColumnInfo(name = "PHONE_NO")
+    private String phone_no;
+
+    public PatientDetails(String full_name, String mother_name, String phone_no, String hospital_no, String blood_group, String dob, String state, String district, String tehsil, String village) {
         this.full_name = full_name;
         this.mother_name = mother_name;
-        this.phone_no=phone_no;
+        this.phone_no = phone_no;
         this.hospital_no = hospital_no;
         this.blood_group = blood_group;
         this.dob = dob;
@@ -53,11 +54,12 @@ public class PatientDetails {
         this.village = village;
     }
 
-    public int getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -85,20 +87,6 @@ public class PatientDetails {
         this.hospital_no = hospital_no;
     }
 
-    public String getBlood_group() {
-        return blood_group;
-    }
-
-    public void setBlood_group(String blood_group) {
-        this.blood_group = blood_group;
-    }
-
-//    public PatientDetails(String full_name, String mother_name, String hospital_no, String blood_group) {
-//        this.full_name = full_name;
-//        this.mother_name = mother_name;
-//        this.hospital_no = hospital_no;
-//        this.blood_group = blood_group;
-//    }
     public String getDob() {
         return dob;
     }
@@ -107,12 +95,12 @@ public class PatientDetails {
         this.dob = dob;
     }
 
-    public String getPhone_no() {
-        return phone_no;
+    public String getBlood_group() {
+        return blood_group;
     }
 
-    public void setPhone_no(String phone_no) {
-        this.phone_no = phone_no;
+    public void setBlood_group(String blood_group) {
+        this.blood_group = blood_group;
     }
 
     public String getState() {
@@ -147,20 +135,28 @@ public class PatientDetails {
         this.village = village;
     }
 
+    public String getPhone_no() {
+        return phone_no;
+    }
+
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
+    }
+
     @Override
     public String toString() {
         return "PatientDetails{" +
-                "id=" + id +
+                ", id='" + id + '\'' +
                 ", full_name='" + full_name + '\'' +
                 ", mother_name='" + mother_name + '\'' +
                 ", hospital_no='" + hospital_no + '\'' +
-                ", blood_group='" + blood_group + '\'' +
                 ", dob='" + dob + '\'' +
-                ", phone_no=" + phone_no +
+                ", blood_group='" + blood_group + '\'' +
                 ", state='" + state + '\'' +
                 ", district='" + district + '\'' +
                 ", tehsil='" + tehsil + '\'' +
                 ", village='" + village + '\'' +
+                ", phone_no=" + phone_no +
                 '}';
     }
 

@@ -120,7 +120,7 @@ public class Patient_Registration_Page1 extends Fragment {
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
 
-//                if(!isEmpty()) {h
+//                if(!isEmpty()) {
 //                    Bundle bundle=new Bundle();
 //                    bundle.putString("HospRegNo", hospRegNo);
 //                    bundle.putString("FullName", fullname);

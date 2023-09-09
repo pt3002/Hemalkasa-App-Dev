@@ -9,13 +9,13 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class Medcine_Table_Repository {
+public class Medicine_Table_Repository {
     public static final String TAG = "pratik";
 
     private Medicine_Table_DAO medicineTableDao;    //DAO of medical table
     private LiveData<List<Medicine_Table>> allMedicines; // Contains list of all medicines
 
-    public Medcine_Table_Repository(Application application){
+    public Medicine_Table_Repository(Application application){
         medicineTableDao= Database.getInstance(application).medicineTableDao();
         allMedicines=medicineTableDao.getAllMedicines();
     }
