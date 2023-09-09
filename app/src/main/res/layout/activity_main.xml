@@ -21,7 +21,7 @@
         android:id="@+id/addMedicinePage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Medicine"
+        android:text="Prescription"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"/>
@@ -31,6 +31,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="View Videoes"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <Button
+        android:id="@+id/updates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Updates"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <Button
+        android:id="@+id/notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notes"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"/>

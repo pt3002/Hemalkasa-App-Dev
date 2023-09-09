@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button addMedicinePage,registrationPage, VideoPage;
+    Button addMedicinePage,registrationPage, VideoPage,updatesPage,notesPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         registrationPage=findViewById(R.id.registrationPage);
         addMedicinePage=findViewById(R.id.addMedicinePage);
         VideoPage =findViewById(R.id.video);
+        updatesPage =findViewById(R.id.updates);
+        notesPage =findViewById(R.id.notes);
 
         registrationPage.setOnClickListener(new View.OnClickListener() {
             @Override

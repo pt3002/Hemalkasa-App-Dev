@@ -36,7 +36,7 @@
                     android:layout_alignEnd="@+id/profile_image"
                     android:layout_alignBottom="@+id/profile_image"
                     android:clickable="true"
-                    tools:src="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/plus" />
 
             </RelativeLayout>
 
