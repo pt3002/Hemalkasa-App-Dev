@@ -18,6 +18,12 @@
         android:theme="@style/Theme.Hemalkasa"
         tools:targetApi="31">
         <activity
+            android:name=".Notes"
+            android:exported="false" />
+        <activity
+            android:name=".Updates"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity

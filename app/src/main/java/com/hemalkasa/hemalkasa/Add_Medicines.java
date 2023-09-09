@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
@@ -44,6 +48,8 @@ public class Add_Medicines extends AppCompatActivity {
     MedicineAdapter medicineAdapter;
     private Medicine_Table_ViewModel medicineTableViewModel;
     private static final String TAG = "pratik";
+    EditText POGWeeks,POGDays;
+    TextView VisitDate,NextVisitDate;
     private Random randomId=new Random();
 
     @Override
@@ -51,6 +57,41 @@ public class Add_Medicines extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_medicines);
         addMedicineBtn = findViewById(R.id.addMedBtn);
+        POGWeeks = findViewById(R.id.POGWeeks);
+        POGDays = findViewById(R.id.POGDays);
+        VisitDate = findViewById(R.id.VisitDate);
+        NextVisitDate = findViewById(R.id.NextVisitDate);
+
+        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+        materialDateBuilder.setTitleText("Select Date");
+
+        MaterialDatePicker visitDatePicker = materialDateBuilder.build();
+        visitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                VisitDate.setText(visitDatePicker.getHeaderText());
+            }
+        });
+        VisitDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                visitDatePicker.show(getSupportFragmentManager(), "VISIT_DATE_PICKER");
+            }
+        });
+
+        MaterialDatePicker nextVisitDatePicker = materialDateBuilder.build();
+        nextVisitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                NextVisitDate.setText(nextVisitDatePicker.getHeaderText());
+            }
+        });
+        NextVisitDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextVisitDatePicker.show(getSupportFragmentManager(), "NEXT_VISIT_DATE_PICKER");
+            }
+        });
 
         createNotificationChannel();
 

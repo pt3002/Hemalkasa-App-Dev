@@ -1,5 +1,6 @@
 package com.hemalkasa.hemalkasa;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -144,20 +145,23 @@ public class Patient_Registration_Page2 extends Fragment {
             public void onClick(View v) {
 
                 Log.d(TAG, "onClick: Started");
-                if(isEmpty()) {
-                    edd=EDD.getText().toString();
-                    lmp=LMP.getText().toString();
-                    pogWeeks=POGWeeks.getText().toString();
-                    pogDays=POGDays.getText().toString();
-                    gravida=Gravida.getText().toString();
-                    parity=Parity.getText().toString();
-//                    PatientDetails patientDetails = new PatientDetails(FullName, MotherName,MobNo, HospRegNo, bloodgrp, dob, state, distict, block, village);
-//                    InsertAsyncTask insertAsyncTask = new InsertAsyncTask();
-//                    insertAsyncTask.execute(patientDetails);
+                Intent intent=new Intent(getContext(),MainActivity.class);
+                startActivity(intent);
 
-//                    Toast.makeText(getContext(), patientDetails.toString(), Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onClick: Ended");
-                }
+//                if(isEmpty()) {
+//                    edd=EDD.getText().toString();
+//                    lmp=LMP.getText().toString();
+//                    pogWeeks=POGWeeks.getText().toString();
+//                    pogDays=POGDays.getText().toString();
+//                    gravida=Gravida.getText().toString();
+//                    parity=Parity.getText().toString();
+////                    PatientDetails patientDetails = new PatientDetails(FullName, MotherName,MobNo, HospRegNo, bloodgrp, dob, state, distict, block, village);
+////                    InsertAsyncTask insertAsyncTask = new InsertAsyncTask();
+////                    insertAsyncTask.execute(patientDetails);
+//
+////                    Toast.makeText(getContext(), patientDetails.toString(), Toast.LENGTH_SHORT).show();
+//                    Log.d(TAG, "onClick: Ended");
+//                }
             }
         });
 

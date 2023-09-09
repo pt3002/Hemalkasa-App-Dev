@@ -19,4 +19,10 @@
         <item>Positive</item>
         <item>Negative</item>
     </string-array>
+
+    <string-array name="designation">
+        <item>PHC Doctor</item>
+        <item>Nurse</item>
+        <item>Health Worker</item>
+    </string-array>
 </resources>
