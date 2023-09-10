@@ -49,14 +49,17 @@ public abstract class Database extends RoomDatabase{
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
         private Medicine_Table_DAO medicineTableDao;
+        private PatientDetails_DAO patientDetails_dao;
 
         private PopulateDbAsyncTask(Database db){
             medicineTableDao=db.medicineTableDao();
+            patientDetails_dao=db.patientDetails_dao();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-//            medicineTableDao.insertMedicine(new Medicine_Table("Medicine 111", "AAA", "BB", "CC", "DDD"));
+            patientDetails_dao.insertPatientDetails(new PatientDetails(1,"FullName", "MotherName", "1234567890", "HospitalNo", "BloodGroup", "DOB","State","District","Tehsil","Village","edd","pog_weeks","pog_days","hiv","hsbag","vdrl","gravida","parity","lmp","notes"));
+            //            medicineTableDao.insertMedicine(new Medicine_Table("Medicine 111", "AAA", "BB", "CC", "DDD"));
 //            medicineTableDao.insertMedicine(new Medicine_Table("Medicine 222", "zzz", "yy", "xx", "hh"));
             return null;
         }

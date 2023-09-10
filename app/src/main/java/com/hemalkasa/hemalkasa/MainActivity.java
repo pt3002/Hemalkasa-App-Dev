@@ -4,11 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
+
+    private static final String TAG = "pratik";
     Button addMedicinePage,registrationPage, VideoPage,updatesPage,notesPage;
 
     @Override
@@ -57,9 +62,24 @@ public class MainActivity extends AppCompatActivity {
         notesPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,Notes.class);
-                startActivity(intent);
+                getAllPatientDetails();
+//                Intent intent=new Intent(MainActivity.this,Notes.class);
+//                startActivity(intent);
             }
         });
+    }
+
+    public void getAllPatientDetails() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<PatientDetails> patientDetailsList = Database.getInstance(getApplicationContext())
+                        .patientDetails_dao()
+                        .getAllPatientDetails();
+
+                Log.d(TAG, "run: " + patientDetailsList.toString());
+            }
+        });
+        thread.start();
     }
 }

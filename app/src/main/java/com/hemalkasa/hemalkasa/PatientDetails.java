@@ -41,19 +41,59 @@ public class PatientDetails {
     @ColumnInfo(name = "PHONE_NO")
     private String phone_no;
 
-    public PatientDetails(String full_name, String mother_name, String phone_no, String hospital_no, String blood_group, String dob, String state, String district, String tehsil, String village) {
+    @ColumnInfo(name = "EDD")
+    private String edd;
+
+    @ColumnInfo(name = "POG_WEEKS")
+    private String pog_weeks;
+
+    @ColumnInfo(name = "POG_DAYS")
+    private String pog_days;
+
+    @ColumnInfo(name = "HIV")
+    private String hiv;
+
+    @ColumnInfo(name = "HSBAG")
+    private String hsbag;
+
+    @ColumnInfo(name = "VDRL")
+    private String vdrl;
+
+    @ColumnInfo(name = "Gravida")
+    private String gravida;
+
+    @ColumnInfo(name = "PARITY")
+    private String parity;
+
+    @ColumnInfo(name = "LMP")
+    private String lmp;
+
+    @ColumnInfo(name = "NOTES")
+    private String notes;
+
+    public PatientDetails(Integer id, String full_name, String mother_name, String hospital_no, String dob, String blood_group, String state, String district, String tehsil, String village, String phone_no, String edd, String pog_weeks, String pog_days, String hiv, String hsbag, String vdrl, String gravida, String parity, String lmp,String notes) {
+        this.id = id;
         this.full_name = full_name;
         this.mother_name = mother_name;
-        this.phone_no = phone_no;
         this.hospital_no = hospital_no;
-        this.blood_group = blood_group;
         this.dob = dob;
+        this.blood_group = blood_group;
         this.state = state;
         this.district = district;
         this.tehsil = tehsil;
         this.village = village;
+        this.phone_no = phone_no;
+        this.edd = edd;
+        this.pog_weeks = pog_weeks;
+        this.pog_days = pog_days;
+        this.hiv = hiv;
+        this.hsbag = hsbag;
+        this.vdrl = vdrl;
+        this.gravida = gravida;
+        this.parity = parity;
+        this.lmp = lmp;
+        this.notes=notes;
     }
-
 
     public Integer getId() {
         return id;
@@ -143,6 +183,86 @@ public class PatientDetails {
         this.phone_no = phone_no;
     }
 
+    public String getEdd() {
+        return edd;
+    }
+
+    public void setEdd(String edd) {
+        this.edd = edd;
+    }
+
+    public String getPog_weeks() {
+        return pog_weeks;
+    }
+
+    public void setPog_weeks(String pog_weeks) {
+        this.pog_weeks = pog_weeks;
+    }
+
+    public String getPog_days() {
+        return pog_days;
+    }
+
+    public void setPog_days(String pog_days) {
+        this.pog_days = pog_days;
+    }
+
+    public String getHiv() {
+        return hiv;
+    }
+
+    public void setHiv(String hiv) {
+        this.hiv = hiv;
+    }
+
+    public String getHsbag() {
+        return hsbag;
+    }
+
+    public void setHsbag(String hsbag) {
+        this.hsbag = hsbag;
+    }
+
+    public String getVdrl() {
+        return vdrl;
+    }
+
+    public void setVdrl(String vdrl) {
+        this.vdrl = vdrl;
+    }
+
+    public String getGravida() {
+        return gravida;
+    }
+
+    public void setGravida(String gravida) {
+        this.gravida = gravida;
+    }
+
+    public String getParity() {
+        return parity;
+    }
+
+    public void setParity(String parity) {
+        this.parity = parity;
+    }
+
+    public String getLmp() {
+        return lmp;
+    }
+
+    public void setLmp(String lmp) {
+        this.lmp = lmp;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     @Override
     public String toString() {
         return "PatientDetails{" +
@@ -156,7 +276,17 @@ public class PatientDetails {
                 ", district='" + district + '\'' +
                 ", tehsil='" + tehsil + '\'' +
                 ", village='" + village + '\'' +
-                ", phone_no=" + phone_no +
+                ", phone_no='" + phone_no + '\'' +
+                ", edd='" + edd + '\'' +
+                ", pog_weeks='" + pog_weeks + '\'' +
+                ", pog_days='" + pog_days + '\'' +
+                ", hiv='" + hiv + '\'' +
+                ", hsbag='" + hsbag + '\'' +
+                ", vdrl='" + vdrl + '\'' +
+                ", gravida='" + gravida + '\'' +
+                ", parity='" + parity + '\'' +
+                ", lmp=" + lmp + '\'' +
+                ", notes=" + notes +
                 '}';
     }
 

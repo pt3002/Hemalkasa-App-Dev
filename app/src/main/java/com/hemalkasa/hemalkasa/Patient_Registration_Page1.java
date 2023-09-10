@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -37,6 +38,7 @@ public class Patient_Registration_Page1 extends Fragment {
     Button nextpage,showPatients;
     EditText HospRegNo, FullName,MotherName,BloodGroup,State,District,Block,Village,MobNo;
     TextView DateOfBirth;
+    PatientDetails_ViewModel patientDetails_viewModel;
     int SEC = 1;
     String TAG="Pratik";
 
@@ -72,6 +74,9 @@ public class Patient_Registration_Page1 extends Fragment {
         Village=(EditText) view.findViewById(R.id.Village);
         MobNo=(EditText) view.findViewById(R.id.MobNo);
         DateOfBirth=(TextView) view.findViewById(R.id.DateOfBirth);
+
+        patientDetails_viewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
+
 
 
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
@@ -116,23 +121,29 @@ public class Patient_Registration_Page1 extends Fragment {
                 String mobno= MobNo.getText().toString();
 
 
-                Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
+//                Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
+//                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
 
-//                if(!isEmpty()) {
-//                    Bundle bundle=new Bundle();
-//                    bundle.putString("HospRegNo", hospRegNo);
-//                    bundle.putString("FullName", fullname);
-//                    bundle.putString("MotherName", mothername);
-//                    bundle.putString("MobNo", mobno);
-//                    bundle.putString("DateOfBirth", dateofbirth);
+                if(!isEmpty()) {
+                    Bundle bundle=new Bundle();
+                    bundle.putString("fullname", fullname);
+                    bundle.putString("mothername", mothername);
+                    bundle.putString("hospRegNo", hospRegNo);
+                    bundle.putString("dateofbirth", dateofbirth);
+                    bundle.putString("bloodgroup", bloodgroup);
+                    bundle.putString("state", state);
+                    bundle.putString("district", district);
+                    bundle.putString("block", block);
+                    bundle.putString("village", village);
+                    bundle.putString("mobno", mobno);
 //                    // TODO Save in saved preferences. Get Unique Key. Search from DB and assign it to patient
-//                    getParentFragmentManager().setFragmentResult("Page1", bundle);
-//                    Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
-//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                    fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
-//                }
+//                    patientDetails_viewModel.updatePatientDetails(new PatientDetails(1,fullname, mothername, hospRegNo, bloodgroup, dateofbirth, state, district, block, village,mobNo));
+                    getParentFragmentManager().setFragmentResult("Page1", bundle);
+                    Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
+                }
             }
         });
 

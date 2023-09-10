@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,7 +35,9 @@ public class Patient_Registration_Page2 extends Fragment {
     TextView EDD,LMP;
     EditText POGWeeks,POGDays,Gravida,Parity;
     Spinner HIVSpinner,HBSAGSpinner, VDRLSpinner;
+    String fullname,mothername,hospRegNo,dateofbirth,bloodgroup,state,district,block,village,mobno;
     String edd,lmp,pogWeeks,pogDays,gravida,parity,hiv,hbsag,vdrl;
+    PatientDetails_ViewModel patientDetails_viewModel;
 
     public Patient_Registration_Page2() {
         // Required empty public constructor
@@ -57,6 +60,8 @@ public class Patient_Registration_Page2 extends Fragment {
         HIVSpinner=(Spinner) view.findViewById(R.id.HIVSpinner);
         HBSAGSpinner=(Spinner) view.findViewById(R.id.HBSAGSpinner);
         VDRLSpinner=(Spinner) view.findViewById(R.id.VDRLSpinner);
+
+        patientDetails_viewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
 
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("Select Date");
@@ -144,32 +149,50 @@ public class Patient_Registration_Page2 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Log.d(TAG, "onClick: Started");
-                Intent intent=new Intent(getContext(),MainActivity.class);
-                startActivity(intent);
+                if(!isEmpty()) {
+                    edd=EDD.getText().toString();
+                    lmp=LMP.getText().toString();
+                    pogWeeks=POGWeeks.getText().toString();
+                    pogDays=POGDays.getText().toString();
+                    gravida=Gravida.getText().toString();
+                    parity=Parity.getText().toString();
 
-//                if(isEmpty()) {
-//                    edd=EDD.getText().toString();
-//                    lmp=LMP.getText().toString();
-//                    pogWeeks=POGWeeks.getText().toString();
-//                    pogDays=POGDays.getText().toString();
-//                    gravida=Gravida.getText().toString();
-//                    parity=Parity.getText().toString();
-////                    PatientDetails patientDetails = new PatientDetails(FullName, MotherName,MobNo, HospRegNo, bloodgrp, dob, state, distict, block, village);
-////                    InsertAsyncTask insertAsyncTask = new InsertAsyncTask();
-////                    insertAsyncTask.execute(patientDetails);
-//
-////                    Toast.makeText(getContext(), patientDetails.toString(), Toast.LENGTH_SHORT).show();
-//                    Log.d(TAG, "onClick: Ended");
-//                }
+                    Intent intent=new Intent(getContext(),Notes.class);
+                    intent.putExtra("fullname", fullname);
+                    intent.putExtra("mothername", mothername);
+                    intent.putExtra("hospRegNo", hospRegNo);
+                    intent.putExtra("dateofbirth", dateofbirth);
+                    intent.putExtra("bloodgroup", bloodgroup);
+                    intent.putExtra("state", state);
+                    intent.putExtra("district", district);
+                    intent.putExtra("block", block);
+                    intent.putExtra("village", village);
+                    intent.putExtra("mobno", mobno);
+                    intent.putExtra("edd", edd);
+                    intent.putExtra("lmp", lmp);
+                    intent.putExtra("pogWeeks", pogWeeks);
+                    intent.putExtra("pogDays", pogDays);
+                    intent.putExtra("gravida", gravida);
+                    intent.putExtra("parity", parity);
+                    startActivity(intent);
+//                    patientDetails_viewModel.updatePatientDetails(new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp,"FFFFF"));
+                }
             }
         });
 
         getParentFragmentManager().setFragmentResultListener("Page1", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-//                FullName=result.getString("FullName");
-//                MotherName=result.getString("MotherName");
+                fullname=result.getString("fullname");
+                mothername=result.getString("mothername");
+                hospRegNo=result.getString("hospRegNo");
+                dateofbirth=result.getString("dateofbirth");
+                bloodgroup=result.getString("bloodgroup");
+                state=result.getString("state");
+                district=result.getString("district");
+                block=result.getString("block");
+                village=result.getString("village");
+                mobno=result.getString("mobno");
             }
         });
         return view;
@@ -178,55 +201,55 @@ public class Patient_Registration_Page2 extends Fragment {
     private boolean isEmpty() {
         if(EDD.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter EDD", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         else if(POGWeeks.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter POG Weeks", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         else if(POGDays.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter POG Days", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         else if(hiv.isEmpty()){
             Toast.makeText(getContext(), "Select HIV", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         else if(hbsag.isEmpty()){
             Toast.makeText(getContext(), "Select HsbAg", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         else if(vdrl.isEmpty()){
             Toast.makeText(getContext(), "Select VDRL", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         else if(Gravida.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Gravida", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         else if(Parity.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Parity", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         else if(LMP.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter LMP", Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
-    class InsertAsyncTask extends AsyncTask<PatientDetails, Void, Void> {
+    public void getAllPatientDetails() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<PatientDetails> patientDetailsList = Database.getInstance(getContext())
+                        .patientDetails_dao()
+                        .getAllPatientDetails();
 
-        @Override
-        protected Void doInBackground(PatientDetails... patientDetails) {
-
-            Database.getInstance(getContext())
-                    .patientDetails_dao()
-                    .insertPatientDetails(patientDetails[0]);
-
-            Log.d(TAG, "doInBackground: Successful");
-            return null;
-        }
+                Log.d(TAG, "run: " + patientDetailsList.toString());
+            }
+        });
+        thread.start();
     }
 
 }
