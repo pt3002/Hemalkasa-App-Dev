@@ -63,7 +63,6 @@ public class Patient_Registration_Page1 extends Fragment {
         proImg = (ImageView) view.findViewById(R.id.profile_image);
         fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
         nextpage=(Button) view.findViewById(R.id.next);
-        showPatients=(Button) view.findViewById(R.id.show);
         HospRegNo =(EditText) view.findViewById(R.id.HospRegNo);
         FullName=(EditText) view.findViewById(R.id.fullname);
         MotherName=(EditText) view.findViewById(R.id.MotherName);
@@ -144,13 +143,6 @@ public class Patient_Registration_Page1 extends Fragment {
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
                 }
-            }
-        });
-
-        showPatients.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getAllPatientDetails();
             }
         });
 

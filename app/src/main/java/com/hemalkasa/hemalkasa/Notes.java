@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -66,8 +68,14 @@ public class Notes extends AppCompatActivity {
                 if(!isEmpty()){
                     String notes=Notes.getText().toString();
                     patientDetails_viewModel.updatePatientDetails(new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp,notes));
+
+                    SharedPreferences.Editor sharedPreferencesEditor =PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+                    sharedPreferencesEditor.putBoolean("Registration", true);
+                    sharedPreferencesEditor.apply();
+
                     Intent mainActivity=new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(mainActivity);
+                    finish();
                 }
             }
         });
