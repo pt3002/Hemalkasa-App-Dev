@@ -57,20 +57,26 @@ public class Medicine_Table_Repository {
         return x;
     }
 
+    public List<Medicine_Table> getMedicineByVisitingDate(String visiting_date){
+        try{
+           return (List<Medicine_Table>) new getMMedicineByVisitngDateAsync(medicineTableDao).execute(visiting_date);
+        }catch (Exception exception){
+            Log.d(TAG, "Error Occured" + exception.getMessage());
+        }
+        return null;
+    }
+
 
 
     private static class InsertAsyncMedicine extends AsyncTask<Medicine_Table,Void,Void> {
         private Medicine_Table_DAO medicineTableDao;
         private InsertAsyncMedicine(Medicine_Table_DAO medicineTableDao){
-//            Log.d(TAG, "Inside Asyn Constructor");
             this.medicineTableDao=medicineTableDao; //Using the constructor we are actually getting the DAO of Medicine which we have already taken while initializing the repository class
         }
 
         @Override
         protected Void doInBackground(Medicine_Table... medicine_tables) {
-//            Log.d(TAG, "Async Started");
             medicineTableDao.insertMedicine(medicine_tables[0]);
-//            Log.d(TAG, "Medicine Added: Successful");
             return null;
         }
     }
@@ -128,4 +134,18 @@ public class Medicine_Table_Repository {
             return medicineTableDao.getMedicineById(strings[0]);
         }
     }
+
+    private static class getMMedicineByVisitngDateAsync extends AsyncTask<String,Void,List<Medicine_Table>>{
+        private Medicine_Table_DAO medicineTableDao;
+        public getMMedicineByVisitngDateAsync(Medicine_Table_DAO medicineTableDao) {
+            this.medicineTableDao = medicineTableDao;
+        }
+
+        @Override
+        protected List<Medicine_Table> doInBackground(String... strings) {
+            return medicineTableDao.getMedicineByVisitingDate(strings[0]);
+        }
+    }
+
+
 }

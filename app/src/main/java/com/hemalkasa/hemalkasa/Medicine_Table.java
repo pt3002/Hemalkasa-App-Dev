@@ -14,24 +14,28 @@ public class Medicine_Table {
     @ColumnInfo(name="NAME")
     private String name;
 
+    @ColumnInfo(name="FORM")
+    private String form;
+
     @ColumnInfo(name="DOSE")
     private String dose;
 
     @ColumnInfo(name="FREQUENCY")
     private String frequency;
 
-    @ColumnInfo(name="DATE")
-    private String date;
+    @ColumnInfo(name="PERIOD")
+    private String period;
 
-    @ColumnInfo(name="TIME")
-    private String time;
+    @ColumnInfo(name="VISITING_DATE")
+    private String visiting_date;
 
-    public Medicine_Table(String name, String dose, String frequency, String date, String time) {
+    public Medicine_Table(String name, String form, String dose, String frequency, String period, String visiting_date) {
         this.name = name;
+        this.form = form;
         this.dose = dose;
         this.frequency = frequency;
-        this.date = date;
-        this.time = time;
+        this.period = period;
+        this.visiting_date = visiting_date;
     }
 
     public int getId() {
@@ -50,6 +54,14 @@ public class Medicine_Table {
         this.name = name;
     }
 
+    public String getForm() {
+        return form;
+    }
+
+    public void setForm(String form) {
+        this.form = form;
+    }
+
     public String getDose() {
         return dose;
     }
@@ -66,20 +78,20 @@ public class Medicine_Table {
         this.frequency = frequency;
     }
 
-    public String getDate() {
-        return date;
+    public String getPeriod() {
+        return period;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
-    public String getTime() {
-        return time;
+    public String getVisiting_date() {
+        return visiting_date;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setVisiting_date(String visiting_date) {
+        this.visiting_date = visiting_date;
     }
 
     @Override
@@ -87,10 +99,11 @@ public class Medicine_Table {
         return "Medicine_Table{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", form='" + form + '\'' +
                 ", dose='" + dose + '\'' +
                 ", frequency='" + frequency + '\'' +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
+                ", period='" + period + '\'' +
+                ", visiting_date='" + visiting_date + '\'' +
                 '}';
     }
 }

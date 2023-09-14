@@ -24,15 +24,17 @@ public interface Medicine_Table_DAO {
     @Query("DELETE FROM MEDICINE")
     void deleteAllMedicines();
 
-    @Query("SELECT * FROM MEDICINE ORDER BY TIME")
+    @Query("SELECT * FROM MEDICINE ORDER BY VISITING_DATE")
     LiveData<List<Medicine_Table>> getAllMedicines();
 
 
-    @Query("SELECT * FROM MEDICINE ORDER BY TIME")
+    @Query("SELECT * FROM MEDICINE ORDER BY VISITING_DATE")
     List<Medicine_Table> getAll();
 
     @Query("SELECT ID FROM MEDICINE WHERE NAME= :name ORDER BY ID DESC LIMIT 1")
     Integer getMedicineById(String name);
 
+    @Query("SELECT * FROM MEDICINE WHERE VISITING_DATE= :visiting_date ORDER BY ID")
+    List<Medicine_Table> getMedicineByVisitingDate(String visiting_date);
 
 }
