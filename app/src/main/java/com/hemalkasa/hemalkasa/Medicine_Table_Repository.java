@@ -59,7 +59,7 @@ public class Medicine_Table_Repository {
 
     public List<Medicine_Table> getMedicineByVisitingDate(String visiting_date){
         try{
-           return (List<Medicine_Table>) new getMMedicineByVisitngDateAsync(medicineTableDao).execute(visiting_date);
+           return (List<Medicine_Table>) new GetMedicineByVisitngDateAsync(medicineTableDao).execute(visiting_date);
         }catch (Exception exception){
             Log.d(TAG, "Error Occured" + exception.getMessage());
         }
@@ -135,9 +135,9 @@ public class Medicine_Table_Repository {
         }
     }
 
-    private static class getMMedicineByVisitngDateAsync extends AsyncTask<String,Void,List<Medicine_Table>>{
+    private static class GetMedicineByVisitngDateAsync extends AsyncTask<String,Void,List<Medicine_Table>>{
         private Medicine_Table_DAO medicineTableDao;
-        public getMMedicineByVisitngDateAsync(Medicine_Table_DAO medicineTableDao) {
+        public GetMedicineByVisitngDateAsync(Medicine_Table_DAO medicineTableDao) {
             this.medicineTableDao = medicineTableDao;
         }
 

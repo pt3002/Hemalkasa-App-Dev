@@ -12,12 +12,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.List;
 
-@androidx.room.Database(entities = {PatientDetails.class,Medicine_Table.class},version = 1 ,exportSchema = false)
+@androidx.room.Database(entities = {PatientDetails.class,Medicine_Table.class,Prescription_Table.class},version = 1 ,exportSchema = false)
 public abstract class Database extends RoomDatabase{
     private static final String TAG = "pratik";
 
     public abstract PatientDetails_DAO patientDetails_dao();
     public abstract Medicine_Table_DAO medicineTableDao();
+    public abstract Prescription_Table_DAO prescriptionTableDao();
+
     private static volatile Database INSTANCE;
 
     static synchronized Database getInstance(Context context){
@@ -50,10 +52,12 @@ public abstract class Database extends RoomDatabase{
     private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
         private Medicine_Table_DAO medicineTableDao;
         private PatientDetails_DAO patientDetails_dao;
+        private Prescription_Table_DAO prescriptionTableDao;
 
         private PopulateDbAsyncTask(Database db){
             medicineTableDao=db.medicineTableDao();
             patientDetails_dao=db.patientDetails_dao();
+            prescriptionTableDao=db.prescriptionTableDao();
         }
 
         @Override
