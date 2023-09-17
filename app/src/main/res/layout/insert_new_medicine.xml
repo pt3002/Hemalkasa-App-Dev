@@ -7,106 +7,126 @@
     tools:context=".InsertEditMedicine">
 
     <TextView
-        android:id="@+id/medicineTxt"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medicine"
+        android:layout_height="0dp"
+        android:text="Medicine Name"
         android:textSize="20sp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+
     <Spinner
-        android:id="@+id/medicineSpinner"
+        android:id="@+id/nameSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/medicineTxt"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintBottom_toTopOf="@+id/formSpinner"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 
     <TextView
-        android:id="@+id/doseTxt"
+        android:id="@+id/form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Form"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name"/>
+
+    <Spinner
+        android:id="@+id/formSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/nameSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/nameSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/doseSpinner"/>
+
+    <TextView
+        android:id="@+id/dose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dose"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/medicineTxt"
-        app:layout_constraintTop_toBottomOf="@+id/medicineTxt"/>
+        app:layout_constraintStart_toStartOf="@+id/form"
+        app:layout_constraintTop_toBottomOf="@+id/form"/>
 
     <Spinner
         android:id="@+id/doseSpinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/medicineSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/medicineSpinner" />
+        app:layout_constraintStart_toStartOf="@+id/formSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/formSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/frequencySpinner"/>
 
     <TextView
-        android:id="@+id/frequencyTxt"
+        android:id="@+id/frequency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Frequncy"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/doseTxt"
-        app:layout_constraintTop_toBottomOf="@+id/doseTxt"/>
+        app:layout_constraintStart_toStartOf="@+id/dose"
+        app:layout_constraintTop_toBottomOf="@+id/dose"/>
+
+
+    <Spinner
+        android:id="@+id/frequencySpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/doseSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/doseSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/routeSpinner"/>
+
+
+    <TextView
+        android:id="@+id/route"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Route"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/frequency"
+        app:layout_constraintTop_toBottomOf="@+id/frequency"/>
+
+
+    <Spinner
+        android:id="@+id/routeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/frequencySpinner"
+        app:layout_constraintTop_toBottomOf="@+id/frequencySpinner"
+        app:layout_constraintBottom_toTopOf="@+id/periods"/>
+
 
     <EditText
-        android:id="@+id/frequencyEditTxt"
-        android:layout_width="wrap_content"
+        android:id="@+id/periods"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Frequency"
-        android:layout_marginTop="10dp"
-        android:textSize="10sp"
-        app:layout_constraintTop_toBottomOf="@+id/doseSpinner"
-        app:layout_constraintStart_toStartOf="@+id/doseSpinner"/>
-
-    <TextView
-        android:id="@+id/dayTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/custom_input"
         android:drawableLeft="@drawable/calendar"
-        android:text="Date"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/frequencyTxt"
-        app:layout_constraintTop_toBottomOf="@+id/frequencyTxt"/>
-
-    <TextView
-        android:id="@+id/showDayTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/frequencyEditTxt"
-        app:layout_constraintTop_toBottomOf="@+id/frequencyEditTxt" />
-
-    <TextView
-        android:id="@+id/timeTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_baseline_access_time_24"
-        android:text="Time"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/dayTxt"
-        app:layout_constraintTop_toBottomOf="@+id/dayTxt" />
-
-    <TextView
-        android:id="@+id/showTimeTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/showDayTxt"
-        app:layout_constraintTop_toBottomOf="@+id/showDayTxt"/>
+        android:drawablePadding="20dp"
+        android:hint="Periods in Days"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/route"/>
 
     <Button
         android:id="@+id/saveBtn"
@@ -117,6 +137,6 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showTimeTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/periods" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

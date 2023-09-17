@@ -23,6 +23,9 @@ public class Medicine_Table {
     @ColumnInfo(name="FREQUENCY")
     private String frequency;
 
+    @ColumnInfo(name="ROUTE")
+    private String route;
+
     @ColumnInfo(name="PERIOD")
     private String period;
 
@@ -76,6 +79,15 @@ public class Medicine_Table {
 
     public void setFrequency(String frequency) {
         this.frequency = frequency;
+    }
+
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
     }
 
     public String getPeriod() {

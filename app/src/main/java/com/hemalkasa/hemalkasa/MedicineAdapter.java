@@ -41,11 +41,12 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Medicine_Table medicineTable=medicineList.get(position);
         Log.d(TAG, String.valueOf(medicineTable.getId()) + "  " + medicineTable.getName());
-        holder.med.setText(medicineTable.getName());
+        holder.name.setText(medicineTable.getName());
+        holder.form.setText(medicineTable.getForm());
         holder.dose.setText(medicineTable.getDose());
-        holder.day.setText(medicineTable.getDate());
-        holder.time.setText(medicineTable.getTime());
         holder.frequency.setText(medicineTable.getFrequency());
+        holder.route.setText(medicineTable.getRoute());
+        holder.periods.setText(medicineTable.getPeriod());
     }
 
     @Override
@@ -66,16 +67,17 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView med, dose, day, time, frequency;
+        TextView name,form, dose, frequency,route,periods;
         FloatingActionButton editBtn, deleteBtn;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            med = itemView.findViewById(R.id.medicine);
-            dose = itemView.findViewById(R.id.dose);
-            day = itemView.findViewById(R.id.day);
-            time = itemView.findViewById(R.id.time);
-            frequency = itemView.findViewById(R.id.frequency);
+            name = itemView.findViewById(R.id.nameSpinner);
+            form = itemView.findViewById(R.id.formSpinner);
+            dose = itemView.findViewById(R.id.doseSpinner);
+            frequency = itemView.findViewById(R.id.frequencySpinner);
+            route = itemView.findViewById(R.id.routeSpinner);
+            periods = itemView.findViewById(R.id.periods);
             editBtn = itemView.findViewById(R.id.edit);
             deleteBtn = itemView.findViewById(R.id.delete);
 
