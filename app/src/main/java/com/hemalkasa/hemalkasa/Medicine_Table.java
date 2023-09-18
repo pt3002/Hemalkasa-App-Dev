@@ -32,11 +32,12 @@ public class Medicine_Table {
     @ColumnInfo(name="VISITING_DATE")
     private String visiting_date;
 
-    public Medicine_Table(String name, String form, String dose, String frequency, String period, String visiting_date) {
+    public Medicine_Table(String name, String form, String dose, String frequency,String route, String period, String visiting_date) {
         this.name = name;
         this.form = form;
         this.dose = dose;
         this.frequency = frequency;
+        this.route=route;
         this.period = period;
         this.visiting_date = visiting_date;
     }

@@ -51,6 +51,7 @@ public class Add_Medicines extends AppCompatActivity {
     EditText POGWeeks,POGDays;
     TextView VisitDate,NextVisitDate;
     private Random randomId=new Random();
+    String visitingDate="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class Add_Medicines extends AppCompatActivity {
             @Override
             public void onPositiveButtonClick(Object selection) {
                 VisitDate.setText(visitDatePicker.getHeaderText());
+                visitingDate= visitDatePicker.getHeaderText();
             }
         });
         VisitDate.setOnClickListener(new View.OnClickListener() {
@@ -106,8 +108,13 @@ public class Add_Medicines extends AppCompatActivity {
         addMedicineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
-                startActivityForResult(intent, INSERT_MEDICINE);
+                if(visitingDate.isEmpty()){
+                    Toast.makeText(Add_Medicines.this, "Select Today's Date", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
+                    startActivityForResult(intent, INSERT_MEDICINE);
+                }
             }
         });
 
@@ -155,13 +162,13 @@ public class Add_Medicines extends AppCompatActivity {
             @Override
             public void editClick(Medicine_Table medicineTable) {
                 Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
-
                 intent.putExtra("Id", medicineTable.getId());
-                intent.putExtra("Medicine", medicineTable.getName());
+                intent.putExtra("Name", medicineTable.getName());
+                intent.putExtra("Form", medicineTable.getForm());
                 intent.putExtra("Dose", medicineTable.getDose());
-                intent.putExtra("Day", medicineTable.getDate());
-                intent.putExtra("Time", medicineTable.getTime());
                 intent.putExtra("Frequency", medicineTable.getFrequency());
+                intent.putExtra("Route", medicineTable.getRoute());
+                intent.putExtra("Period", medicineTable.getPeriod());
                 startActivityForResult(intent, EDIT_MEDICINE);
             }
 
@@ -190,29 +197,30 @@ public class Add_Medicines extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         
         if(requestCode==INSERT_MEDICINE && resultCode==RESULT_OK){
-            String medicine=data.getStringExtra("Medicine");
+            String name=data.getStringExtra("Name");
+            String form=data.getStringExtra("Form");
             String dose=data.getStringExtra("Dose");
-            String day=data.getStringExtra("Day");
-            String time=data.getStringExtra("Time");
             String frequency=data.getStringExtra("Frequency");
+            String route=data.getStringExtra("Route");
+            String period=data.getStringExtra("Period");
 
-            Medicine_Table medicineTable=new Medicine_Table(medicine, dose, frequency, day, time);
+            Medicine_Table medicineTable=new Medicine_Table(name, form, dose, frequency, period, route,visitingDate);
             medicineTableViewModel.insertMedicine(medicineTable);
 
-            int medicineId;
-            try{
-                medicineId=medicineTableViewModel.getMedicineById(medicine);
-            }catch (Exception exception){
-                Log.d(TAG, "Error getting ID");
-                Log.d(TAG, exception.getMessage());
-                medicineId=randomId.nextInt();
-            }
-
-            Log.d(TAG,"Heloooo    " +  String.valueOf(medicineId));
-
-            int hour=Integer.parseInt(time.substring(0,2));
-            int minute=Integer.parseInt(time.substring(5).trim());
-            setAlarm(hour,minute,medicineId,medicine);
+//            int medicineId;
+//            try{
+//                medicineId=medicineTableViewModel.getMedicineById(name);
+//            }catch (Exception exception){
+//                Log.d(TAG, "Error getting ID");
+//                Log.d(TAG, exception.getMessage());
+//                medicineId=randomId.nextInt();
+//            }
+//
+//            Log.d(TAG,"Heloooo    " +  String.valueOf(medicineId));
+//
+//            int hour=Integer.parseInt(time.substring(0,2));
+//            int minute=Integer.parseInt(time.substring(5).trim());
+//            setAlarm(hour,minute,medicineId,medicine);
         }
         else if(requestCode==EDIT_MEDICINE && resultCode==RESULT_OK){
             int id=data.getIntExtra("Id", -1);
@@ -222,20 +230,21 @@ public class Add_Medicines extends AppCompatActivity {
                 return;
             }
 
-            String medicine=data.getStringExtra("Medicine");
+            String name=data.getStringExtra("Name");
+            String form=data.getStringExtra("Form");
             String dose=data.getStringExtra("Dose");
-            String day=data.getStringExtra("Day");
-            String time=data.getStringExtra("Time");
             String frequency=data.getStringExtra("Frequency");
+            String route=data.getStringExtra("Route");
+            String period=data.getStringExtra("Period");
 
-            Medicine_Table medicineTable=new Medicine_Table(medicine, dose, frequency, day, time);
+            Medicine_Table medicineTable=new Medicine_Table(name, form, dose, frequency, period, route,visitingDate);
             medicineTable.setId(id);
             medicineTableViewModel.updateMedicine(medicineTable);
             Log.d(TAG, "Edited");
 
-            int hour=Integer.parseInt(time.substring(0,2));
-            int minute=Integer.parseInt(time.substring(5).trim());
-            setAlarm(hour,minute,id,medicine);
+//            int hour=Integer.parseInt(time.substring(0,2));
+//            int minute=Integer.parseInt(time.substring(5).trim());
+//            setAlarm(hour,minute,id,medicine);
         }
         else{
             Log.d(TAG, "Medicine Not Added");

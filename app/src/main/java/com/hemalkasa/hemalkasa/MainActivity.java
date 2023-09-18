@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         .getAllPatientDetails();
 
                 Log.d(TAG, "run: " + patientDetailsList.toString());
-                Toast.makeText(MainActivity.this, patientDetailsList.toString(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(MainActivity.this, patientDetailsList.toString(), Toast.LENGTH_LONG).show();
             }
         });
         thread.start();
