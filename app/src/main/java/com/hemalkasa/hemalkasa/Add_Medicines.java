@@ -51,7 +51,7 @@ public class Add_Medicines extends AppCompatActivity {
     private List<Medicine_Table> medicineList = new ArrayList<>();
     private Medicine_Table_ViewModel medicineTableViewModel;
     private static final String TAG = "pratik";
-    EditText POGWeeks,POGDays;
+    EditText POGWeeks,POGDays,EDD;
     TextView VisitDate,NextVisitDate;
     Button Submit;
     private Random randomId=new Random();
@@ -64,6 +64,7 @@ public class Add_Medicines extends AppCompatActivity {
         addMedicineBtn = findViewById(R.id.addMedBtn);
         POGWeeks = findViewById(R.id.POGWeeks);
         POGDays = findViewById(R.id.POGDays);
+        EDD = findViewById(R.id.EDD);
         VisitDate = findViewById(R.id.VisitDate);
         NextVisitDate = findViewById(R.id.NextVisitDate);
         Submit = findViewById(R.id.Submit);
@@ -184,11 +185,40 @@ public class Add_Medicines extends AppCompatActivity {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                List<Medicine_Table> ap=medicineTableViewModel.getMedicineByVisitingDate(visitingDate);
-//                Log.d(TAG, "medicines: " + ap.toString());
+                Intent intent = new Intent(Add_Medicines.this,Updates.class);
+                if(!isempty()) {
+                    intent.putExtra("VISITING_DATE", visitingDate);
+                    intent.putExtra("POG_WEEKS", POGWeeks.getText().toString().trim());
+                    intent.putExtra("POG_DAYS", POGDays.getText().toString().trim());
+                    intent.putExtra("EDD", EDD.getText().toString().trim());
+                    intent.putExtra("NEXT_VISITING_DATE", NextVisitDate.getText().toString().trim());
+                    startActivity(intent);
+                }
             }
         });
 
+    }
+
+    private boolean isempty() {
+        if(visitingDate.isEmpty()) {
+            Toast.makeText(this, "Enter Visiting Date", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(POGWeeks.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Enter POG Weeks", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(POGDays.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Enter POG Days", Toast.LENGTH_SHORT).show();
+            return true;
+        }else if(EDD.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Enter EDD", Toast.LENGTH_SHORT).show();
+            return true;
+        }else if(NextVisitDate.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Enter Next Visit Date", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
     }
 
     private void setAdapter(String visitingDate) {

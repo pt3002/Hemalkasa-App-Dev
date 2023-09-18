@@ -27,19 +27,19 @@
         android:layout_marginEnd="10dp"/>
 
     <Button
-        android:id="@+id/video"
+        android:id="@+id/history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Videoes"
+        android:text="Past History"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"/>
 
     <Button
-        android:id="@+id/updates"
+        android:id="@+id/video"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Updates"
+        android:text="View Videoes"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"/>
