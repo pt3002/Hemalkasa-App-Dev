@@ -57,11 +57,14 @@ public class Medicine_Table_Repository {
         return x;
     }
 
-    public List<Medicine_Table> getMedicineByVisitingDate(String visiting_date){
+        //  TODO This queery is running in main UI Tread. Ttry to run it like normal.
+    public LiveData<List<Medicine_Table>> getMedicineByVisitingDate(String visiting_date){
         try{
-           return (List<Medicine_Table>) new GetMedicineByVisitngDateAsync(medicineTableDao).execute(visiting_date);
+            return medicineTableDao.getMedicineByVisitingDate(visiting_date);
+            // cannot cast to java.util.List. Resolve this error
+//            return (List<Medicine_Table>) new GetMedicineByVisitngDateAsync(medicineTableDao).execute(visiting_date);
         }catch (Exception exception){
-            Log.d(TAG, "Error Occured" + exception.getMessage());
+            Log.d(TAG, exception.getMessage());
         }
         return null;
     }
@@ -135,17 +138,17 @@ public class Medicine_Table_Repository {
         }
     }
 
-    private static class GetMedicineByVisitngDateAsync extends AsyncTask<String,Void,List<Medicine_Table>>{
-        private Medicine_Table_DAO medicineTableDao;
-        public GetMedicineByVisitngDateAsync(Medicine_Table_DAO medicineTableDao) {
-            this.medicineTableDao = medicineTableDao;
-        }
-
-        @Override
-        protected List<Medicine_Table> doInBackground(String... strings) {
-            return medicineTableDao.getMedicineByVisitingDate(strings[0]);
-        }
-    }
+//    private static class GetMedicineByVisitngDateAsync extends AsyncTask<String,Void,List<Medicine_Table>>{
+//        private Medicine_Table_DAO medicineTableDao;
+//        public GetMedicineByVisitngDateAsync(Medicine_Table_DAO medicineTableDao) {
+//            this.medicineTableDao = medicineTableDao;
+//        }
+//
+//        @Override
+//        protected List<Medicine_Table> doInBackground(String... strings) {
+//            return medicineTableDao.getMedicineByVisitingDate(strings[0]);
+//        }
+//    }
 
 
 }

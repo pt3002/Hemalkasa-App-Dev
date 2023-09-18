@@ -30,6 +30,7 @@ public abstract class Database extends RoomDatabase{
                     INSTANCE=Room.databaseBuilder(context.getApplicationContext(),
                             Database.class,"Local_Database")
                             .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()   // TODO Remove this line to avoid UI crash
                             .addCallback(roomCallback)  //Once database instance is created this will call a callback function
                             .build();
                 }

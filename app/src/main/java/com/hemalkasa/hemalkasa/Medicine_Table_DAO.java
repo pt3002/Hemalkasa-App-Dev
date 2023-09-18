@@ -35,6 +35,6 @@ public interface Medicine_Table_DAO {
     Integer getMedicineById(String name);
 
     @Query("SELECT * FROM MEDICINE WHERE VISITING_DATE= :visiting_date ORDER BY ID")
-    List<Medicine_Table> getMedicineByVisitingDate(String visiting_date);
+    LiveData<List<Medicine_Table>> getMedicineByVisitingDate(String visiting_date);
 
 }

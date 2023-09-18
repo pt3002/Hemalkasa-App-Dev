@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
@@ -46,10 +48,12 @@ public class Add_Medicines extends AppCompatActivity {
     FloatingActionButton addMedicineBtn;
     RecyclerView medicineRecyclerView;
     MedicineAdapter medicineAdapter;
+    private List<Medicine_Table> medicineList = new ArrayList<>();
     private Medicine_Table_ViewModel medicineTableViewModel;
     private static final String TAG = "pratik";
     EditText POGWeeks,POGDays;
     TextView VisitDate,NextVisitDate;
+    Button Submit;
     private Random randomId=new Random();
     String visitingDate="";
 
@@ -62,38 +66,8 @@ public class Add_Medicines extends AppCompatActivity {
         POGDays = findViewById(R.id.POGDays);
         VisitDate = findViewById(R.id.VisitDate);
         NextVisitDate = findViewById(R.id.NextVisitDate);
-
-        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
-        materialDateBuilder.setTitleText("Select Date");
-
-        MaterialDatePicker visitDatePicker = materialDateBuilder.build();
-        visitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
-            @Override
-            public void onPositiveButtonClick(Object selection) {
-                VisitDate.setText(visitDatePicker.getHeaderText());
-                visitingDate= visitDatePicker.getHeaderText();
-            }
-        });
-        VisitDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                visitDatePicker.show(getSupportFragmentManager(), "VISIT_DATE_PICKER");
-            }
-        });
-
-        MaterialDatePicker nextVisitDatePicker = materialDateBuilder.build();
-        nextVisitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
-            @Override
-            public void onPositiveButtonClick(Object selection) {
-                NextVisitDate.setText(nextVisitDatePicker.getHeaderText());
-            }
-        });
-        NextVisitDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextVisitDatePicker.show(getSupportFragmentManager(), "NEXT_VISIT_DATE_PICKER");
-            }
-        });
+        Submit = findViewById(R.id.Submit);
+        medicineTableViewModel=  ViewModelProviders.of(this).get(Medicine_Table_ViewModel.class);
 
         createNotificationChannel();
 
@@ -102,33 +76,7 @@ public class Add_Medicines extends AppCompatActivity {
         medicineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         medicineRecyclerView.setHasFixedSize(true);
         medicineRecyclerView.setAdapter(medicineAdapter);
-            //Normal Horizontal Separator
-        medicineRecyclerView.addItemDecoration(new DividerItemDecoration(medicineRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
-
-        addMedicineBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(visitingDate.isEmpty()){
-                    Toast.makeText(Add_Medicines.this, "Select Today's Date", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
-                    startActivityForResult(intent, INSERT_MEDICINE);
-                }
-            }
-        });
-
-        medicineTableViewModel=  ViewModelProviders.of(this).get(Medicine_Table_ViewModel.class);
-        medicineTableViewModel.getAllMedicines().observe(this, new Observer<List<Medicine_Table>>() {
-            @Override
-            public void onChanged(List<Medicine_Table> medicine_tables) {
-                //Update the Recycler
-                //Passing the Arraylist of adapter here cuz everytime Live data changes we can change the adapter list automatically
-                // No need for managing the adpter list again and again
-                medicineAdapter.setMedicines(medicine_tables);
-                medicineAdapter.notifyDataSetChanged();
-            }
-        });
+        medicineRecyclerView.addItemDecoration(new DividerItemDecoration(medicineRecyclerView.getContext(), DividerItemDecoration.VERTICAL));  //Normal Horizontal Separator
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -155,8 +103,6 @@ public class Add_Medicines extends AppCompatActivity {
                 medicineTableViewModel.deleteMedicine(medicineTable);
             }
         }).attachToRecyclerView(medicineRecyclerView);
-
-
 
         medicineAdapter.setOnItemClickListener(new MedicineAdapter.OnItemClickListener() {
             @Override
@@ -189,8 +135,74 @@ public class Add_Medicines extends AppCompatActivity {
         });
 
 
+        addMedicineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(visitingDate.isEmpty()){
+                    Toast.makeText(Add_Medicines.this, "Select Today's Date", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
+                    startActivityForResult(intent, INSERT_MEDICINE);
+                }
+            }
+        });
+
+        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+        materialDateBuilder.setTitleText("Select Date");
+
+        MaterialDatePicker visitDatePicker = materialDateBuilder.build();
+        visitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                VisitDate.setText(visitDatePicker.getHeaderText());
+                visitingDate= visitDatePicker.getHeaderText();
+                setAdapter(visitingDate);
+            }
+        });
+        VisitDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                visitDatePicker.show(getSupportFragmentManager(), "VISIT_DATE_PICKER");
+            }
+        });
+
+        MaterialDatePicker nextVisitDatePicker = materialDateBuilder.build();
+        nextVisitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                NextVisitDate.setText(nextVisitDatePicker.getHeaderText());
+            }
+        });
+        NextVisitDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextVisitDatePicker.show(getSupportFragmentManager(), "NEXT_VISIT_DATE_PICKER");
+            }
+        });
+
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                List<Medicine_Table> ap=medicineTableViewModel.getMedicineByVisitingDate(visitingDate);
+//                Log.d(TAG, "medicines: " + ap.toString());
+            }
+        });
+
     }
 
+    private void setAdapter(String visitingDate) {
+        medicineTableViewModel.getMedicineByVisitingDate(visitingDate).observe(this, new Observer<List<Medicine_Table>>() {
+            @Override
+            public void onChanged(List<Medicine_Table> medicine_tables) {
+//                Update the Recycler
+//                Passing the Arraylist of adapter here cuz everytime Live data changes we can change the adapter list automatically
+//                No need for managing the adpter list again and again
+                medicineAdapter.setMedicines(medicine_tables);
+                medicineAdapter.notifyDataSetChanged();
+            }
+        });
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -204,7 +216,7 @@ public class Add_Medicines extends AppCompatActivity {
             String route=data.getStringExtra("Route");
             String period=data.getStringExtra("Period");
 
-            Medicine_Table medicineTable=new Medicine_Table(name, form, dose, frequency, period, route,visitingDate);
+            Medicine_Table medicineTable=new Medicine_Table(name, form, dose, frequency, route,period,visitingDate);
             medicineTableViewModel.insertMedicine(medicineTable);
 
 //            int medicineId;
