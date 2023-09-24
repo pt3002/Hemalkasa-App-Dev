@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="@drawable/registration_page_background"
     tools:context=".Patient_Registration_Page">
 
     <TextView
@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:text="Patient Registration"
         android:textSize="30dp"
-        android:textStyle="italic|bold"
+        android:textStyle="bold"
+        android:textColor="@color/secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

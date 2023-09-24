@@ -27,7 +27,7 @@
             android:name=".Updates"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:exported="false" />
         <activity
             android:name=".Video_Player"
@@ -50,7 +50,7 @@
         <receiver android:name=".AlarmReceiver" />
 
         <activity
-            android:name=".SplashScreen"
+            android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
