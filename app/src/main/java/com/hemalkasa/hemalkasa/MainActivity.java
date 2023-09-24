@@ -1,6 +1,7 @@
 package com.hemalkasa.hemalkasa;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "pratik";
     Button addMedicinePage,registrationPage, VideoPage,historyPage,notesPage;
+    private Prescription_Table_ViewModel prescriptionTableViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        historyPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,History.class);
+                startActivity(intent);
+            }
+        });
+
         VideoPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,19 +62,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        historyPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        prescriptionTableViewModel=  ViewModelProviders.of(this).get(Prescription_Table_ViewModel.class);
 
         notesPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAllPatientDetails();
-//                Intent intent=new Intent(MainActivity.this,Notes.class);
-//                startActivity(intent);
+
             }
         });
     }

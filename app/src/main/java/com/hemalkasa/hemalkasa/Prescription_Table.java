@@ -105,4 +105,18 @@ public class Prescription_Table {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+    @Override
+    public String toString() {
+        return "Prescription_Table{" +
+                "id=" + id +
+                ", visiting_date='" + visiting_date + '\'' +
+                ", pog_weeks='" + pog_weeks + '\'' +
+                ", pog_days='" + pog_days + '\'' +
+                ", edd='" + edd + '\'' +
+                ", next_visiting_date='" + next_visiting_date + '\'' +
+                ", designation='" + designation + '\'' +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
 }
