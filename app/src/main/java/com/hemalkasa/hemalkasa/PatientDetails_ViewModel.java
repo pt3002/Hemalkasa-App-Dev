@@ -1,6 +1,7 @@
 package com.hemalkasa.hemalkasa;
 
 import android.app.Application;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -18,6 +19,10 @@ public class PatientDetails_ViewModel extends AndroidViewModel {
 
     public void updatePatientDetails(PatientDetails patientDetails){
         patientDetails_repository.updatePatientDetails(patientDetails);
+    }
+
+    public void getPatientName(TextView welcome){
+         patientDetails_repository.getPatientName(welcome);
     }
 
 }

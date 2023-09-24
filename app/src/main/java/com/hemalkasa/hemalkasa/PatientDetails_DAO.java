@@ -25,4 +25,7 @@ public interface PatientDetails_DAO {
 
     @Query("SELECT * FROM PATIENT_DETAILS")
     List<PatientDetails> getAllPatientDetails();
+
+    @Query("SELECT FULL_NAME FROM PATIENT_DETAILS WHERE ID=1")
+    String getPatientName();
 }

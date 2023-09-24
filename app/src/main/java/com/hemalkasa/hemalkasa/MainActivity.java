@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -17,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "pratik";
     Button addMedicinePage,registrationPage, VideoPage,historyPage,notesPage;
+    TextView welcome;
     private Prescription_Table_ViewModel prescriptionTableViewModel;
+    private PatientDetails_ViewModel patientDetailsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         VideoPage =findViewById(R.id.video);
         historyPage =findViewById(R.id.history);
         notesPage =findViewById(R.id.notes);
+        welcome =findViewById(R.id.welcome);
 
         registrationPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +67,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         prescriptionTableViewModel=  ViewModelProviders.of(this).get(Prescription_Table_ViewModel.class);
+        patientDetailsViewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
 
         notesPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                    // Set the Name
+                getAllPatientDetails();
+                patientDetailsViewModel.getPatientName(welcome);
             }
         });
     }
@@ -81,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                         .getAllPatientDetails();
 
                 Log.d(TAG, "run: " + patientDetailsList.toString());
-//                Toast.makeText(MainActivity.this, patientDetailsList.toString(), Toast.LENGTH_LONG).show();
             }
         });
         thread.start();

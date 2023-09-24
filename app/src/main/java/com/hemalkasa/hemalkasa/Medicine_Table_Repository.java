@@ -42,18 +42,12 @@ public class Medicine_Table_Repository {
     }
 
     public int getMedicineById(String medicineName){
-//        return medicineTableDao.getMedicineById(medicineName);
-
-        Log.d(TAG, "getMedicineById: Started");
         int x=0;
         try {
             x = new getMedicineByIdAsync(medicineTableDao).execute(medicineName).get();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-
-//        Log.d(TAG, String.valueOf(x));
-         Log.d(TAG, "getMedicineById: Ended ");
         return x;
     }
 
@@ -93,7 +87,6 @@ public class Medicine_Table_Repository {
         @Override
         protected Void doInBackground(Medicine_Table... medicine_tables) {
             medicineTableDao.updateMedicine(medicine_tables[0]);
-            Log.d(TAG, "Medicine Updated");
             return null;
         }
     }
@@ -107,7 +100,6 @@ public class Medicine_Table_Repository {
         @Override
         protected Void doInBackground(Medicine_Table... medicine_tables) {
             medicineTableDao.deleteMedicine(medicine_tables[0]);
-            Log.d(TAG, "Medicine Deleted");
             return null;
         }
     }

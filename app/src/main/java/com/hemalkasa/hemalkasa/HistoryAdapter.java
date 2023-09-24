@@ -31,7 +31,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Prescription_Table prescriptionTable=prescription.get(position);
-        Log.d(TAG, prescriptionTable.getVisiting_date());
         holder.VisitingDate.setText(prescriptionTable.getVisiting_date());
         holder.PogWeeks.setText(prescriptionTable.getPog_weeks());
         holder.PogDays.setText(prescriptionTable.getPog_days());

@@ -2,10 +2,13 @@ package com.hemalkasa.hemalkasa;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.TextView;
 
 public class PatientDetails_Repository {
 
     private PatientDetails_DAO patientDetails_dao;
+    public static final String TAG = "pratik";
 
 
     public PatientDetails_Repository(Application application) {
@@ -20,6 +23,9 @@ public class PatientDetails_Repository {
         new UpdateAsyncPatientDetails(patientDetails_dao).execute(patientDetails);
     }
 
+    public void getPatientName(TextView welcome){
+        new GetAsyncPatientName(patientDetails_dao,welcome).execute();
+    }
 
 
     private static class InsertAsyncPatientDetails extends AsyncTask<PatientDetails,Void,Void>{
@@ -46,6 +52,26 @@ public class PatientDetails_Repository {
         protected Void doInBackground(PatientDetails... patientDetails) {
             patientDetails_dao.updatePatientDetails(patientDetails[0]);
             return null;
+        }
+    }
+
+    private static class GetAsyncPatientName extends AsyncTask<Void,Void,String>{
+        private PatientDetails_DAO patientDetails_dao;
+        private TextView welcome;
+        public GetAsyncPatientName(PatientDetails_DAO patientDetails_dao,TextView welcome) {
+            this.patientDetails_dao = patientDetails_dao;
+            this.welcome=welcome;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            return patientDetails_dao.getPatientName();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            welcome.setText("Welcome " + s);
         }
     }
 
