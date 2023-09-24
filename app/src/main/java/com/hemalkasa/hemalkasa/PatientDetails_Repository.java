@@ -50,7 +50,9 @@ public class PatientDetails_Repository {
 
         @Override
         protected Void doInBackground(PatientDetails... patientDetails) {
+            Log.d(TAG, "Update Started");
             patientDetails_dao.updatePatientDetails(patientDetails[0]);
+            Log.d(TAG, "Update Ended");
             return null;
         }
     }
