@@ -120,7 +120,23 @@ public class InsertEditMedicine extends AppCompatActivity {
         Intent intent=getIntent();
         if(intent.hasExtra("Id")){
             // TODO set the medicine,dose spinner carry forward value
+            String Name=intent.getStringExtra("Name");
+            String Form=intent.getStringExtra("Form");
+            String Dose=intent.getStringExtra("Dose");
+            String Frequency=intent.getStringExtra("Frequency");
+            String Route=intent.getStringExtra("Route");
             periods.setText(intent.getStringExtra("Period"));
+
+            int namePosition=nameAdapter.getPosition(Name);
+            nameSpinner.setSelection(namePosition);
+            int formPosition=formAdapter.getPosition(Form);
+            formSpinner.setSelection(formPosition);
+            int dosePosition=doseAdapter.getPosition(Dose);
+            doseSpinner.setSelection(dosePosition);
+            int frequencyPosition=frequencyAdapter.getPosition(Frequency);
+            frequencySpinner.setSelection(frequencyPosition);
+            int routePosition=routeAdapter.getPosition(Route);
+            routeSpinner.setSelection(routePosition);
         }
 
             // TODO

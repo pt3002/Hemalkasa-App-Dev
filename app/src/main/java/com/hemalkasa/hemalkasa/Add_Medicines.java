@@ -72,131 +72,163 @@ public class Add_Medicines extends AppCompatActivity {
 
         createNotificationChannel();
 
-        medicineAdapter = new MedicineAdapter();
-        medicineRecyclerView = findViewById(R.id.RecyclerView);
-        medicineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        medicineRecyclerView.setHasFixedSize(true);
-        medicineRecyclerView.setAdapter(medicineAdapter);
-        medicineRecyclerView.addItemDecoration(new DividerItemDecoration(medicineRecyclerView.getContext(), DividerItemDecoration.VERTICAL));  //Normal Horizontal Separator
+        Intent historyIntent=getIntent();
+        if(historyIntent.hasExtra("VISITING_DATE")){
+            medicineAdapter = new MedicineAdapter(true);
+            medicineRecyclerView = findViewById(R.id.RecyclerView);
+            medicineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            medicineRecyclerView.setHasFixedSize(true);
+            medicineRecyclerView.setAdapter(medicineAdapter);
+            medicineRecyclerView.addItemDecoration(new DividerItemDecoration(medicineRecyclerView.getContext(), DividerItemDecoration.VERTICAL));  //Normal Horizontal Separator
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            VisitDate.setText(historyIntent.getStringExtra("VISITING_DATE"));
+            POGWeeks.setText(historyIntent.getStringExtra("POG_WEEKS"));
+            POGDays.setText(historyIntent.getStringExtra("POG_DAYS"));
+            EDD.setText(historyIntent.getStringExtra("EDD"));
+            NextVisitDate.setText(historyIntent.getStringExtra("NEXT_VISITING_DATE"));
 
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;   //This is Used for Drag And Drop. Since  we are not using this so we return false
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                Medicine_Table medicineTable=medicineAdapter.getMedicalTableAt(viewHolder.getAdapterPosition());
-
-                String medicine=medicineTable.getName();
-                int medicineId;
-                try{
-                    medicineId=medicineTableViewModel.getMedicineById(medicine);
-                }catch (Exception exception){
-                    Log.d(TAG, "Error getting ID");
-                    Log.d(TAG, exception.getMessage());
-                    medicineId=randomId.nextInt();
+                // Disabling the editable field
+            POGWeeks.setEnabled(false);
+            POGDays.setEnabled(false);
+            EDD.setEnabled(false);
+            Submit.setText("Next Page");
+            Submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent notesIntent = new Intent(Add_Medicines.this, Updates.class);
+                    notesIntent.putExtra("DESIGNATION",historyIntent.getStringExtra("DESIGNATION"));
+                    notesIntent.putExtra("NOTES", historyIntent.getStringExtra("NOTES"));
+                    startActivity(notesIntent);
                 }
-                cancelAlarm(medicineId);
-                medicineTableViewModel.deleteMedicine(medicineTable);
-            }
-        }).attachToRecyclerView(medicineRecyclerView);
+            });
+            addMedicineBtn.setVisibility(View.GONE);
+            setAdapter(historyIntent.getStringExtra("VISITING_DATE"));
+        }
+        else {
+            medicineAdapter = new MedicineAdapter(false);
+            medicineRecyclerView = findViewById(R.id.RecyclerView);
+            medicineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            medicineRecyclerView.setHasFixedSize(true);
+            medicineRecyclerView.setAdapter(medicineAdapter);
+            medicineRecyclerView.addItemDecoration(new DividerItemDecoration(medicineRecyclerView.getContext(), DividerItemDecoration.VERTICAL));  //Normal Horizontal Separator
 
-        medicineAdapter.setOnItemClickListener(new MedicineAdapter.OnItemClickListener() {
-            @Override
-            public void editClick(Medicine_Table medicineTable) {
-                Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
-                intent.putExtra("Id", medicineTable.getId());
-                intent.putExtra("Name", medicineTable.getName());
-                intent.putExtra("Form", medicineTable.getForm());
-                intent.putExtra("Dose", medicineTable.getDose());
-                intent.putExtra("Frequency", medicineTable.getFrequency());
-                intent.putExtra("Route", medicineTable.getRoute());
-                intent.putExtra("Period", medicineTable.getPeriod());
-                startActivityForResult(intent, EDIT_MEDICINE);
-            }
+            new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                    ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
 
-            @Override
-            public void deleteClick(Medicine_Table medicineTable) {
-                String medicine=medicineTable.getName();
-                int medicineId;
-                try{
-                    medicineId=medicineTableViewModel.getMedicineById(medicine);
-                }catch (Exception exception){
-                    Log.d(TAG, "Error getting ID");
-                    Log.d(TAG, exception.getMessage());
-                    medicineId=randomId.nextInt();
+                @Override
+                public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                    return false;   //This is Used for Drag And Drop. Since  we are not using this so we return false
                 }
-                cancelAlarm(medicineId);
-                medicineTableViewModel.deleteMedicine(medicineTable);
-            }
-        });
 
+                @Override
+                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                    Medicine_Table medicineTable = medicineAdapter.getMedicalTableAt(viewHolder.getAdapterPosition());
 
-        addMedicineBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(visitingDate.isEmpty()){
-                    Toast.makeText(Add_Medicines.this, "Select Today's Date", Toast.LENGTH_SHORT).show();
+                    String medicine = medicineTable.getName();
+                    int medicineId;
+                    try {
+                        medicineId = medicineTableViewModel.getMedicineById(medicine);
+                    } catch (Exception exception) {
+                        Log.d(TAG, "Error getting ID");
+                        Log.d(TAG, exception.getMessage());
+                        medicineId = randomId.nextInt();
+                    }
+                    cancelAlarm(medicineId);
+                    medicineTableViewModel.deleteMedicine(medicineTable);
                 }
-                else{
-                    Intent intent=new Intent(Add_Medicines.this, InsertEditMedicine.class);
-                    startActivityForResult(intent, INSERT_MEDICINE);
+            }).attachToRecyclerView(medicineRecyclerView);
+
+            medicineAdapter.setOnItemClickListener(new MedicineAdapter.OnItemClickListener() {
+                @Override
+                public void editClick(Medicine_Table medicineTable) {
+                    Intent intent = new Intent(Add_Medicines.this, InsertEditMedicine.class);
+                    intent.putExtra("Id", medicineTable.getId());
+                    intent.putExtra("Name", medicineTable.getName());
+                    intent.putExtra("Form", medicineTable.getForm());
+                    intent.putExtra("Dose", medicineTable.getDose());
+                    intent.putExtra("Frequency", medicineTable.getFrequency());
+                    intent.putExtra("Route", medicineTable.getRoute());
+                    intent.putExtra("Period", medicineTable.getPeriod());
+                    startActivityForResult(intent, EDIT_MEDICINE);
                 }
-            }
-        });
 
-        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
-        materialDateBuilder.setTitleText("Select Date");
-
-        MaterialDatePicker visitDatePicker = materialDateBuilder.build();
-        visitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
-            @Override
-            public void onPositiveButtonClick(Object selection) {
-                VisitDate.setText(visitDatePicker.getHeaderText());
-                visitingDate= visitDatePicker.getHeaderText();
-                setAdapter(visitingDate);
-            }
-        });
-        VisitDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                visitDatePicker.show(getSupportFragmentManager(), "VISIT_DATE_PICKER");
-            }
-        });
-
-        MaterialDatePicker nextVisitDatePicker = materialDateBuilder.build();
-        nextVisitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
-            @Override
-            public void onPositiveButtonClick(Object selection) {
-                NextVisitDate.setText(nextVisitDatePicker.getHeaderText());
-            }
-        });
-        NextVisitDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextVisitDatePicker.show(getSupportFragmentManager(), "NEXT_VISIT_DATE_PICKER");
-            }
-        });
-
-        Submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Add_Medicines.this,Updates.class);
-                if(!isempty()) {
-                    intent.putExtra("VISITING_DATE", visitingDate);
-                    intent.putExtra("POG_WEEKS", POGWeeks.getText().toString().trim());
-                    intent.putExtra("POG_DAYS", POGDays.getText().toString().trim());
-                    intent.putExtra("EDD", EDD.getText().toString().trim());
-                    intent.putExtra("NEXT_VISITING_DATE", NextVisitDate.getText().toString().trim());
-                    startActivity(intent);
+                @Override
+                public void deleteClick(Medicine_Table medicineTable) {
+                    String medicine = medicineTable.getName();
+                    int medicineId;
+                    try {
+                        medicineId = medicineTableViewModel.getMedicineById(medicine);
+                    } catch (Exception exception) {
+                        Log.d(TAG, "Error getting ID");
+                        Log.d(TAG, exception.getMessage());
+                        medicineId = randomId.nextInt();
+                    }
+                    cancelAlarm(medicineId);
+                    medicineTableViewModel.deleteMedicine(medicineTable);
                 }
-            }
-        });
+            });
 
+
+            addMedicineBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (visitingDate.isEmpty()) {
+                        Toast.makeText(Add_Medicines.this, "Select Today's Date", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(Add_Medicines.this, InsertEditMedicine.class);
+                        startActivityForResult(intent, INSERT_MEDICINE);
+                    }
+                }
+            });
+
+            MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+            materialDateBuilder.setTitleText("Select Date");
+
+            MaterialDatePicker visitDatePicker = materialDateBuilder.build();
+            visitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                @Override
+                public void onPositiveButtonClick(Object selection) {
+                    VisitDate.setText(visitDatePicker.getHeaderText());
+                    visitingDate = visitDatePicker.getHeaderText();
+                    setAdapter(visitingDate);
+                }
+            });
+            VisitDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    visitDatePicker.show(getSupportFragmentManager(), "VISIT_DATE_PICKER");
+                }
+            });
+
+            MaterialDatePicker nextVisitDatePicker = materialDateBuilder.build();
+            nextVisitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                @Override
+                public void onPositiveButtonClick(Object selection) {
+                    NextVisitDate.setText(nextVisitDatePicker.getHeaderText());
+                }
+            });
+            NextVisitDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    nextVisitDatePicker.show(getSupportFragmentManager(), "NEXT_VISIT_DATE_PICKER");
+                }
+            });
+
+            Submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Add_Medicines.this, Updates.class);
+                    if (!isempty()) {
+                        intent.putExtra("VISITING_DATE", visitingDate);
+                        intent.putExtra("POG_WEEKS", POGWeeks.getText().toString().trim());
+                        intent.putExtra("POG_DAYS", POGDays.getText().toString().trim());
+                        intent.putExtra("EDD", EDD.getText().toString().trim());
+                        intent.putExtra("NEXT_VISITING_DATE", NextVisitDate.getText().toString().trim());
+                        startActivity(intent);
+                    }
+                }
+            });
+        }
     }
 
     private boolean isempty() {
@@ -279,7 +311,7 @@ public class Add_Medicines extends AppCompatActivity {
             String route=data.getStringExtra("Route");
             String period=data.getStringExtra("Period");
 
-            Medicine_Table medicineTable=new Medicine_Table(name, form, dose, frequency, period, route,visitingDate);
+            Medicine_Table medicineTable=new Medicine_Table(name, form, dose, frequency, route,period,visitingDate);
             medicineTable.setId(id);
             medicineTableViewModel.updateMedicine(medicineTable);
             Log.d(TAG, "Edited");

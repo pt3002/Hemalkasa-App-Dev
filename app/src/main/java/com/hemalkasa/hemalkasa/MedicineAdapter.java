@@ -19,13 +19,15 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
 
     private List<Medicine_Table> medicineList = new ArrayList<>();
     private OnItemClickListener listener;
+    private Boolean isHistory;
 
     // No need for separate Model Class
     //Here Medicine_Table(Entitiy) can work the same way as the modal class used to work
     //Since it also has the required struct and getter/setter methods implemented
 
     //If we pass array from the constructor then the medicineList will get initialized only once
-    public MedicineAdapter(){
+    public MedicineAdapter(Boolean isHistory){
+        this.isHistory=isHistory;
 //        this.add_medicines = add_medicines;
     }
 
@@ -40,13 +42,16 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Medicine_Table medicineTable=medicineList.get(position);
-        Log.d(TAG, String.valueOf(medicineTable.getId()) + "  " + medicineTable.getName());
         holder.name.setText(medicineTable.getName());
         holder.form.setText(medicineTable.getForm());
         holder.dose.setText(medicineTable.getDose());
         holder.frequency.setText(medicineTable.getFrequency());
         holder.route.setText(medicineTable.getRoute());
         holder.periods.setText(medicineTable.getPeriod());
+        if(isHistory){  // If adapter wants to show history then we don't need edit and delete buttons. Hence we hide them
+            holder.editBtn.setVisibility(View.GONE);
+            holder.deleteBtn.setVisibility(View.GONE);
+        }
     }
 
     @Override

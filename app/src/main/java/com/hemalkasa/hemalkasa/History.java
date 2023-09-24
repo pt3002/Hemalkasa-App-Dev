@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -35,7 +36,15 @@ public class History extends AppCompatActivity {
         historyAdapter.setOnItemClickListener(new HistoryAdapter.OnItemClickListener() {
             @Override
             public void getHistory(Prescription_Table prescriptionTable) {
-
+                Intent intent = new Intent(History.this,Add_Medicines.class);
+                intent.putExtra("VISITING_DATE", prescriptionTable.getVisiting_date());
+                intent.putExtra("POG_WEEKS", prescriptionTable.getPog_weeks());
+                intent.putExtra("POG_DAYS", prescriptionTable.getPog_days());
+                intent.putExtra("EDD", prescriptionTable.getEdd());
+                intent.putExtra("NEXT_VISITING_DATE", prescriptionTable.getNext_visiting_date());
+                intent.putExtra("DESIGNATION", prescriptionTable.getDesignation());
+                intent.putExtra("NOTES", prescriptionTable.getNotes());
+                startActivity(intent);
             }
         });
 

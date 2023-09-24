@@ -104,7 +104,6 @@ public class Prescription_Table_Repository {
 
         @Override
         protected List<Prescription_Table> doInBackground(Void... voids) {
-            Log.d(TAG, "doInBackground: Started");
             return prescriptionTableDao.getAll();
         }
 
