@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="15dp"
+    app:cardMaxElevation="20dp"
+    tools:layout_editor_absoluteX="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/VisitingDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DDth Month, Year"
+            android:textSize="20sp"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/PogWeeks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XX"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
+
+        <TextView
+            android:id="@+id/weeks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weeks"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/PogWeeks"
+            app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
+
+        <TextView
+            android:id="@+id/hypen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/weeks"
+            app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
+
+        <TextView
+            android:id="@+id/PogDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YY"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/hypen"
+            app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
+
+        <TextView
+            android:id="@+id/Days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Days"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/PogDays"
+            app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
+
+        <TextView
+            android:id="@+id/EDDDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ZZ"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/PogWeeks"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/EDD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EDD"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintStart_toEndOf="@id/EDDDays"
+            app:layout_constraintTop_toBottomOf="@id/PogWeeks"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
