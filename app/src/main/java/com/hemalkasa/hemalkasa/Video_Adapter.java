@@ -57,7 +57,8 @@ public class Video_Adapter extends RecyclerView.Adapter<Video_Adapter.Viewholder
             public void onClick(View v) {
                 int pos=holder.getAdapterPosition();
                 if (listener != null && pos != RecyclerView.NO_POSITION) {
-                    listener.playVideo(v, video.getPath());
+                    String title=new File(video.getPath()).getName();
+                    listener.playVideo(v, video.getPath(),title);
                 }
             }
         });
@@ -98,7 +99,7 @@ public class Video_Adapter extends RecyclerView.Adapter<Video_Adapter.Viewholder
     }
 
     public interface OnItemClickListener{
-        void playVideo(View view,String path);
+        void playVideo(View view,String path,String title);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

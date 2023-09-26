@@ -285,8 +285,8 @@ public class PatientDetails {
                 ", vdrl='" + vdrl + '\'' +
                 ", gravida='" + gravida + '\'' +
                 ", parity='" + parity + '\'' +
-                ", lmp=" + lmp + '\'' +
-                ", notes=" + notes +
+                ", lmp='" + lmp + '\'' +
+                ", notes='" + notes +
                 '}';
     }
 

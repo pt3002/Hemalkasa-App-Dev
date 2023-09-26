@@ -175,7 +175,6 @@ public class Patient_Registration_Page2 extends Fragment {
                     intent.putExtra("gravida", gravida);
                     intent.putExtra("parity", parity);
                     startActivity(intent);
-//                    patientDetails_viewModel.updatePatientDetails(new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp,"FFFFF"));
                 }
             }
         });

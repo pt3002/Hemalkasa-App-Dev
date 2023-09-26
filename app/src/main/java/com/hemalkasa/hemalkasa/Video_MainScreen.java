@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -64,10 +65,12 @@ public class Video_MainScreen extends AppCompatActivity {
         videoRecycler.setAdapter(videoAdapter);
 
         videoAdapter.setOnItemClickListener(new Video_Adapter.OnItemClickListener() {
+
             @Override
-            public void playVideo(View view, String path) {
+            public void playVideo(View view, String path, String title) {
                 Intent intent=new Intent(Video_MainScreen.this,Video_Player.class);
                 intent.putExtra("Video", path);
+                intent.putExtra("Title", title);
                 startActivity(intent);
             }
         });
@@ -160,6 +163,9 @@ public class Video_MainScreen extends AppCompatActivity {
                 }
                 else{
                     Log.d(TAG, "Denied");
+                    Toast.makeText(this, "Please Grant Permission", Toast.LENGTH_SHORT).show();
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}
+                            , FOLDER_REQUEST_CODE);
                 }
                 break;
         }
