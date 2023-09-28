@@ -56,24 +56,13 @@ public class Video_MainScreen extends AppCompatActivity {
         if(files!=null){
             for(File file:files){
                 if(file.getPath().endsWith(".mp4")){
-                    videoArray.add(new Video_ModalClass(file.getPath()));
+                    videoArray.add(new Video_ModalClass(file.getPath(),file.getName()));
                 }
             }
         }
 
         videoAdapter=new Video_Adapter(Video_MainScreen.this, videoArray);
         videoRecycler.setAdapter(videoAdapter);
-
-        videoAdapter.setOnItemClickListener(new Video_Adapter.OnItemClickListener() {
-
-            @Override
-            public void playVideo(View view, String path, String title) {
-                Intent intent=new Intent(Video_MainScreen.this,Video_Player.class);
-                intent.putExtra("Video", path);
-                intent.putExtra("Title", title);
-                startActivity(intent);
-            }
-        });
     }
 
     private String readFromFile(File file) {

@@ -10,4 +10,6 @@
     <color name="secondary">#0C356A</color>
     <color name="floatingButton">#FFD3A3</color>
     <color name="buttonColor">#241468</color>
+    <color name="allow_color">#22354F</color>
+    <color name="light_dark">#74000000</color>
 </resources>

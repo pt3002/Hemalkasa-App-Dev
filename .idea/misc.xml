@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_brightness.xml" value="0.2395" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_pip_mode.xml" value="0.2395" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_rotate.xml" value="0.2395" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/splash_background.xml" value="0.124" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/circle.xml" value="0.1" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/ic_round_arrow_back_24.xml" value="0.2395" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_destination.xml" value="0.1" />
@@ -12,8 +16,9 @@
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_splash_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_updates.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/add_medicines.xml" value="0.264" />
-        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/custom_playback_view.xml" value="0.25416666666666665" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/custom_playback_view.xml" value="0.1" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/each_row.xml" value="0.25416666666666665" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/exo_layout_view.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/exo_player_view.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/fragment_add_new_medicine.xml" value="0.21467391304347827" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/fragment_add_new_medicine_bottomsheet.xml" value="0.25416666666666665" />
@@ -25,6 +30,7 @@
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient__registration__page2.xml" value="0.264" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient_registration_page.xml" value="0.144" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/set_alarm.xml" value="0.20697463768115942" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/swipe_zoom_design.xml" value="0.253125" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/video_card_item.xml" value="0.2" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/video_main_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/video_player.xml" value="0.1" />

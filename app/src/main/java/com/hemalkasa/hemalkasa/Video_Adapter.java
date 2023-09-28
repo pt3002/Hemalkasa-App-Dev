@@ -1,9 +1,12 @@
 package com.hemalkasa.hemalkasa;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +45,8 @@ public class Video_Adapter extends RecyclerView.Adapter<Video_Adapter.Viewholder
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         Video_ModalClass video=arrayList.get(position);
         Glide.with(context).load(video.getPath()).into(holder.imageView);
-        holder.title.setText(new File(video.getPath()).getName());
+        holder.title.setText(video.getTitle());
+//        holder.title.setText(new File(video.getPath()).getName());
         try{
             MediaPlayer mediaPlayer= MediaPlayer.create(context, Uri.parse(video.getPath()));
             holder.duration.setText(getDuration(mediaPlayer.getDuration()));
@@ -55,13 +59,18 @@ public class Video_Adapter extends RecyclerView.Adapter<Video_Adapter.Viewholder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int pos=holder.getAdapterPosition();
-                if (listener != null && pos != RecyclerView.NO_POSITION) {
-                    String title=new File(video.getPath()).getName();
-                    listener.playVideo(v, video.getPath(),title);
-                }
+                Intent intent = new Intent(context, Video_Player.class);
+                intent.putExtra("position",holder.getAdapterPosition());
+                intent.putExtra("Video", video.getPath());
+                intent.putExtra("Title", video.getTitle());
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("videoArrayList",arrayList);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
             }
         });
+
+
     }
 
     @SuppressLint("DefaultLocale")

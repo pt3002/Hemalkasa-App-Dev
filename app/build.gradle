@@ -11,6 +11,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -47,4 +48,5 @@ dependencies {
     implementation "com.airbnb.android:lottie:3.7.0"
     implementation 'io.github.amrdeveloper:lottiedialog:1.0.0'
     implementation 'com.google.android.exoplayer:exoplayer:2.14.1'
+    implementation 'com.android.support:multidex:1.0.3'
 }
