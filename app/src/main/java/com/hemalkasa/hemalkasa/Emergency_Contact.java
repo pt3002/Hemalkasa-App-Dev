@@ -22,14 +22,14 @@ public class Emergency_Contact extends AppCompatActivity {
     public static final String TAG="pratik";
     LinearLayout ContactAshaWorker,ContactPHC,Contact108,ContactLBPH;
     // TODO Change the phone number
-    private static final String AshaWorker="8452991487",_108="108",PHC="7588231901",LBPH="9967657839";
+    private static final String AshaWorker="8452991487",_108="108",PHC="7588231901",LBPH="8452991487";
     private static final int REQUEST_CALL_CODE =1;
     private static final String PERMISSION_CALL=Manifest.permission.CALL_PHONE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency_contact);
+        setContentView(R.layout.emergency_contact);
         ContactAshaWorker=findViewById(R.id.ContactAshaWorker);
         Contact108=findViewById(R.id.Contact108);
         ContactPHC=findViewById(R.id.ContactPHC);
