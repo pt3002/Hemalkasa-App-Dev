@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/registration_page_background"
     tools:context=".Notes">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Note By PHC Doctor/ Health worker"
+        android:textColor="@color/secondary"
         android:textSize="25sp"
         android:textAlignment="center"
         android:scrollHorizontally="false"
@@ -26,7 +28,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:textColorHint="@color/secondary"
         android:hint="Notes with designation"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"

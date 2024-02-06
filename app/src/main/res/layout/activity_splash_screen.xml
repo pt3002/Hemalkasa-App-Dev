@@ -15,22 +15,22 @@
         app:lottie_loop="false"
         app:lottie_rawRes="@raw/without_wish"/>
 
-    <TextView
-        android:id="@+id/AppName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="26dp"
-        android:layout_marginBottom="208dp"
-        android:text="HEMALKASA"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:visibility="invisible" />
+<!--    <TextView-->
+<!--        android:id="@+id/AppName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:layout_marginRight="26dp"-->
+<!--        android:layout_marginBottom="208dp"-->
+<!--        android:text="HEMALKASA"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="30dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:visibility="invisible" />-->
 
 
 </RelativeLayout>

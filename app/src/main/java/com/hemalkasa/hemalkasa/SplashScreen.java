@@ -22,17 +22,17 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         lottie=findViewById(R.id.lottieSplash);
-        Appname=findViewById(R.id.AppName);
+//        Appname=findViewById(R.id.AppName);
 
 //        Appname.animate().translationX(-320).setDuration(2000).setStartDelay(5200);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Appname.setVisibility(View.VISIBLE);
-                Appname.animate().translationX(-225).setDuration(2000).setStartDelay(0);
-            }
-        }, 5200);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Appname.setVisibility(View.VISIBLE);
+//                Appname.animate().translationX(-225).setDuration(2000).setStartDelay(0);
+//            }
+//        }, 5200);
 
 
         new Handler().postDelayed(new Runnable() {
@@ -50,6 +50,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 8750);
+        }, 1000);
     }
 }

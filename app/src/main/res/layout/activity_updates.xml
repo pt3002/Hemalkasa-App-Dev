@@ -53,6 +53,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:textColorHint="@color/secondary"
         android:hint="Updates"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"

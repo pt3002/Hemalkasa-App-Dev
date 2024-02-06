@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         addMedicinePage=findViewById(R.id.addMedicinePage);
         VideoPage =findViewById(R.id.video);
         historyPage =findViewById(R.id.history);
-        notesPage =findViewById(R.id.notes);
-        welcome =findViewById(R.id.welcome);
+//        notesPage =findViewById(R.id.notes);
+//        welcome =findViewById(R.id.welcome);
 
         registrationPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +69,14 @@ public class MainActivity extends AppCompatActivity {
         prescriptionTableViewModel=  ViewModelProviders.of(this).get(Prescription_Table_ViewModel.class);
         patientDetailsViewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
 
-        notesPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    // Set the Name
-                getAllPatientDetails();
-                patientDetailsViewModel.getPatientName(welcome);
-            }
-        });
+//        notesPage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                    // Set the Name
+//                getAllPatientDetails();
+//                patientDetailsViewModel.getPatientName(welcome);
+//            }
+//        });
     }
 
     public void getAllPatientDetails() {

@@ -120,29 +120,29 @@ public class Patient_Registration_Page1 extends Fragment {
                 String mobno= MobNo.getText().toString();
 
 
-                Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
+//                Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
+//                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
 
-//                if(!isEmpty()) {
-//                    Bundle bundle=new Bundle();
-//                    bundle.putString("fullname", fullname);
-//                    bundle.putString("mothername", mothername);
-//                    bundle.putString("hospRegNo", hospRegNo);
-//                    bundle.putString("dateofbirth", dateofbirth);
-//                    bundle.putString("bloodgroup", bloodgroup);
-//                    bundle.putString("state", state);
-//                    bundle.putString("district", district);
-//                    bundle.putString("block", block);
-//                    bundle.putString("village", village);
-//                    bundle.putString("mobno", mobno);
-////                    // TODO Save in saved preferences. Get Unique Key. Search from DB and assign it to patient
-////                    patientDetails_viewModel.updatePatientDetails(new PatientDetails(1,fullname, mothername, hospRegNo, bloodgroup, dateofbirth, state, district, block, village,mobNo));
-//                    getParentFragmentManager().setFragmentResult("Page1", bundle);
-//                    Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
-//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                    fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
-//                }
+                if(!isEmpty()) {
+                    Bundle bundle=new Bundle();
+                    bundle.putString("fullname", fullname);
+                    bundle.putString("mothername", mothername);
+                    bundle.putString("hospRegNo", hospRegNo);
+                    bundle.putString("dateofbirth", dateofbirth);
+                    bundle.putString("bloodgroup", bloodgroup);
+                    bundle.putString("state", state);
+                    bundle.putString("district", district);
+                    bundle.putString("block", block);
+                    bundle.putString("village", village);
+                    bundle.putString("mobno", mobno);
+//                    // TODO Save in saved preferences. Get Unique Key. Search from DB and assign it to patient
+//                    patientDetails_viewModel.updatePatientDetails(new PatientDetails(1,fullname, mothername, hospRegNo, bloodgroup, dateofbirth, state, district, block, village,mobNo));
+                    getParentFragmentManager().setFragmentResult("Page1", bundle);
+                    Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
+                }
             }
         });
 

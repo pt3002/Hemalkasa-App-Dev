@@ -3,12 +3,52 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_back.xml" value="0.125" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_brightness.xml" value="0.2395" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_brightness_low.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_brightness_moderate.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_close.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_delete.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_forward.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_left.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_more.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_more_wight.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_next.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_night_mode.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_pause.xml" value="0.125" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_pip_mode.xml" value="0.2395" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_play.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_playlist.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_rename.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_rewind.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_right.xml" value="0.125" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_rotate.xml" value="0.2395" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_round_star_rate_24.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_search.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_share.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_speed.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_subtitle.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_unlock.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_volume.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ic_volume_off.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/playback_icons_bg.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/progress_bar_bg.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/ripple_circle.xml" value="0.125" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/splash_background.xml" value="0.124" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/vertical_progress_bar.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable-v24/vol_progress_shape.xml" value="0.125" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/circle.xml" value="0.1" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/custom_input.xml" value="0.2395" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/edit.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/ic_baseline_bloodtype_24.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/ic_baseline_pause_circle_24.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/ic_baseline_play_circle_24.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.125" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/ic_round_arrow_back_24.xml" value="0.2395" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/location_pin.xml" value="0.125" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/person.xml" value="0.2395" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/drawable/phone.xml" value="0.125" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_destination.xml" value="0.1" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_history.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/activity_main.xml" value="0.2650273224043716" />

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/white"
+    android:background="@drawable/custom_input"
     app:cardCornerRadius="10sp"
     android:layout_margin="5sp">
 
@@ -34,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/Title"
+            android:textColor="@color/black"
             android:layout_toEndOf="@id/ThumbNail"
             android:layout_marginStart="10sp"/>
 
