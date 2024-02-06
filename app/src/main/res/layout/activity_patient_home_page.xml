@@ -6,4 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".Patient_Home_Page">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="147dp"
+                android:layout_height="130dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/add_women_patient_icon" />
+        </RelativeLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/Video"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:text="Videoooo"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/Summary"
+                android:src="@drawable/add_women_patient_icon" />
+
+            <Button
+                android:id="@+id/Summary"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:text="Summary"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/Video"
+                android:src="@drawable/add_women_patient_icon" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/Notification"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:text="Notificat"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/Risk"
+                android:src="@drawable/add_women_patient_icon" />
+
+            <Button
+                android:id="@+id/Risk"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:text="Riskoooo"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/Notification"
+                android:src="@drawable/add_women_patient_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/Emergency"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/add_women_patient_icon"
+                android:text="Emergency"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

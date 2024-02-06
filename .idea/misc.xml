@@ -76,7 +76,10 @@
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/video_card_item.xml" value="0.2" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/video_main_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/video_player.xml" value="0.1" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/menu/doctor_to_patient.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/menu/main_menu.xml" value="0.4" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/menu/patient_to_doctor.xml" value="0.1" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/menu/roles.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
