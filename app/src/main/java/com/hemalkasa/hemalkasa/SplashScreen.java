@@ -45,7 +45,8 @@ public class SplashScreen extends AppCompatActivity {
                     intent=new Intent(SplashScreen.this,Patient_Registration_Page.class);
                 }
                 else{
-                    intent=new Intent(SplashScreen.this,MainActivity.class);
+//                    intent=new Intent(SplashScreen.this,Patient_Home_Page.class); // Earlier this was directed to MainActivity
+                    intent=new Intent(SplashScreen.this,Emergency_Contact.class);
                 }
                 startActivity(intent);
                 finish();

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerInside"
-        app:lottie_autoPlay="true"
+        app:lottie_autoPlay="false"
         app:lottie_loop="false"
         app:lottie_rawRes="@raw/without_wish"/>
 
