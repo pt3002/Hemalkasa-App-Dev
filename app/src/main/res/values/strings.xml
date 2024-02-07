@@ -52,4 +52,15 @@
         <item>Oral</item>
         <item>Intravenous</item>
     </string-array>
+
+    <string-array name="bloodGroup">
+        <item>A+ve</item>
+        <item>A-ve</item>
+        <item>B+ve</item>
+        <item>B-ve</item>
+        <item>O+ve</item>
+        <item>O-ve</item>
+        <item>AB+ve</item>
+        <item>AB-ve</item>
+    </string-array>
 </resources>

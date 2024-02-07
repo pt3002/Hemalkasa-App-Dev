@@ -17,9 +17,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,9 +39,10 @@ public class Patient_Registration_Page1 extends Fragment {
     ImageView proImg;
     FloatingActionButton fab;
     Button nextpage,showPatients;
-    EditText HospRegNo, FullName,MotherName,BloodGroup,State,District,Block,Village,MobNo;
-    TextView DateOfBirth;
+    EditText HospRegNo, FullName,MotherName,State,District,Block,Village,MobNo;
+    TextView DateOfBirth,BloodGroup;
     PatientDetails_ViewModel patientDetails_viewModel;
+    Spinner BloodGroupSpinner;
     int SEC = 1;
     String TAG="Pratik";
 
@@ -66,7 +70,8 @@ public class Patient_Registration_Page1 extends Fragment {
         HospRegNo =(EditText) view.findViewById(R.id.HospRegNo);
         FullName=(EditText) view.findViewById(R.id.fullname);
         MotherName=(EditText) view.findViewById(R.id.MotherName);
-        BloodGroup=(EditText) view.findViewById(R.id.BloodGroup);
+        BloodGroup=(TextView) view.findViewById(R.id.BloodGroup);
+        BloodGroupSpinner=(Spinner) view.findViewById(R.id.BloodGroupSpinner);
         State=(EditText) view.findViewById(R.id.State);
         District=(EditText) view.findViewById(R.id.District);
         Block=(EditText) view.findViewById(R.id.Block);
@@ -76,6 +81,20 @@ public class Patient_Registration_Page1 extends Fragment {
 
         patientDetails_viewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
 
+        ArrayAdapter<CharSequence> bloodGroupAdapter = ArrayAdapter.createFromResource(getContext(), R.array.bloodGroup, android.R.layout.simple_spinner_item);
+        bloodGroupAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        BloodGroupSpinner.setAdapter(bloodGroupAdapter);
+        BloodGroupSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                BloodGroupSpinner.setSelection(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                BloodGroupSpinner.setSelection(0);
+            }
+        });
 
 
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
@@ -112,7 +131,8 @@ public class Patient_Registration_Page1 extends Fragment {
                 String fullname=FullName.getText().toString();
                 String mothername=MotherName.getText().toString();
                 String dateofbirth=DateOfBirth.getText().toString();
-                String bloodgroup=BloodGroup.getText().toString();
+//                String bloodgroup=BloodGroup.getText().toString();
+                String bloodgroup=BloodGroupSpinner.getSelectedItem().toString();
                 String state=State.getText().toString();
                 String district=District.getText().toString();
                 String block=Block.getText().toString();
