@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:background="@color/background_all_pages"
     tools:context=".Patient_Home_Page">
 
     <LinearLayout
@@ -13,7 +15,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,70 +25,82 @@
             <ImageView
                 android:layout_width="147dp"
                 android:layout_height="130dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/add_women_patient_icon" />
+                android:src="@drawable/lok_biradri_logo" />
         </RelativeLayout>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <Button
+
+            <ImageButton
                 android:id="@+id/Video"
-                android:layout_width="wrap_content"
-                android:layout_height="130dp"
-                android:text="Videoooo"
-                android:textStyle="bold"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_centerInParent="true"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Summary"
-                android:src="@drawable/add_women_patient_icon" />
+                android:src="@drawable/video_icon"
+                android:scaleType="fitCenter"
+                android:backgroundTint="@color/buttonColor"
+                android:padding="30dp"
+                 />
 
-            <Button
+            <ImageButton
                 android:id="@+id/Summary"
-                android:layout_width="wrap_content"
-                android:layout_height="130dp"
-                android:text="Summary"
-                android:textStyle="bold"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_centerInParent="true"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/Video"
-                android:src="@drawable/add_women_patient_icon" />
+                android:src="@drawable/summary_icon"
+                android:scaleType="fitCenter"
+                android:backgroundTint="@color/buttonColor"
+                android:padding="30dp"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <Button
+            <ImageButton
                 android:id="@+id/Notification"
-                android:layout_width="wrap_content"
-                android:layout_height="130dp"
-                android:text="Notificat"
-                android:textStyle="bold"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_centerInParent="true"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Risk"
-                android:src="@drawable/add_women_patient_icon" />
+                android:src="@drawable/notification_icon"
+                android:scaleType="fitCenter"
+                android:backgroundTint="@color/buttonColor"
+                android:padding="30dp"
+                android:layout_marginTop="20dp"
+                />
 
-            <Button
+            <ImageButton
                 android:id="@+id/Risk"
-                android:layout_width="wrap_content"
-                android:layout_height="130dp"
-                android:text="Riskoooo"
-                android:textStyle="bold"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_centerInParent="true"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/Notification"
-                android:src="@drawable/add_women_patient_icon" />
+                android:src="@drawable/risk_icon"
+                android:scaleType="fitCenter"
+                android:backgroundTint="@color/buttonColor"
+                android:padding="30dp"
+                android:layout_marginTop="20dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -94,14 +109,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <ImageButton
                 android:id="@+id/Emergency"
-                android:layout_width="wrap_content"
-                android:layout_height="130dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/add_women_patient_icon"
-                android:text="Emergency"
-                android:textStyle="bold" />
+                android:src="@drawable/emergency_icon"
+                android:scaleType="fitCenter"
+                android:backgroundTint="@color/buttonColor"
+                android:padding="30dp"
+                android:layout_marginTop="20dp"
+                />
         </RelativeLayout>
 
 

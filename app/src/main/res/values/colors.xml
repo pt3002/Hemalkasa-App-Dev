@@ -9,7 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="secondary">#0C356A</color>
     <color name="floatingButton">#FFD3A3</color>
-    <color name="buttonColor">#241468</color>
+    <color name="buttonColor">#2c545b</color>
     <color name="allow_color">#22354F</color>
     <color name="light_dark">#74000000</color>
+    <color name="background_all_pages">#98bcc4</color>
+    <color name="registration_page_color">#b4c4c0</color>
 </resources>

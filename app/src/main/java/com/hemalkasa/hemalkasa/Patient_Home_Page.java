@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Patient_Home_Page extends AppCompatActivity {
-    Button Video, Summary, Notification, Risk, Emergency;
+    ImageButton Video, Summary, Notification, Risk, Emergency;
     // TODO Hardcoded password
     final static String password="1234";
 
