@@ -23,7 +23,7 @@ public interface Prescription_Table_DAO {
     @Query("SELECT * FROM PRESCRIPTION ORDER BY VISITING_DATE")
     List<Prescription_Table> getAll();
 
-    @Query("SELECT * FROM PRESCRIPTION WHERE VISITING_DATE= :visiting_date ORDER BY ID")
+    @Query("SELECT * FROM PRESCRIPTION WHERE VISITING_DATE= :visiting_date ORDER BY ID DESC")
     List<Prescription_Table> getPrescriptionByVisitingDate(String visiting_date);
 
 }

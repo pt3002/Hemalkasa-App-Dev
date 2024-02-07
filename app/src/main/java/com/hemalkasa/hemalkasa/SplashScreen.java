@@ -40,13 +40,13 @@ public class SplashScreen extends AppCompatActivity {
 
                 Intent intent;
                 SharedPreferences sharedPreferences =PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                if (!sharedPreferences.getBoolean("Registration", false)) {
-                    intent=new Intent(SplashScreen.this,Patient_Registration_Page.class);
-                }
-                else{
+//                if (!sharedPreferences.getBoolean("Registration", false)) {
+//                    intent=new Intent(SplashScreen.this,Patient_Registration_Page.class);
+//                }
+//                else{
                     intent=new Intent(SplashScreen.this,Patient_Home_Page.class); // Earlier this was directed to MainActivity
 //                    intent=new Intent(SplashScreen.this,MainActivity.class);
-                }
+//                }
                 startActivity(intent);
                 finish();
             }

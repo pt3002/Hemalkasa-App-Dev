@@ -14,22 +14,6 @@ public class Patient_Registration_Page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_registration_page);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.FragContainer, Patient_Registration_Page1.class, null).commit();
-//        backBtn = findViewById(R.id.back);
-//        nextBtn = findViewById(R.id.next);
-//        backBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getSupportFragmentManager().beginTransaction().replace(R.id.FragContainer, Patient_Registration_Page1.class, null).setReorderingAllowed(true).addToBackStack("name").commit();
-//            }
-//        });
-//        nextBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getSupportFragmentManager().beginTransaction().replace(R.id.FragContainer, Patient_Registration_Page2.class, null).setReorderingAllowed(true).addToBackStack("name").commit();
-//            }
-//        });
-
     }
 }

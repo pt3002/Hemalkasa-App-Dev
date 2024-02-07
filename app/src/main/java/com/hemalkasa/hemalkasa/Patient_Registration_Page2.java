@@ -102,12 +102,12 @@ public class Patient_Registration_Page2 extends Fragment {
         DefaultHIV = getResources().getStringArray(R.array.testResult)[0];
         int HIVSpinnerPosition = testResultAdapter.getPosition(DefaultHIV);
         HIVSpinner.setSelection(HIVSpinnerPosition);
-        Log.d(TAG, "HIV00000000: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
+//        Log.d(TAG, "HIV00000000: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
         HIVSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 HIVSpinner.setSelection(i);
-                Log.d(TAG, "HIV1111111111111: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
+//                Log.d(TAG, "HIV1111111111111: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
 //                hiv = HIVSpinner.getSelectedItem().toString();
             }
 
@@ -115,7 +115,7 @@ public class Patient_Registration_Page2 extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
                 int HIVSpinnerPosition = testResultAdapter.getPosition(DefaultHIV);
                 HIVSpinner.setSelection(HIVSpinnerPosition);
-                Log.d(TAG, "HIV22222222222222222: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
+//                Log.d(TAG, "HIV22222222222222222: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
             }
         });
 
@@ -273,7 +273,7 @@ public class Patient_Registration_Page2 extends Fragment {
                         .patientDetails_dao()
                         .getAllPatientDetails();
 
-                Log.d(TAG, "run: " + patientDetailsList.toString());
+//                Log.d(TAG, "run: " + patientDetailsList.toString());
                 getPatientDetailsHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -290,7 +290,7 @@ public class Patient_Registration_Page2 extends Fragment {
                             DefaultHIV = patientDetailsList.get(0).getHiv();
                             int HIVSpinnerPosition = testResultAdapter.getPosition(DefaultHIV);
                             HIVSpinner.setSelection(HIVSpinnerPosition);
-                            Log.d(TAG, "HIV33333333333: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
+//                            Log.d(TAG, "HIV33333333333: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
 
 
                             DefaultHBSAG = patientDetailsList.get(0).getHsbag();
