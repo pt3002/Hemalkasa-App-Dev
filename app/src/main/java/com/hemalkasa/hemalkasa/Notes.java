@@ -52,6 +52,9 @@ public class Notes extends AppCompatActivity {
         lmp=intent.getStringExtra("lmp");
         pogWeeks=intent.getStringExtra("pogWeeks");
         pogDays=intent.getStringExtra("pogDays");
+        hiv=intent.getStringExtra("hiv");
+        hbsag=intent.getStringExtra("hbsag");
+        vdrl=intent.getStringExtra("vdrl");
         gravida=intent.getStringExtra("gravida");
         parity=intent.getStringExtra("parity");
 
@@ -75,8 +78,9 @@ public class Notes extends AppCompatActivity {
                     sharedPreferencesEditor.apply();
 
                     Intent mainActivity=new Intent(getApplicationContext(),MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(mainActivity);
-                    finish();
+//                    finish();
                 }
             }
         });

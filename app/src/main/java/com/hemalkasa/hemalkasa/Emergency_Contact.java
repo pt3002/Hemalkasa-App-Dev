@@ -68,7 +68,8 @@ public class Emergency_Contact extends AppCompatActivity {
 
     private void requestRunTimePermission(){
         if(ActivityCompat.checkSelfPermission(this,PERMISSION_CALL)== PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(this, "CAllllllll", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "CAllllllll", Toast.LENGTH_SHORT).show();
+            return;
         }
         else if(ActivityCompat.shouldShowRequestPermissionRationale(this,PERMISSION_CALL)){
             AlertDialog.Builder builder=new AlertDialog.Builder(this);

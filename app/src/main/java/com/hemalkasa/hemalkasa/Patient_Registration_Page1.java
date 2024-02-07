@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class Patient_Registration_Page1 extends Fragment {
     Button nextpage,showPatients;
     EditText HospRegNo, FullName,MotherName,State,District,Block,Village,MobNo;
     TextView DateOfBirth,BloodGroup;
+    String DefaultBloodGroup;
     PatientDetails_ViewModel patientDetails_viewModel;
     Spinner BloodGroupSpinner;
     int SEC = 1;
@@ -81,9 +83,15 @@ public class Patient_Registration_Page1 extends Fragment {
 
         patientDetails_viewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
 
+        DefaultBloodGroup=getResources().getStringArray(R.array.bloodGroup)[0]; // Initilize as 1st default Blood Group
+//        getAllPatientDetails();
+
         ArrayAdapter<CharSequence> bloodGroupAdapter = ArrayAdapter.createFromResource(getContext(), R.array.bloodGroup, android.R.layout.simple_spinner_item);
         bloodGroupAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         BloodGroupSpinner.setAdapter(bloodGroupAdapter);
+        int spinnerPosition = bloodGroupAdapter.getPosition(DefaultBloodGroup);
+        Log.d(TAG, "onNothingSelected: " + DefaultBloodGroup + "    : "+String.valueOf(spinnerPosition));
+        BloodGroupSpinner.setSelection(spinnerPosition);
         BloodGroupSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -92,7 +100,9 @@ public class Patient_Registration_Page1 extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                BloodGroupSpinner.setSelection(0);
+                int spinnerPosition = bloodGroupAdapter.getPosition(DefaultBloodGroup);
+//                Log.d(TAG, "onNothingSelected: " + DefaultBloodGroup + String.valueOf(spinnerPosition));
+                BloodGroupSpinner.setSelection(spinnerPosition);
             }
         });
 
@@ -115,13 +125,12 @@ public class Patient_Registration_Page1 extends Fragment {
             }
         });
 
-
-
-
 //        fab.setOnClickListener(view ->{
 //            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 //            launcher.launch(intent);
 //        });
+
+        getAllPatientDetails();
 
         nextpage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,17 +224,61 @@ public class Patient_Registration_Page1 extends Fragment {
     }
 
     public void getAllPatientDetails() {
-        Thread thread = new Thread(new Runnable() {
+        Handler getPatientDetailsHandler=new Handler();
+
+        Runnable runnable=new Runnable() {
+            List<PatientDetails> patientDetailsList;
             @Override
             public void run() {
-                List<PatientDetails> patientDetailsList = Database.getInstance(getContext())
+                patientDetailsList = Database.getInstance(getContext())
                         .patientDetails_dao()
                         .getAllPatientDetails();
 
                 Log.d(TAG, "run: " + patientDetailsList.toString());
+                getPatientDetailsHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+//                        Toast.makeText(getContext(), patientDetailsList.get(0).getFull_name(), Toast.LENGTH_SHORT).show();
+                        try {
+                            HospRegNo.setText( patientDetailsList.get(0).getHospital_no());
+                            FullName.setText( patientDetailsList.get(0).getFull_name());
+                            MotherName.setText( patientDetailsList.get(0).getMother_name());
+                            DateOfBirth.setText( patientDetailsList.get(0).getDob());
+                            State.setText( patientDetailsList.get(0).getState());
+                            District.setText( patientDetailsList.get(0).getDistrict());
+                            Block.setText( patientDetailsList.get(0).getTehsil());
+                            Village.setText( patientDetailsList.get(0).getVillage());
+                            MobNo.setText( patientDetailsList.get(0).getPhone_no());
+
+//                            HospRegNo.setText( patientDetailsList.get(0).getBlood_group());
+                            DefaultBloodGroup=patientDetailsList.get(0).getBlood_group();
+                            ArrayAdapter<CharSequence> bloodGroupAdapter = ArrayAdapter.createFromResource(getContext(), R.array.bloodGroup, android.R.layout.simple_spinner_item);
+                            int spinnerPosition = bloodGroupAdapter.getPosition(DefaultBloodGroup);
+                            Log.d(TAG, "onNothingSelected: " + DefaultBloodGroup + "    : "+String.valueOf(spinnerPosition));
+                            BloodGroupSpinner.setSelection(spinnerPosition);
+                        }catch (Exception e){
+                            Log.d(TAG, e.getMessage());
+                            Toast.makeText(getContext(), "Cannot Fetch Details", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
-        });
-        thread.start();
+        };
+        Thread getPatientDetailsThread=new Thread(runnable);
+        getPatientDetailsThread.start();
+
+//        Thread thread = new Thread(new Runnable() {
+//            List<PatientDetails> patientDetailsList;
+//            @Override
+//            public void run() {
+//                patientDetailsList = Database.getInstance(getContext())
+//                        .patientDetails_dao()
+//                        .getAllPatientDetails();
+//
+//                Log.d(TAG, "run: " + patientDetailsList.toString());
+//            }
+//        });
+//        thread.start();
     }
 
 
