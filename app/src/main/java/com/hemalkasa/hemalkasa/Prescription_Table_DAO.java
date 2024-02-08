@@ -20,10 +20,12 @@ public interface Prescription_Table_DAO {
     @Delete
     void deletePrescription(Prescription_Table prescription_table);
 
-    @Query("SELECT * FROM PRESCRIPTION ORDER BY VISITING_DATE")
+    @Query("SELECT * FROM PRESCRIPTION ORDER BY ID DESC ")
     List<Prescription_Table> getAll();
 
     @Query("SELECT * FROM PRESCRIPTION WHERE VISITING_DATE= :visiting_date ORDER BY ID DESC")
     List<Prescription_Table> getPrescriptionByVisitingDate(String visiting_date);
 
+//    @Query("SELECT * FROM PRESCRIPTION ORDER BY ID DESC LIMIT 1")
+//    List<Prescription_Table> getLastPrescription();
 }

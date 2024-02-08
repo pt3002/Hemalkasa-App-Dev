@@ -19,6 +19,7 @@ public abstract class Database extends RoomDatabase{
     public abstract PatientDetails_DAO patientDetails_dao();
     public abstract Medicine_Table_DAO medicineTableDao();
     public abstract Prescription_Table_DAO prescriptionTableDao();
+    public abstract Risk_Factor_Table_DAO riskFactorTableDao();
 
     private static volatile Database INSTANCE;
 
@@ -54,11 +55,13 @@ public abstract class Database extends RoomDatabase{
         private Medicine_Table_DAO medicineTableDao;
         private PatientDetails_DAO patientDetails_dao;
         private Prescription_Table_DAO prescriptionTableDao;
+        private Risk_Factor_Table_DAO riskFactorTableDao;
 
         private PopulateDbAsyncTask(Database db){
             medicineTableDao=db.medicineTableDao();
             patientDetails_dao=db.patientDetails_dao();
             prescriptionTableDao=db.prescriptionTableDao();
+            riskFactorTableDao=db.riskFactorTableDao();
         }
 
         @Override

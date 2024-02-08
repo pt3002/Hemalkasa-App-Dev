@@ -75,7 +75,7 @@ public class Prescription_Table_Repository {
 
         @Override
         protected Void doInBackground(Prescription_Table... prescription_tables) {
-            prescriptionTableDao.insertPrescription(prescription_tables[0]);
+            prescriptionTableDao.updatePrescription(prescription_tables[0]);
             return null;
         }
     }
@@ -89,7 +89,7 @@ public class Prescription_Table_Repository {
 
         @Override
         protected Void doInBackground(Prescription_Table... prescription_tables) {
-            prescriptionTableDao.insertPrescription(prescription_tables[0]);
+            prescriptionTableDao.deletePrescription(prescription_tables[0]);
             return null;
         }
     }

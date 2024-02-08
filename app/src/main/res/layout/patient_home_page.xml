@@ -25,9 +25,9 @@
             <ImageView
                 android:layout_width="147dp"
                 android:layout_height="130dp"
+                android:layout_centerInParent="true"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="40dp"
-                android:layout_centerInParent="true"
                 android:src="@drawable/lok_biradri_logo" />
         </RelativeLayout>
 
@@ -114,12 +114,11 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/emergency_icon"
-                android:scaleType="fitCenter"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/buttonColor"
                 android:padding="30dp"
-                android:layout_marginTop="20dp"
-                />
+                android:scaleType="fitCenter"
+                android:src="@drawable/emergency_icon" />
         </RelativeLayout>
 
 
