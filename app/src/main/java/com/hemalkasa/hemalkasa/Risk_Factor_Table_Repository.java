@@ -2,6 +2,7 @@ package com.hemalkasa.hemalkasa;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.List;
 
@@ -94,7 +95,8 @@ public class Risk_Factor_Table_Repository {
         @Override
         protected void onPostExecute(List<Risk_Factor_Table> risk_factor_tables) {
             super.onPostExecute(risk_factor_tables);
-//            riskFactorAdaptor.setRiskFactorList(risk_factor_tables);
+            Log.d(TAG, "GETTT ALLLLL: " + risk_factor_tables.toString());
+            riskFactorAdaptor.setRiskFactorTableList(risk_factor_tables);
         }
     }
 
@@ -115,7 +117,8 @@ public class Risk_Factor_Table_Repository {
         @Override
         protected void onPostExecute(List<Risk_Factor_Table> risk_factor_tables) {
             super.onPostExecute(risk_factor_tables);
-//            riskFactorAdaptor.setRiskFactorList(risk_factor_tables);
+            Log.d(TAG, "Activeeeeee : " + risk_factor_tables.toString());
+            riskFactorAdaptor.setRiskFactorTableList(risk_factor_tables);
         }
     }
 

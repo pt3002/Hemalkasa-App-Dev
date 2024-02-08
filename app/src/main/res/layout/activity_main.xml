@@ -9,18 +9,14 @@
     android:background="@color/background_all_pages"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="187dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/lok_biradri_logo" />
-    </RelativeLayout>
+    <ImageView
+        android:layout_width="187dp"
+        android:layout_height="160dp"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/lok_biradri_logo" />
 
 <!--    <TextView-->
 <!--        android:id="@+id/welcome"-->
@@ -70,15 +66,16 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"/>
 
-<!--    <Button-->
-<!--        android:id="@+id/notes"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Show Patient Details"-->
-<!--        android:backgroundTint="@color/buttonColor"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginEnd="10dp"/>-->
+    <Button
+        android:id="@+id/riskFactors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Risk Factor"
+        android:backgroundTint="@color/buttonColor"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"/>
+
 
 
 </LinearLayout>

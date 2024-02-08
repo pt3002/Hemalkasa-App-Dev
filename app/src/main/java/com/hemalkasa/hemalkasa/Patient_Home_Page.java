@@ -54,7 +54,9 @@ public class Patient_Home_Page extends AppCompatActivity {
         Risk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Patient_Home_Page.this, RiskFactor.class);
+//                intent.putExtra("Access", false);
+                startActivity(intent);
             }
         });
         Emergency.setOnClickListener(new View.OnClickListener() {

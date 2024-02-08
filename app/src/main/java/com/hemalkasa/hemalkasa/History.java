@@ -25,8 +25,8 @@ public class History extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        prescriptionTableViewModel=  ViewModelProviders.of(this).get(Prescription_Table_ViewModel.class);
         historyAdapter=new HistoryAdapter();
+        prescriptionTableViewModel=  ViewModelProviders.of(this).get(Prescription_Table_ViewModel.class);
         prescriptionTableViewModel.getAll(historyAdapter);
         historyRecyclerView=findViewById(R.id.HistoryRecyclerView);
         historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.List;
 
-@androidx.room.Database(entities = {PatientDetails.class,Medicine_Table.class,Prescription_Table.class},version = 1 ,exportSchema = false)
+@androidx.room.Database(entities = {PatientDetails.class,Medicine_Table.class,Prescription_Table.class,Risk_Factor_Table.class},version = 1 ,exportSchema = false)
 public abstract class Database extends RoomDatabase{
     private static final String TAG = "pratik";
 
@@ -67,8 +67,14 @@ public abstract class Database extends RoomDatabase{
         @Override
         protected Void doInBackground(Void... voids) {
             patientDetails_dao.insertPatientDetails(new PatientDetails(1,"FullName", "MotherName", "HospitalNo", "DOB", "A+ve","State","District","Tehsil","Village","1234567890","edd","0","0","Negative","Negative","Negative","gravida","parity","lmp","notes"));
-            //            medicineTableDao.insertMedicine(new Medicine_Table("Medicine 111", "AAA", "BB", "CC", "DDD"));
-//            medicineTableDao.insertMedicine(new Medicine_Table("Medicine 222", "zzz", "yy", "xx", "hh"));
+                // Manually inserting the Risk Factors
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("OLIGOHYDRAMNIOS",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("ANEMIA",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("IUGR",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("GDM",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PIH",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PET",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PREV.LSCS",false));
             return null;
         }
 

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = "pratik";
-    Button addMedicinePage,registrationPage, VideoPage,historyPage,notesPage;
+    Button addMedicinePage,registrationPage, videoPage,historyPage,riskPage;
     TextView welcome;
     private Prescription_Table_ViewModel prescriptionTableViewModel;
     private PatientDetails_ViewModel patientDetailsViewModel;
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         registrationPage=findViewById(R.id.registrationPage);
         addMedicinePage=findViewById(R.id.addMedicinePage);
-        VideoPage =findViewById(R.id.video);
+        videoPage =findViewById(R.id.video);
         historyPage =findViewById(R.id.history);
-//        notesPage =findViewById(R.id.notes);
+        riskPage =findViewById(R.id.riskFactors);
 //        welcome =findViewById(R.id.welcome);
 
         registrationPage.setOnClickListener(new View.OnClickListener() {
@@ -62,10 +62,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        VideoPage.setOnClickListener(new View.OnClickListener() {
+        videoPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,Video_MainScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        riskPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,RiskFactor.class);
+                intent.putExtra("Access", true);
                 startActivity(intent);
             }
         });
