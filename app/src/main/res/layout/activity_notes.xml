@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/registration_page_background"
+    android:background="@color/registration_page_color"
     tools:context=".Notes">
 
     <TextView
@@ -46,7 +46,9 @@
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/Submit"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/buttonColor"
+        />
 
     <Button
         android:id="@+id/Submit"
@@ -56,7 +58,9 @@
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Clear" />
+        app:layout_constraintStart_toEndOf="@+id/Clear"
+        android:backgroundTint="@color/buttonColor"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
