@@ -14,4 +14,6 @@
     <color name="light_dark">#74000000</color>
     <color name="background_all_pages">#98bcc4</color>
     <color name="registration_page_color">#b4c4c0</color>
+    <color name="textAreaColor">#d4dcdc</color>
+    <color name="videoCard">#e8ebec</color>
 </resources>

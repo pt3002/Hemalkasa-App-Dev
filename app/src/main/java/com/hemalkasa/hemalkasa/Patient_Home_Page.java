@@ -88,7 +88,7 @@ public class Patient_Home_Page extends AppCompatActivity {
 
     private void checkpassword() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Patient_Home_Page.this);
-        builder.setMessage("Permission Needed to Make Call")
+        builder.setMessage("Access for Lok Biradri Doctors")
                 .setTitle("Enter Password")
                 .setCancelable(true);
 
