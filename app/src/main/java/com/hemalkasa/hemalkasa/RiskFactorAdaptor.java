@@ -1,5 +1,6 @@
 package com.hemalkasa.hemalkasa;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,14 +32,18 @@ public class RiskFactorAdaptor extends RecyclerView.Adapter<RiskFactorAdaptor.Vi
         return new ViewHolder(itemview);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Risk_Factor_Table riskFactorTable = riskFactorTableList.get(position);
         holder.RiskName.setText((riskFactorTable.getName()));
         if (riskFactorTable.getRisk()) {
-            holder.RiskName.setCheckMarkDrawable(R.drawable.checked);   // TODO Change this checked icon
+            holder.RiskName.setCheckMarkDrawable(R.drawable.checked);
+            holder.RiskName.setBackgroundColor(R.color.white);
+            // TODO Change this checked icon
             holder.RiskName.setChecked(true);
         } else {
+            holder.RiskName.setBackground(null);
             holder.RiskName.setCheckMarkDrawable(null);
             holder.RiskName.setChecked(false);
         }

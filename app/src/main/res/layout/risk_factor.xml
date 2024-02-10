@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RiskFactor">
+    tools:context=".RiskFactor"
+    android:background="@color/background_all_pages"
+    >
 
     <TextView
         android:id="@+id/title"
