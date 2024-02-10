@@ -20,8 +20,8 @@ public class Prescription_Table {
     @ColumnInfo(name = "POG_DAYS")
     private String pog_days;
 
-    @ColumnInfo(name = "EDD")
-    private String edd;
+    @ColumnInfo(name = "HB")
+    private String hb;
 
     @ColumnInfo(name = "NEXT_VISITING_DATE")
     private String next_visiting_date;
@@ -32,11 +32,11 @@ public class Prescription_Table {
     @ColumnInfo(name = "NOTES")
     private String notes;
 
-    public Prescription_Table(String visiting_date, String pog_weeks, String pog_days, String edd, String next_visiting_date, String designation, String notes) {
+    public Prescription_Table(String visiting_date, String pog_weeks, String pog_days, String hb, String next_visiting_date, String designation, String notes) {
         this.visiting_date = visiting_date;
         this.pog_weeks = pog_weeks;
         this.pog_days = pog_days;
-        this.edd = edd;
+        this.hb = hb;
         this.next_visiting_date = next_visiting_date;
         this.designation = designation;
         this.notes = notes;
@@ -74,12 +74,12 @@ public class Prescription_Table {
         this.pog_days = pog_days;
     }
 
-    public String getEdd() {
-        return edd;
+    public String getHb() {
+        return hb;
     }
 
-    public void setEdd(String edd) {
-        this.edd = edd;
+    public void setHb(String hb) {
+        this.hb = hb;
     }
 
     public String getNext_visiting_date() {
@@ -113,7 +113,7 @@ public class Prescription_Table {
                 ", visiting_date='" + visiting_date + '\'' +
                 ", pog_weeks='" + pog_weeks + '\'' +
                 ", pog_days='" + pog_days + '\'' +
-                ", edd='" + edd + '\'' +
+                ", hb='" + hb + '\'' +
                 ", next_visiting_date='" + next_visiting_date + '\'' +
                 ", designation='" + designation + '\'' +
                 ", notes='" + notes + '\'' +

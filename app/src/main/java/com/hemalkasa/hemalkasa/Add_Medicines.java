@@ -51,7 +51,7 @@ public class Add_Medicines extends AppCompatActivity {
     private List<Medicine_Table> medicineList = new ArrayList<>();
     private Medicine_Table_ViewModel medicineTableViewModel;
     private static final String TAG = "pratik";
-    EditText POGWeeks,POGDays,EDD;
+    EditText POGWeeks,POGDays,HB;
     TextView VisitDate,NextVisitDate;
     Button Submit;
     private Random randomId=new Random();
@@ -64,7 +64,7 @@ public class Add_Medicines extends AppCompatActivity {
         addMedicineBtn = findViewById(R.id.addMedBtn);
         POGWeeks = findViewById(R.id.POGWeeks);
         POGDays = findViewById(R.id.POGDays);
-        EDD = findViewById(R.id.EDD);
+        HB = findViewById(R.id.HB);
         VisitDate = findViewById(R.id.VisitDate);
         NextVisitDate = findViewById(R.id.NextVisitDate);
         Submit = findViewById(R.id.Submit);
@@ -84,7 +84,7 @@ public class Add_Medicines extends AppCompatActivity {
             VisitDate.setText(historyIntent.getStringExtra("VISITING_DATE"));
             POGWeeks.setText(historyIntent.getStringExtra("POG_WEEKS"));
             POGDays.setText(historyIntent.getStringExtra("POG_DAYS"));
-            EDD.setText(historyIntent.getStringExtra("EDD"));
+            HB.setText(historyIntent.getStringExtra("HB"));
             NextVisitDate.setText(historyIntent.getStringExtra("NEXT_VISITING_DATE"));
 
                 // Disabling the editable field
@@ -93,7 +93,7 @@ public class Add_Medicines extends AppCompatActivity {
 //            EDD.setEnabled(false);
             POGWeeks.setFocusable(false);
             POGDays.setFocusable(false);
-            EDD.setFocusable(false);
+            HB.setFocusable(false);
             Submit.setText("Next Page");
             Submit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -225,7 +225,7 @@ public class Add_Medicines extends AppCompatActivity {
                         intent.putExtra("VISITING_DATE", visitingDate);
                         intent.putExtra("POG_WEEKS", POGWeeks.getText().toString().trim());
                         intent.putExtra("POG_DAYS", POGDays.getText().toString().trim());
-                        intent.putExtra("EDD", EDD.getText().toString().trim());
+                        intent.putExtra("HB", HB.getText().toString().trim());
                         intent.putExtra("NEXT_VISITING_DATE", NextVisitDate.getText().toString().trim());
                         startActivity(intent);
                     }
@@ -246,8 +246,8 @@ public class Add_Medicines extends AppCompatActivity {
         else if(POGDays.getText().toString().trim().isEmpty()){
             Toast.makeText(this, "Enter POG Days", Toast.LENGTH_SHORT).show();
             return true;
-        }else if(EDD.getText().toString().trim().isEmpty()){
-            Toast.makeText(this, "Enter EDD", Toast.LENGTH_SHORT).show();
+        }else if(HB.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Enter HB", Toast.LENGTH_SHORT).show();
             return true;
         }else if(NextVisitDate.getText().toString().trim().isEmpty()){
             Toast.makeText(this, "Enter Next Visit Date", Toast.LENGTH_SHORT).show();

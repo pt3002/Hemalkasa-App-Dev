@@ -34,7 +34,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.VisitingDate.setText(prescriptionTable.getVisiting_date());
         holder.PogWeeks.setText(prescriptionTable.getPog_weeks());
         holder.PogDays.setText(prescriptionTable.getPog_days());
-        holder.EDDDays.setText(prescriptionTable.getEdd());
+        holder.HBReading.setText(prescriptionTable.getHb());
     }
 
     @Override
@@ -48,14 +48,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView VisitingDate,PogWeeks,PogDays,EDDDays;
+        TextView VisitingDate,PogWeeks,PogDays,HBReading;
 
         public ViewHolder(View itemView) {
             super(itemView);
             VisitingDate=itemView.findViewById(R.id.VisitingDate);
             PogWeeks=itemView.findViewById(R.id.PogWeeks);
             PogDays=itemView.findViewById(R.id.PogDays);
-            EDDDays=itemView.findViewById(R.id.EDDDays);
+            HBReading=itemView.findViewById(R.id.HBReading);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -40,7 +40,7 @@ public class History extends AppCompatActivity {
                 intent.putExtra("VISITING_DATE", prescriptionTable.getVisiting_date());
                 intent.putExtra("POG_WEEKS", prescriptionTable.getPog_weeks());
                 intent.putExtra("POG_DAYS", prescriptionTable.getPog_days());
-                intent.putExtra("EDD", prescriptionTable.getEdd());
+                intent.putExtra("HB", prescriptionTable.getHb());
                 intent.putExtra("NEXT_VISITING_DATE", prescriptionTable.getNext_visiting_date());
                 intent.putExtra("DESIGNATION", prescriptionTable.getDesignation());
                 intent.putExtra("NOTES", prescriptionTable.getNotes());

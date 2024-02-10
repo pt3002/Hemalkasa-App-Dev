@@ -20,7 +20,7 @@ public class Updates extends AppCompatActivity {
     private Button submit,clear;
     private Spinner desgination;
     private EditText notes;
-    String VISITING_DATE,POG_WEEKS,POG_DAYS,EDD,NEXT_VISITING_DATE,DESIGNATION="";
+    String VISITING_DATE,POG_WEEKS,POG_DAYS,HB,NEXT_VISITING_DATE,DESIGNATION="";
     private Prescription_Table_ViewModel prescriptionTableViewModel;
 
 
@@ -58,7 +58,6 @@ public class Updates extends AppCompatActivity {
             desgination.setSelection(spinnerPosition);
             desgination.setEnabled(false);
             notes.setText(intent.getStringExtra("NOTES"));
-            Log.d(TAG, "Updatessssssssssss:  " + intent.getStringExtra("NOTES"));
 //            notes.setEnabled(false);
             notes.setFocusable(false);
             clear.setVisibility(View.GONE);
@@ -69,7 +68,7 @@ public class Updates extends AppCompatActivity {
                 VISITING_DATE = intent.getStringExtra("VISITING_DATE");
                 POG_WEEKS = intent.getStringExtra("POG_WEEKS");
                 POG_DAYS = intent.getStringExtra("POG_DAYS");
-                EDD = intent.getStringExtra("EDD");
+                HB = intent.getStringExtra("HB");
                 NEXT_VISITING_DATE = intent.getStringExtra("NEXT_VISITING_DATE");
             } catch (Exception e) {
                 Log.d(TAG, e.getMessage());
@@ -86,7 +85,7 @@ public class Updates extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String NOTES = notes.getText().toString();
-                    prescriptionTableViewModel.insertPrescription(new Prescription_Table(VISITING_DATE, POG_WEEKS, POG_DAYS, EDD, NEXT_VISITING_DATE, DESIGNATION, NOTES));
+                    prescriptionTableViewModel.insertPrescription(new Prescription_Table(VISITING_DATE, POG_WEEKS, POG_DAYS, HB, NEXT_VISITING_DATE, DESIGNATION, NOTES));
                     Toast.makeText(Updates.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
                     Intent mainActivity = new Intent(Updates.this, MainActivity.class);
                     startActivity(mainActivity);
