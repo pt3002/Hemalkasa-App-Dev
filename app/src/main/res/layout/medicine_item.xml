@@ -16,102 +16,11 @@
             app:layout_constraintBottom_toBottomOf="@+id/txtDose"
             app:layout_constraintTop_toBottomOf="@+id/txtDose">
 
-<!--            <TextView-->
-<!--                android:id="@+id/txtMedicine"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:text="Medicine"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/medicine"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:text="Paracetamol"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/txtMedicine"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/txtMedicine" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/txtDose"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:text="Dose"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/txtMedicine" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/dose"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="35dp"-->
-<!--                android:text="1 tablet"-->
-<!--                app:layout_constraintStart_toEndOf="@id/txtDose"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/txtDose" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/txtFrequncy"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:text="frequency"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/txtDose" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/frequency"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:text="fddf"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/txtFrequncy"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/txtFrequncy" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/txtDay"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:text="Day"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/txtFrequncy" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/day"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="45dp"-->
-<!--                android:text="1st March"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/txtDay"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/txtDay" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/txtTime"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:text="Time"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/txtDay" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/time"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="40dp"-->
-<!--                android:text="7:00"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/txtTime"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/txtTime" />-->
-
-
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text="Medicine Name"
+                android:text="Medicine"
                 android:textSize="20sp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
@@ -128,7 +37,6 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toEndOf="@+id/name"
-                app:layout_constraintBottom_toTopOf="@+id/formSpinner"
                 app:layout_constraintTop_toTopOf="parent"/>
 
 
@@ -138,9 +46,8 @@
                 android:layout_height="wrap_content"
                 android:text="Form"
                 android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="@+id/name"
-                app:layout_constraintTop_toBottomOf="@+id/name"/>
+                app:layout_constraintBaseline_toBaselineOf="@+id/formSpinner"
+                app:layout_constraintStart_toStartOf="@+id/name" />
 
             <TextView
                 android:id="@+id/formSpinner"
@@ -150,8 +57,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/nameSpinner"
-                app:layout_constraintTop_toBottomOf="@+id/nameSpinner"
-                app:layout_constraintBottom_toTopOf="@+id/doseSpinner"/>
+                app:layout_constraintTop_toBottomOf="@+id/nameSpinner"/>
 
             <TextView
                 android:id="@+id/dose"
@@ -159,9 +65,8 @@
                 android:layout_height="wrap_content"
                 android:text="Dose"
                 android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="@+id/form"
-                app:layout_constraintTop_toBottomOf="@+id/form"/>
+                app:layout_constraintBaseline_toBaselineOf="@+id/doseSpinner"
+                app:layout_constraintStart_toStartOf="@+id/form" />
 
             <TextView
                 android:id="@+id/doseSpinner"
@@ -171,8 +76,7 @@
                 android:text="Dose"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@+id/formSpinner"
-                app:layout_constraintTop_toBottomOf="@+id/formSpinner"
-                app:layout_constraintBottom_toTopOf="@+id/frequencySpinner"/>
+                app:layout_constraintTop_toBottomOf="@+id/formSpinner"/>
 
             <TextView
                 android:id="@+id/frequency"
@@ -180,9 +84,8 @@
                 android:layout_height="wrap_content"
                 android:text="Frequency"
                 android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="@+id/dose"
-                app:layout_constraintTop_toBottomOf="@+id/dose"/>
+                app:layout_constraintBaseline_toBaselineOf="@+id/frequencySpinner"
+                app:layout_constraintStart_toStartOf="@+id/dose" />
 
 
             <TextView
@@ -193,8 +96,7 @@
                 android:text="Frequency"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@+id/doseSpinner"
-                app:layout_constraintTop_toBottomOf="@+id/doseSpinner"
-                app:layout_constraintBottom_toTopOf="@+id/routeSpinner"/>
+                app:layout_constraintTop_toBottomOf="@+id/doseSpinner"/>
 
 
             <TextView
@@ -203,9 +105,8 @@
                 android:layout_height="wrap_content"
                 android:text="Route"
                 android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="@+id/frequency"
-                app:layout_constraintTop_toBottomOf="@+id/frequency"/>
+                app:layout_constraintBaseline_toBaselineOf="@+id/routeSpinner"
+                app:layout_constraintStart_toStartOf="@+id/frequency" />
 
 
             <TextView
@@ -216,8 +117,7 @@
                 android:text="Route"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@+id/frequencySpinner"
-                app:layout_constraintTop_toBottomOf="@+id/frequencySpinner"
-                app:layout_constraintBottom_toTopOf="@+id/periods"/>
+                app:layout_constraintTop_toBottomOf="@+id/frequencySpinner"/>
 
 
             <TextView
@@ -225,7 +125,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:background="@drawable/custom_input"
                 android:drawableLeft="@drawable/calendar"
                 android:drawablePadding="20dp"
                 android:hint="Periods in Days"

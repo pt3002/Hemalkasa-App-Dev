@@ -88,9 +88,12 @@ public class Add_Medicines extends AppCompatActivity {
             NextVisitDate.setText(historyIntent.getStringExtra("NEXT_VISITING_DATE"));
 
                 // Disabling the editable field
-            POGWeeks.setEnabled(false);
-            POGDays.setEnabled(false);
-            EDD.setEnabled(false);
+//            POGWeeks.setEnabled(false);
+//            POGDays.setEnabled(false);
+//            EDD.setEnabled(false);
+            POGWeeks.setFocusable(false);
+            POGDays.setFocusable(false);
+            EDD.setFocusable(false);
             Submit.setText("Next Page");
             Submit.setOnClickListener(new View.OnClickListener() {
                 @Override

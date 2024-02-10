@@ -58,7 +58,9 @@ public class Updates extends AppCompatActivity {
             desgination.setSelection(spinnerPosition);
             desgination.setEnabled(false);
             notes.setText(intent.getStringExtra("NOTES"));
-            notes.setEnabled(false);
+            Log.d(TAG, "Updatessssssssssss:  " + intent.getStringExtra("NOTES"));
+//            notes.setEnabled(false);
+            notes.setFocusable(false);
             clear.setVisibility(View.GONE);
             submit.setVisibility(View.GONE);
         }
