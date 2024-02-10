@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
+import java.io.File;
+
 public class SplashScreen extends AppCompatActivity {
 
     LottieAnimationView lottie;
@@ -21,6 +23,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
         lottie=findViewById(R.id.lottieSplash);
+
+        createVideoFolder();
 //        Appname=findViewById(R.id.AppName);
 
 //        Appname.animate().translationX(-320).setDuration(2000).setStartDelay(5200);
@@ -51,5 +55,12 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         }, 1000);
+    }
+
+    private void createVideoFolder() {
+        File path=getExternalFilesDir("Videos");
+        if(!path.exists()){
+            path.mkdir();
+        }
     }
 }

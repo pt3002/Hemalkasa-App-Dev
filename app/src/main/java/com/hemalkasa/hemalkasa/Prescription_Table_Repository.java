@@ -50,6 +50,15 @@ public class Prescription_Table_Repository {
         return null;
     }
 
+    public List<Prescription_Table>  getLastPrescription(){
+        try{
+            return (List<Prescription_Table>) new GetLastPrescriptionAsync(prescriptionTableDao).execute();
+        }catch (Exception exception){
+            Log.d(TAG, "Error Occured" + exception.getMessage());
+        }
+        return null;
+    }
+
 
 
     private static class InsertAsyncPrescription extends AsyncTask<Prescription_Table,Void,Void>{
@@ -123,6 +132,19 @@ public class Prescription_Table_Repository {
         @Override
         protected List<Prescription_Table> doInBackground(String... strings) {
             return prescriptionTableDao.getPrescriptionByVisitingDate(strings[0]);
+        }
+    }
+
+    public static class GetLastPrescriptionAsync extends AsyncTask<Void,Void,List<Prescription_Table>>{
+        private Prescription_Table_DAO prescriptionTableDao;
+
+        public GetLastPrescriptionAsync(Prescription_Table_DAO prescriptionTableDao) {
+            this.prescriptionTableDao = prescriptionTableDao;
+        }
+
+        @Override
+        protected List<Prescription_Table> doInBackground(Void... voids) {
+            return prescriptionTableDao.getLastPrescription();
         }
     }
 

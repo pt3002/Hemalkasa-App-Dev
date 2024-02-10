@@ -1,5 +1,6 @@
 package com.hemalkasa.hemalkasa;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -57,6 +58,7 @@ public class Add_Medicines extends AppCompatActivity {
     private Random randomId=new Random();
     String visitingDate="";
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,11 +83,11 @@ public class Add_Medicines extends AppCompatActivity {
             medicineRecyclerView.setAdapter(medicineAdapter);
             medicineRecyclerView.addItemDecoration(new DividerItemDecoration(medicineRecyclerView.getContext(), DividerItemDecoration.VERTICAL));  //Normal Horizontal Separator
 
-            VisitDate.setText(historyIntent.getStringExtra("VISITING_DATE"));
-            POGWeeks.setText(historyIntent.getStringExtra("POG_WEEKS"));
-            POGDays.setText(historyIntent.getStringExtra("POG_DAYS"));
-            HB.setText(historyIntent.getStringExtra("HB"));
-            NextVisitDate.setText(historyIntent.getStringExtra("NEXT_VISITING_DATE"));
+            VisitDate.setText("Last Visit: " + historyIntent.getStringExtra("VISITING_DATE"));
+            POGWeeks.setText("POG Weeks: " + historyIntent.getStringExtra("POG_WEEKS"));
+            POGDays.setText("POG Days: " + historyIntent.getStringExtra("POG_DAYS"));
+            HB.setText("HB: " + historyIntent.getStringExtra("HB"));
+            NextVisitDate.setText("Next Visit: " + historyIntent.getStringExtra("NEXT_VISITING_DATE"));
 
                 // Disabling the editable field
 //            POGWeeks.setEnabled(false);

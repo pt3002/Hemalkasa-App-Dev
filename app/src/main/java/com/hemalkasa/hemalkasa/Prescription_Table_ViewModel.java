@@ -39,4 +39,8 @@ public class Prescription_Table_ViewModel extends AndroidViewModel {
     public List<Prescription_Table> getPrescriptionByVisitingDate(String visiting_date){
         return prescriptionTableRepository.getPrescriptionByVisitingDate(visiting_date);
     }
+
+    public List<Prescription_Table> getLastPrescription(){
+        return prescriptionTableRepository.getLastPrescription();
+    }
 }

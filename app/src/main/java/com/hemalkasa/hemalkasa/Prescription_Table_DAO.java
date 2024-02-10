@@ -26,6 +26,6 @@ public interface Prescription_Table_DAO {
     @Query("SELECT * FROM PRESCRIPTION WHERE VISITING_DATE= :visiting_date ORDER BY ID DESC")
     List<Prescription_Table> getPrescriptionByVisitingDate(String visiting_date);
 
-//    @Query("SELECT * FROM PRESCRIPTION ORDER BY ID DESC LIMIT 1")
-//    List<Prescription_Table> getLastPrescription();
+    @Query("SELECT * FROM PRESCRIPTION ORDER BY ID DESC LIMIT 1")
+    List<Prescription_Table> getLastPrescription();
 }

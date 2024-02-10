@@ -42,7 +42,8 @@ public class Patient_Home_Page extends AppCompatActivity {
         Summary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Patient_Home_Page.this, Summary.class);
+                startActivity(intent);
             }
         });
         Notification.setOnClickListener(new View.OnClickListener() {
