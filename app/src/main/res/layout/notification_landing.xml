@@ -4,16 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Notification_Landing">
+    tools:context=".Notification_Landing"
+    android:background="@color/background_all_pages"
+    >
+
+    <ImageButton
+        android:id="@+id/Notification"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/notification_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textView"
+        android:scaleType="fitCenter"
+        android:backgroundTint="@color/buttonColor"
+        android:padding="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOTIFICATION"
+        app:layout_constraintEnd_toEndOf="@+id/Notification"
+        app:layout_constraintStart_toStartOf="@+id/Notification"
+        app:layout_constraintTop_toBottomOf="@+id/Notification"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/buttonColor"
+        app:layout_constraintBottom_toTopOf="@id/textView"
+        />
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reminder for Medicines"
-        android:textColor="@color/black"
-        android:textSize="36dp"
+        android:text="Please visit to the hospital for USG"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:padding="10dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
