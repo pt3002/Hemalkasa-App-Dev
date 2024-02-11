@@ -72,8 +72,6 @@ public class Add_Medicines extends AppCompatActivity {
         Submit = findViewById(R.id.Submit);
         medicineTableViewModel=  ViewModelProviders.of(this).get(Medicine_Table_ViewModel.class);
 
-        createNotificationChannel();
-
         Intent historyIntent=getIntent();
         if(historyIntent.hasExtra("VISITING_DATE")){
             medicineAdapter = new MedicineAdapter(true);
@@ -406,25 +404,6 @@ public class Add_Medicines extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    // TODO Notification channel should be created once the app gets installed. Notificaton_Channel extends Application
-    private void createNotificationChannel() {
-
-            // foxandroid is the channel id
-            // Once channel id is changed everything is changed
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Channel Name....";
-            String description = "Channel Description in short words...";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("foxandroid", name, importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-
         }
     }
 }

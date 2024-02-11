@@ -2,11 +2,16 @@ package com.hemalkasa.hemalkasa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -17,6 +22,9 @@ public class SplashScreen extends AppCompatActivity {
 
     LottieAnimationView lottie;
     TextView Appname;
+    public static final String TAG="pratik";
+    public static final String CHANNEL_ID = "Hemalkasa";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +33,7 @@ public class SplashScreen extends AppCompatActivity {
         lottie=findViewById(R.id.lottieSplash);
 
         createVideoFolder();
-//        Appname=findViewById(R.id.AppName);
-
-//        Appname.animate().translationX(-320).setDuration(2000).setStartDelay(5200);
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Appname.setVisibility(View.VISIBLE);
-//                Appname.animate().translationX(-225).setDuration(2000).setStartDelay(0);
-//            }
-//        }, 5200);
-
+        createNotificationChannel();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -55,6 +52,28 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         }, 1000);
+    }
+
+    private void createNotificationChannel() {
+        Log.d(TAG, "Notificationn Chanellll");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Log.d(TAG, "Inside IFFF");
+            CharSequence name = "Visit Reminders";
+            String description = "Reminders about next upcoming visit";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            channel.enableVibration(true);
+            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+        else{
+            Log.d(TAG, "Denined  " +  String.valueOf(Build.VERSION.SDK_INT));
+        }
+        Log.d(TAG, "Notification chanel comeplete");
     }
 
     private void createVideoFolder() {

@@ -1,6 +1,5 @@
 package com.hemalkasa.hemalkasa;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -17,37 +16,43 @@ import androidx.core.app.NotificationManagerCompat;
 
 import java.util.Calendar;
 
+
 public class AlarmReceiver extends BroadcastReceiver {
 
     MediaPlayer mediaPlayer;
     public static final String TAG="pratik";
 //    private NotificationManager notificationManager;
     private NotificationManager manager;
-    private static String medicineName="Dummy";
+    private static String NextVisit="DD MMM YYYY";
     public static int id=-1;
+    public static final String CHANNEL_ID = "Hemalkasa";
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
         if(intent!=null){
-            if(intent.hasExtra("MedicineName")){
-                medicineName=intent.getStringExtra("MedicineName");
+            if(intent.hasExtra("NextVisit")){
+                NextVisit=intent.getStringExtra("NextVisit");
             }
             if(intent.hasExtra("Id")){
                 id=intent.getIntExtra("Id", -1);
             }
         }
 
-        Intent destinationIntent = new Intent(context,DestinationActivity.class);
+        Log.d(TAG, "BEFORRRRRRRR");
+        Log.d(TAG, CHANNEL_ID);
+        
+        Intent destinationIntent = new Intent(context, Notification_Landing.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingdestinationIntent = PendingIntent.getActivity(context,id,destinationIntent,PendingIntent.FLAG_MUTABLE);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"foxandroid")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Medicine Reminder")
-                .setContentText("Reminder for " + medicineName)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,CHANNEL_ID)
+                .setSmallIcon(R.drawable.notification_icon)
+                .setContentTitle("Visit Reminder")
+                .setContentText("Reminder for " + NextVisit)
                 .setAutoCancel(true)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setDefaults(NotificationCompat.PRIORITY_HIGH)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingdestinationIntent)
                 .addAction(R.mipmap.ic_launcher, "Medicine Taken", null)
@@ -58,6 +63,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(123,builder.build());
+
+        Log.d(TAG, "AFTERRRRRRRR");
 
         mediaPlayer=MediaPlayer.create(context, Settings.System.DEFAULT_RINGTONE_URI);
         mediaPlayer.setLooping(true);
@@ -72,7 +79,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 mediaPlayer.stop();
             }
         }, 5000);
-
     }
 
 }

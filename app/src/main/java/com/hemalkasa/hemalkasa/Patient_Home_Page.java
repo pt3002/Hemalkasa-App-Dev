@@ -1,8 +1,13 @@
 package com.hemalkasa.hemalkasa;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,10 +21,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Calendar;
+
 public class Patient_Home_Page extends AppCompatActivity {
     ImageButton Video, Summary, Notification, Risk, Emergency;
     // TODO Hardcoded password
     final static String password="1234";
+    public static final String TAG="pratik";
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +60,8 @@ public class Patient_Home_Page extends AppCompatActivity {
         Notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Patient_Home_Page.this, Notification_Landing.class);
+                startActivity(intent);
             }
         });
         Risk.setOnClickListener(new View.OnClickListener() {

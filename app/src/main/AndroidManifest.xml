@@ -61,7 +61,7 @@
         <activity
             android:name=".Patient_Registration_Page"
             android:exported="false" />
-        <activity android:name=".DestinationActivity" />
+        <activity android:name=".Notification_Landing" />
         <activity android:name=".SetAlarm" />
 
         <receiver android:name=".AlarmReceiver" />

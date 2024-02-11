@@ -1,6 +1,7 @@
 package com.hemalkasa.hemalkasa;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -182,27 +184,39 @@ public class Patient_Registration_Page2 extends Fragment {
                     hbsag = HBSAGSpinner.getSelectedItem().toString();
                     vdrl = VDRLSpinner.getSelectedItem().toString();
 
-                    Intent intent = new Intent(getContext(), Notes.class);
-                    intent.putExtra("fullname", fullname);
-                    intent.putExtra("mothername", mothername);
-                    intent.putExtra("hospRegNo", hospRegNo);
-                    intent.putExtra("dateofbirth", dateofbirth);
-                    intent.putExtra("bloodgroup", bloodgroup);
-                    intent.putExtra("state", state);
-                    intent.putExtra("district", district);
-                    intent.putExtra("block", block);
-                    intent.putExtra("village", village);
-                    intent.putExtra("mobno", mobno);
-                    intent.putExtra("edd", edd);
-                    intent.putExtra("lmp", lmp);
-                    intent.putExtra("pogWeeks", pogWeeks);
-                    intent.putExtra("pogDays", pogDays);
-                    intent.putExtra("hiv", hiv);
-                    intent.putExtra("hbsag", hbsag);
-                    intent.putExtra("vdrl", vdrl);
-                    intent.putExtra("gravida", gravida);
-                    intent.putExtra("parity", parity);
-                    startActivity(intent);
+                    PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp);
+                    patientDetails_viewModel.updatePatientDetails(patientDetails);
+
+                    SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                    sharedPreferencesEditor.putBoolean("Registration", true);
+                    sharedPreferencesEditor.apply();
+
+                    Intent mainActivity=new Intent(getContext(),MainActivity.class);
+//                    mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(mainActivity);
+                    getActivity().finish();
+
+//                    Intent intent = new Intent(getContext(), Notes.class);
+//                    intent.putExtra("fullname", fullname);
+//                    intent.putExtra("mothername", mothername);
+//                    intent.putExtra("hospRegNo", hospRegNo);
+//                    intent.putExtra("dateofbirth", dateofbirth);
+//                    intent.putExtra("bloodgroup", bloodgroup);
+//                    intent.putExtra("state", state);
+//                    intent.putExtra("district", district);
+//                    intent.putExtra("block", block);
+//                    intent.putExtra("village", village);
+//                    intent.putExtra("mobno", mobno);
+//                    intent.putExtra("edd", edd);
+//                    intent.putExtra("lmp", lmp);
+//                    intent.putExtra("pogWeeks", pogWeeks);
+//                    intent.putExtra("pogDays", pogDays);
+//                    intent.putExtra("hiv", hiv);
+//                    intent.putExtra("hbsag", hbsag);
+//                    intent.putExtra("vdrl", vdrl);
+//                    intent.putExtra("gravida", gravida);
+//                    intent.putExtra("parity", parity);
+//                    startActivity(intent);
                 }
             }
         });

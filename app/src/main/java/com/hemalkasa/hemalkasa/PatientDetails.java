@@ -68,10 +68,7 @@ public class PatientDetails {
     @ColumnInfo(name = "LMP")
     private String lmp;
 
-    @ColumnInfo(name = "NOTES")
-    private String notes;
-
-    public PatientDetails(Integer id, String full_name, String mother_name, String hospital_no, String dob, String blood_group, String state, String district, String tehsil, String village, String phone_no, String edd, String pog_weeks, String pog_days, String hiv, String hsbag, String vdrl, String gravida, String parity, String lmp,String notes) {
+    public PatientDetails(Integer id, String full_name, String mother_name, String hospital_no, String dob, String blood_group, String state, String district, String tehsil, String village, String phone_no, String edd, String pog_weeks, String pog_days, String hiv, String hsbag, String vdrl, String gravida, String parity, String lmp) {
         this.id = id;
         this.full_name = full_name;
         this.mother_name = mother_name;
@@ -92,7 +89,6 @@ public class PatientDetails {
         this.gravida = gravida;
         this.parity = parity;
         this.lmp = lmp;
-        this.notes=notes;
     }
 
     public Integer getId() {
@@ -255,14 +251,6 @@ public class PatientDetails {
         this.lmp = lmp;
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     @Override
     public String toString() {
         return "PatientDetails{" +
@@ -286,7 +274,6 @@ public class PatientDetails {
                 ", gravida='" + gravida + '\'' +
                 ", parity='" + parity + '\'' +
                 ", lmp='" + lmp + '\'' +
-                ", notes='" + notes +
                 '}';
     }
 
