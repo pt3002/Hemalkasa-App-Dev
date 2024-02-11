@@ -54,9 +54,8 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingdestinationIntent)
                 .setColor(Color.BLUE)
+                .setCategory(NotificationCompat.CATEGORY_REMINDER)
                 .setAutoCancel(true);
-        // TODO
-//         .setCategory(NotificationCompat.CATEGORY_MESSAGE);
 
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
@@ -76,7 +75,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 Log.d(TAG, "Music Stop   " +  String.valueOf(Calendar.getInstance().getTimeInMillis()));
                 mediaPlayer.stop();
             }
-        }, 5000);
+        }, 10000);
     }
 
 }
