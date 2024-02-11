@@ -144,8 +144,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/buttonColor"
                 android:textSize="20sp"
-                android:drawableLeft="@drawable/calendar"
-                android:drawablePadding="5dp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/periods"
                 app:layout_constraintStart_toStartOf="@+id/route"/>
 
