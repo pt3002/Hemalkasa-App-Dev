@@ -120,7 +120,7 @@
                     android:gravity=""
                     android:padding="20dp"
                     android:text="Blood Group"
-                    android:textColor="@color/secondary"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/secondary" />
 
                 <Spinner

@@ -61,15 +61,15 @@ public class Summary extends AppCompatActivity {
         Remarks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent notesIntent = new Intent(Summary.this, Updates.class);
                 if(!DESIGNATION.isEmpty() && !NOTES.isEmpty()) {
+                    Intent notesIntent = new Intent(Summary.this, Updates.class);
                     notesIntent.putExtra("DESIGNATION", DESIGNATION);
                     notesIntent.putExtra("NOTES", NOTES);
+                    startActivity(notesIntent);
                 }
                 else{
                     Toast.makeText(Summary.this, "No Remarks Yet", Toast.LENGTH_SHORT).show();
                 }
-                startActivity(notesIntent);
             }
         });
     }
