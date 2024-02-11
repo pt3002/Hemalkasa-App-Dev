@@ -1,15 +1,8 @@
 package com.hemalkasa.hemalkasa;
 
 import android.annotation.SuppressLint;
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,16 +16,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -142,7 +131,7 @@ public class Add_Medicines extends AppCompatActivity {
                         Log.d(TAG, exception.getMessage());
                         medicineId = randomId.nextInt();
                     }
-                    cancelAlarm(medicineId);
+//                    cancelAlarm(medicineId);
                     medicineTableViewModel.deleteMedicine(medicineTable);
                 }
             }).attachToRecyclerView(medicineRecyclerView);
@@ -172,7 +161,7 @@ public class Add_Medicines extends AppCompatActivity {
                         Log.d(TAG, exception.getMessage());
                         medicineId = randomId.nextInt();
                     }
-                    cancelAlarm(medicineId);
+//                    cancelAlarm(medicineId);
                     medicineTableViewModel.deleteMedicine(medicineTable);
                 }
             });
@@ -265,6 +254,19 @@ public class Add_Medicines extends AppCompatActivity {
             Toast.makeText(this, "Enter Next Visit Date", Toast.LENGTH_SHORT).show();
             return true;
         }
+        int day=getDay(NextVisitDate.getText().toString().trim());
+        int month=getMonth(NextVisitDate.getText().toString().trim());
+        int year=getYear(NextVisitDate.getText().toString().trim());
+        Calendar calendar=Calendar.getInstance();
+        calendar.set(year, month, day);
+        calendar.set(Calendar.HOUR_OF_DAY, 23); // TODO Keep Proper Hour time
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        if(calendar.before(Calendar.getInstance())){
+            Toast.makeText(this, "Next Visit Date should be after Current Visit Day", Toast.LENGTH_SHORT).show();
+            return true;
+        }
         return false;
     }
 
@@ -341,63 +343,6 @@ public class Add_Medicines extends AppCompatActivity {
         }
     }
 
-    private void setAlarm(int hour, int minute, int id, String medicineName) {
-        Calendar calendar=Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-
-        // At the time of filling medicine if time is already pass then we pass +1 day
-        if(calendar.before(Calendar.getInstance())){
-            calendar.add(Calendar.DATE, 1);
-        }
-
-        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent alarmReceiverIntent=new Intent(Add_Medicines.this,AlarmReceiver.class);
-        alarmReceiverIntent.putExtra("MedicineName", medicineName);
-        alarmReceiverIntent.putExtra("Id", id);
-            // TODO Use appropriate Flags
-        PendingIntent broadcastPendingIntent=PendingIntent.getBroadcast(Add_Medicines.this,id, alarmReceiverIntent, PendingIntent.FLAG_MUTABLE);
-
-//        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),broadcastPendingIntent);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastPendingIntent);
-        Log.d(TAG, String.valueOf(id) + "  " + medicineName);
-        Log.d(TAG, "setTime " + calendar.getTimeInMillis());
-        Long remainingTime=calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
-        Log.d(TAG, "remainingTime " +String.valueOf(remainingTime));
-        counter(remainingTime);
-    }
-
-    private void counter(Long remainingTime) {
-
-        new CountDownTimer(remainingTime, 1000) {
-            public void onTick(long millisUntilFinished) {
-                // Used for formatting digit to be in 2 digits only
-                NumberFormat f = new DecimalFormat("00");
-                long hour = (millisUntilFinished / 3600000) % 24;
-                long min = (millisUntilFinished / 60000) % 60;
-                long sec = (millisUntilFinished / 1000) % 60;
-                Log.d(TAG, (f.format(hour) + ":" + f.format(min) + ":" + f.format(sec)));
-            }
-            // When the task is over it will print 00:00:00 there
-            public void onFinish() {
-                Log.d(TAG, "Timer Finished");
-            }
-        }.start();
-    }
-
-    private void cancelAlarm(int id){
-        Log.d(TAG, "Cancel " + id);
-        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent alarmReceiver=new Intent(this,AlarmReceiver.class);
-        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,id, alarmReceiver, PendingIntent.FLAG_MUTABLE);
-
-        alarmManager.cancel(broadcastIntent);
-        Toast.makeText(this, "Removed Successfully", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "cancelAlarm");
-    }
-
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         MenuInflater menuInflater=getMenuInflater();
@@ -417,5 +362,41 @@ public class Add_Medicines extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private int getDay(@NonNull String NEXT_VISITING_DATE) {
+        return Integer.parseInt(NEXT_VISITING_DATE.substring(0, 2));
+    }
+    private int getMonth(@NonNull String NEXT_VISITING_DATE) {
+        String month=NEXT_VISITING_DATE.substring(3,6);
+        switch (month){
+            case "Jan":
+                return 0;
+            case "Feb":
+                return 1;
+            case "Mar":
+                return 2;
+            case "Apr":
+                return 3;
+            case "May":
+                return 4;
+            case "Jun":
+                return 5;
+            case "Jul":
+                return 6;
+            case "Aug":
+                return 7;
+            case "Sep":
+                return 8;
+            case "Oct":
+                return 9;
+            case "Nov":
+                return 10;
+            default:
+                return 11;
+        }
+    }
+    private int getYear(@NonNull String NEXT_VISITING_DATE) {
+        return Integer.parseInt(NEXT_VISITING_DATE.substring(7,11));
     }
 }

@@ -1,6 +1,5 @@
 package com.hemalkasa.hemalkasa;
 
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,8 +20,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     MediaPlayer mediaPlayer;
     public static final String TAG="pratik";
-//    private NotificationManager notificationManager;
-    private NotificationManager manager;
     private static String NextVisit="DD MMM YYYY";
     public static int id=-1;
     public static final String CHANNEL_ID = "Hemalkasa";
@@ -42,6 +39,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Log.d(TAG, "BEFORRRRRRRR");
         Log.d(TAG, CHANNEL_ID);
+        Log.d(TAG, String.valueOf(id));
         
         Intent destinationIntent = new Intent(context, Notification_Landing.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -55,8 +53,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setDefaults(NotificationCompat.PRIORITY_HIGH)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingdestinationIntent)
-                .addAction(R.mipmap.ic_launcher, "Medicine Taken", null)
-                .addAction(R.drawable.calendar, "Snooze", null)
                 .setColor(Color.BLUE)
                 .setAutoCancel(true);
 

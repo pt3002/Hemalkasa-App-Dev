@@ -99,51 +99,58 @@ public class Updates extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String NOTES = notes.getText().toString();
-                    prescriptionTableViewModel.insertPrescription(new Prescription_Table(VISITING_DATE, POG_WEEKS, POG_DAYS, HB, NEXT_VISITING_DATE, DESIGNATION, NOTES));
-                    setAlarm(VISITING_DATE,NEXT_VISITING_DATE);
+//                    prescriptionTableViewModel.insertPrescription(new Prescription_Table(VISITING_DATE, POG_WEEKS, POG_DAYS, HB, NEXT_VISITING_DATE, DESIGNATION, NOTES));
+                    setAlarm(NEXT_VISITING_DATE);
                     Toast.makeText(Updates.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
-                    Intent mainActivity = new Intent(Updates.this, MainActivity.class);
-                    startActivity(mainActivity);
-                    finish();
+//                    Intent mainActivity = new Intent(Updates.this, MainActivity.class);
+//                    startActivity(mainActivity);
+//                    finish();
                 }
             });
         }
     }
 
-    private void setAlarm(String VISITING_DATE, String NEXT_VISITING_DATE) {
-        int day=getDay(NEXT_VISITING_DATE);
-        int month=getMonth(NEXT_VISITING_DATE);
-        int year=getYear(NEXT_VISITING_DATE);
-        int hour=9;
-        int minute=0;
-        int id=Integer.parseInt(String.valueOf(day) + String.valueOf(month) + String.valueOf(year));
-        Calendar calendar=Calendar.getInstance();
-        calendar.set(year, month, day);
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
+    private void setAlarm( String NEXT_VISITING_DATE) {
+        int hour=17;    // TODO
+        int minute=29;  // TODO
+        int visitDay=getDay(NEXT_VISITING_DATE);
+        int visitMonth=getMonth(NEXT_VISITING_DATE);
+        int visitYear=getYear(NEXT_VISITING_DATE);
+        int visitId=Integer.parseInt(String.valueOf(visitDay) + String.valueOf(visitMonth) + String.valueOf(visitYear));
 
-        // At the time of filling medicine if time is already pass then we pass +1 day
-//        if(calendar.before(Calendar.getInstance())){
-//            calendar.add(Calendar.DATE, 1);
-//        }
-        if(calendar.before(Calendar.getInstance())){
-            calendar.add(Calendar.MINUTE, 1);
-        }
+        Calendar calendarVisitDate=Calendar.getInstance();
+        calendarVisitDate.set(visitYear, visitMonth, visitDay);
+        calendarVisitDate.set(Calendar.HOUR_OF_DAY, hour);
+        calendarVisitDate.set(Calendar.MINUTE, minute);
+        calendarVisitDate.set(Calendar.SECOND, 0);
+        calendarVisitDate.set(Calendar.MILLISECOND, 0);
 
-        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent alarmReceiverIntent=new Intent(this,AlarmReceiver.class);
-        alarmReceiverIntent.putExtra("NextVisit", NEXT_VISITING_DATE);
-        alarmReceiverIntent.putExtra("Id", id);
-        // TODO Use appropriate Flags
-        PendingIntent broadcastPendingIntent=PendingIntent.getBroadcast(this,id, alarmReceiverIntent, PendingIntent.FLAG_MUTABLE);
+        AlarmManager VisitDateAlarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent VisitDateAlarmReceiverIntent=new Intent(this,AlarmReceiver.class);
+        VisitDateAlarmReceiverIntent.putExtra("NextVisit", NEXT_VISITING_DATE);
+        VisitDateAlarmReceiverIntent.putExtra("Id", visitId);
+        PendingIntent VisitDateBroadcastPendingIntent=PendingIntent.getBroadcast(this,visitId, VisitDateAlarmReceiverIntent, PendingIntent.FLAG_MUTABLE);
+        VisitDateAlarmManager.set(AlarmManager.RTC_WAKEUP, calendarVisitDate.getTimeInMillis(),VisitDateBroadcastPendingIntent);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),broadcastPendingIntent);
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastPendingIntent);
-        Log.d(TAG, String.valueOf(id) + "  " + NEXT_VISITING_DATE);
-        Log.d(TAG, "setTime " + calendar.getTimeInMillis());
-        Long remainingTime=calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
+        Calendar calendarPreviousDate=Calendar.getInstance();
+        calendarPreviousDate=calendarVisitDate;
+//        calendarPreviousDate.add(Calendar.DATE,-1 );
+        calendarPreviousDate.add(Calendar.MINUTE,-2 );  // TODO
+//        int previousId=visitId-1;
+        int previousId=visitId-10;      // TODO
+
+        AlarmManager PreviousDateAlarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent PreviousDateAlarmReceiverIntent=new Intent(this,AlarmReceiver.class);
+        PreviousDateAlarmReceiverIntent.putExtra("NextVisit", NEXT_VISITING_DATE);
+        PreviousDateAlarmReceiverIntent.putExtra("Id", previousId);
+        PendingIntent PreviousDateBroadcastPendingIntent=PendingIntent.getBroadcast(this,previousId, PreviousDateAlarmReceiverIntent, PendingIntent.FLAG_MUTABLE);
+        PreviousDateAlarmManager.set(AlarmManager.RTC_WAKEUP, calendarPreviousDate.getTimeInMillis(),PreviousDateBroadcastPendingIntent);
+
+
+        //        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastPendingIntent);
+        Log.d(TAG, String.valueOf(previousId) + "  " + calendarPreviousDate);
+        Log.d(TAG, "setTime " + calendarVisitDate.getTimeInMillis());
+        Long remainingTime=calendarPreviousDate.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
         Log.d(TAG, "remainingTime " +String.valueOf(remainingTime));
         counter(remainingTime);
     }
@@ -187,34 +194,33 @@ public class Updates extends AppCompatActivity {
         String month=NEXT_VISITING_DATE.substring(3,6);
         switch (month){
             case "Jan":
-                return 1;
+                return 0;
             case "Feb":
-                return 2;
+                return 1;
             case "Mar":
-                return 3;
+                return 2;
             case "Apr":
-                return 4;
+                return 3;
             case "May":
-                return 5;
+                return 4;
             case "Jun":
-                return 6;
+                return 5;
             case "Jul":
-                return 7;
+                return 6;
             case "Aug":
-                return 8;
+                return 7;
             case "Sep":
-                return 9;
+                return 8;
             case "Oct":
-                return 10;
+                return 9;
             case "Nov":
-                return 11;
+                return 10;
             default:
-                return 12;
+                return 11;
         }
     }
     private int getYear(@NonNull String NEXT_VISITING_DATE) {
         Log.d(TAG, "getYear: " + NEXT_VISITING_DATE);
-        return Integer.parseInt(NEXT_VISITING_DATE.substring(7,1));
-
+        return Integer.parseInt(NEXT_VISITING_DATE.substring(7,11));
     }
 }
