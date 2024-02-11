@@ -1,81 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background_all_pages"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:layout_width="187dp"
-        android:layout_height="160dp"
-        android:scaleType="fitCenter"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:src="@drawable/lok_biradri_logo" />
-
-<!--    <TextView-->
-<!--        android:id="@+id/welcome"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textColor="@color/secondary"-->
-<!--        android:text="Welcome"-->
-<!--        android:textSize="30sp"/>-->
-
-    <Button
-        android:id="@+id/registrationPage"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:backgroundTint="@color/buttonColor"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"/>
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/addMedicinePage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Prescription"
-        android:backgroundTint="@color/buttonColor"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/history"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Past History"
-        android:backgroundTint="@color/buttonColor"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"/>
+            <ImageView
+                android:id="@+id/appLogo"
+                android:layout_width="187dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/lok_biradri_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/video"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Videos"
-        android:backgroundTint="@color/buttonColor"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"/>
+            <!--    <TextView-->
+            <!--        android:id="@+id/welcome"-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:textColor="@color/secondary"-->
+            <!--        android:text="Welcome"-->
+            <!--        android:textSize="30sp"/>-->
 
-    <Button
-        android:id="@+id/riskFactors"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Risk Factor"
-        android:backgroundTint="@color/buttonColor"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"/>
+            <Button
+                android:id="@+id/registrationPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Edit Profile"
+                app:layout_constraintEnd_toEndOf="@+id/addMedicinePage"
+                app:layout_constraintStart_toEndOf="@+id/appLogo"
+                app:layout_constraintTop_toBottomOf="@+id/appLogo" />
 
+            <Button
+                android:id="@+id/addMedicinePage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Prescription"
+                app:layout_constraintEnd_toEndOf="@+id/history"
+                app:layout_constraintStart_toEndOf="@+id/registrationPage"
+                app:layout_constraintTop_toBottomOf="@+id/registrationPage" />
+
+            <Button
+                android:id="@+id/history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Past History"
+                app:layout_constraintEnd_toEndOf="@+id/video"
+                app:layout_constraintStart_toEndOf="@+id/addMedicinePage"
+                app:layout_constraintTop_toBottomOf="@+id/addMedicinePage" />
+
+            <Button
+                android:id="@+id/video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="View Videos"
+                app:layout_constraintEnd_toEndOf="@+id/riskFactors"
+                app:layout_constraintStart_toEndOf="@+id/history"
+                app:layout_constraintTop_toBottomOf="@+id/history" />
+
+            <Button
+                android:id="@+id/riskFactors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Risk Factor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/video"
+                app:layout_constraintTop_toBottomOf="@+id/video" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>
+

@@ -21,4 +21,5 @@
     <color name="notificationBar">#20445c</color>
     <color name="iconsColor">#428fec</color>
     <color name="lightTextBoxColor">#f8f4fc</color>
+    <color name="grey">#808080</color>
 </resources>

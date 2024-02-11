@@ -41,6 +41,7 @@
                 android:paddingHorizontal="10dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/grey"
                 app:layout_constraintStart_toEndOf="@+id/name"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -64,6 +65,7 @@
                 android:paddingHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:textSize="20sp"
+                android:textColor="@color/grey"
                 app:layout_constraintStart_toStartOf="@+id/nameSpinner"
                 app:layout_constraintTop_toBottomOf="@+id/nameSpinner"/>
 
@@ -84,6 +86,7 @@
                 android:layout_height="0dp"
                 android:textSize="20sp"
                 android:text="Dose"
+                android:textColor="@color/grey"
                 android:paddingHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@+id/formSpinner"
@@ -107,6 +110,7 @@
                 android:layout_height="0dp"
                 android:textSize="20sp"
                 android:text="Frequency"
+                android:textColor="@color/grey"
                 android:paddingHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@+id/doseSpinner"
@@ -131,6 +135,7 @@
                 android:layout_height="0dp"
                 android:textSize="20sp"
                 android:text="Route"
+                android:textColor="@color/grey"
                 android:paddingHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@+id/frequencySpinner"
@@ -154,6 +159,7 @@
                 android:layout_height="0dp"
                 android:textSize="20sp"
                 android:text="Periods"
+                android:textColor="@color/grey"
                 android:paddingHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/routeSpinner"
