@@ -28,7 +28,10 @@ import android.widget.Toast;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Patient_Registration_Page2 extends Fragment {
 
@@ -42,6 +45,7 @@ public class Patient_Registration_Page2 extends Fragment {
     String edd, lmp, pogWeeks, pogDays, gravida, parity, hiv, hbsag, vdrl;
     String DefaultHIV, DefaultHBSAG, DefaultVDRL;
     PatientDetails_ViewModel patientDetails_viewModel;
+    SimpleDateFormat format;
 
     public Patient_Registration_Page2() {
         // Required empty public constructor
@@ -66,15 +70,27 @@ public class Patient_Registration_Page2 extends Fragment {
         VDRLSpinner = (Spinner) view.findViewById(R.id.VDRLSpinner);
 
         patientDetails_viewModel = ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
+        format = new SimpleDateFormat("dd-MMM-yyyy");
+
 
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("Select Date");
 
-        MaterialDatePicker eddDatePicker = materialDateBuilder.build();
-        eddDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+//        MaterialDatePicker eddDatePicker = materialDateBuilder.build();
+//        eddDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+//            @Override
+//            public void onPositiveButtonClick(Object selection) {
+//                EDD.setText(eddDatePicker.getHeaderText());
+//            }
+//        });
+        MaterialDatePicker<Long> eddDatePicker = materialDateBuilder.build();
+        eddDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
-            public void onPositiveButtonClick(Object selection) {
-                EDD.setText(eddDatePicker.getHeaderText());
+            public void onPositiveButtonClick(Long selection) {
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                calendar.setTimeInMillis(selection);
+                String formattedDate  = format.format(calendar.getTime());
+                EDD.setText(formattedDate);
             }
         });
         EDD.setOnClickListener(new View.OnClickListener() {
@@ -84,11 +100,14 @@ public class Patient_Registration_Page2 extends Fragment {
             }
         });
 
-        MaterialDatePicker lmpDatePicker = materialDateBuilder.build();
-        lmpDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+        MaterialDatePicker <Long> lmpDatePicker = materialDateBuilder.build();
+        lmpDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
-            public void onPositiveButtonClick(Object selection) {
-                LMP.setText(lmpDatePicker.getHeaderText());
+            public void onPositiveButtonClick(Long selection) {
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                calendar.setTimeInMillis(selection);
+                String formattedDate  = format.format(calendar.getTime());
+                LMP.setText(formattedDate);
             }
         });
         LMP.setOnClickListener(new View.OnClickListener() {

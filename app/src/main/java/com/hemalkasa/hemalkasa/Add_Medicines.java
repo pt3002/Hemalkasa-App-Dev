@@ -38,10 +38,12 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
+import java.util.TimeZone;
 
 public class Add_Medicines extends AppCompatActivity {
     public static final int INSERT_MEDICINE=1;
@@ -57,6 +59,8 @@ public class Add_Medicines extends AppCompatActivity {
     Button Submit;
     private Random randomId=new Random();
     String visitingDate="";
+    SimpleDateFormat format;
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -71,6 +75,8 @@ public class Add_Medicines extends AppCompatActivity {
         NextVisitDate = findViewById(R.id.NextVisitDate);
         Submit = findViewById(R.id.Submit);
         medicineTableViewModel=  ViewModelProviders.of(this).get(Medicine_Table_ViewModel.class);
+        format = new SimpleDateFormat("dd-MMM-yyyy");
+
 
         Intent historyIntent=getIntent();
         if(historyIntent.hasExtra("VISITING_DATE")){
@@ -187,12 +193,15 @@ public class Add_Medicines extends AppCompatActivity {
             MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
             materialDateBuilder.setTitleText("Select Date");
 
-            MaterialDatePicker visitDatePicker = materialDateBuilder.build();
-            visitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            MaterialDatePicker <Long> visitDatePicker = materialDateBuilder.build();
+            visitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
                 @Override
-                public void onPositiveButtonClick(Object selection) {
-                    VisitDate.setText(visitDatePicker.getHeaderText());
-                    visitingDate = visitDatePicker.getHeaderText();
+                public void onPositiveButtonClick(Long selection) {
+                    Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                    calendar.setTimeInMillis(selection);
+                    String formattedDate  = format.format(calendar.getTime());
+                    VisitDate.setText(formattedDate);
+                    visitingDate=formattedDate;
                     setAdapter(visitingDate);
                 }
             });
@@ -203,11 +212,14 @@ public class Add_Medicines extends AppCompatActivity {
                 }
             });
 
-            MaterialDatePicker nextVisitDatePicker = materialDateBuilder.build();
-            nextVisitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            MaterialDatePicker<Long> nextVisitDatePicker = materialDateBuilder.build();
+            nextVisitDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
                 @Override
-                public void onPositiveButtonClick(Object selection) {
-                    NextVisitDate.setText(nextVisitDatePicker.getHeaderText());
+                public void onPositiveButtonClick(Long selection) {
+                    Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                    calendar.setTimeInMillis(selection);
+                    String formattedDate  = format.format(calendar.getTime());
+                    NextVisitDate.setText(formattedDate);
                 }
             });
             NextVisitDate.setOnClickListener(new View.OnClickListener() {

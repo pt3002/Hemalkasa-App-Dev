@@ -66,14 +66,14 @@ public abstract class Database extends RoomDatabase{
 
         @Override
         protected Void doInBackground(Void... voids) {
-            patientDetails_dao.insertPatientDetails(new PatientDetails(1,"FullName", "MotherName", "HospitalNo", "DOB", "A+ve","State","District","Tehsil","Village","1234567890","edd","0","0","Negative","Negative","Negative","gravida","parity","lmp"));
+            patientDetails_dao.insertPatientDetails(new PatientDetails(1,"FullName", "MotherName", "HospitalNo", "DOB", "A+ve","State","District","Tehsil","Village","1234567890","EDD","POG Weeks","POG Days","Negative","Negative","Negative","Gravida","Parity","LMP"));
                 // Manually inserting the Risk Factors
-            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("OLIGOHYDRAMNIOS",false));
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("ANEMIA",false));
-            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("IUGR",false));
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("GDM",false));
-            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PIH",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("IUGR",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("OLIGOHYDRAMNIOS",false));
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PET",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PIH",false));
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PREV.LSCS",false));
             return null;
         }

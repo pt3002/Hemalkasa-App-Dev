@@ -30,7 +30,10 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Patient_Registration_Page1 extends Fragment {
 
@@ -43,6 +46,7 @@ public class Patient_Registration_Page1 extends Fragment {
     String DefaultBloodGroup;
     PatientDetails_ViewModel patientDetails_viewModel;
     Spinner BloodGroupSpinner;
+    SimpleDateFormat format;
     int SEC = 1;
     String TAG="Pratik";
 
@@ -80,6 +84,7 @@ public class Patient_Registration_Page1 extends Fragment {
         DateOfBirth=(TextView) view.findViewById(R.id.DateOfBirth);
 
         patientDetails_viewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
+        format = new SimpleDateFormat("dd-MMM-yyyy");
 
         DefaultBloodGroup=getResources().getStringArray(R.array.bloodGroup)[0]; // Initilize as 1st default Blood Group
 //        getAllPatientDetails();
@@ -107,11 +112,14 @@ public class Patient_Registration_Page1 extends Fragment {
 
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("Select Date of Birth");
-        MaterialDatePicker materialDatePicker = materialDateBuilder.build();
-        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+        MaterialDatePicker<Long> materialDatePicker = materialDateBuilder.build();
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
-            public void onPositiveButtonClick(Object selection) {
-                DateOfBirth.setText(materialDatePicker.getHeaderText());
+            public void onPositiveButtonClick(Long selection) {
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                calendar.setTimeInMillis(selection);
+                String formattedDate  = format.format(calendar.getTime());
+                DateOfBirth.setText(formattedDate);
             }
         });
 

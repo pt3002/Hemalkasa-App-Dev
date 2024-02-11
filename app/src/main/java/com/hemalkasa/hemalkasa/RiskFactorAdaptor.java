@@ -40,7 +40,6 @@ public class RiskFactorAdaptor extends RecyclerView.Adapter<RiskFactorAdaptor.Vi
         if (riskFactorTable.getRisk()) {
             holder.RiskName.setCheckMarkDrawable(R.drawable.checked);
             holder.RiskName.setBackgroundColor(R.color.white);
-            // TODO Change this checked icon
             holder.RiskName.setChecked(true);
         } else {
             holder.RiskName.setBackground(null);

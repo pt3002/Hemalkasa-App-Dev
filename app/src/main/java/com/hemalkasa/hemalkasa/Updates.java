@@ -1,5 +1,6 @@
 package com.hemalkasa.hemalkasa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -110,10 +111,14 @@ public class Updates extends AppCompatActivity {
     }
 
     private void setAlarm(String VISITING_DATE, String NEXT_VISITING_DATE) {
-        int id=12;
+        int day=getDay(NEXT_VISITING_DATE);
+        int month=getMonth(NEXT_VISITING_DATE);
+        int year=getYear(NEXT_VISITING_DATE);
         int hour=9;
         int minute=0;
+        int id=Integer.parseInt(String.valueOf(day) + String.valueOf(month) + String.valueOf(year));
         Calendar calendar=Calendar.getInstance();
+        calendar.set(year, month, day);
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
@@ -171,5 +176,45 @@ public class Updates extends AppCompatActivity {
         Toast.makeText(this, "Removed Successfully", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "cancelAlarm");
         countDownTimer.cancel();
+    }
+
+
+    private int getDay(@NonNull String NEXT_VISITING_DATE) {
+        Log.d(TAG, "getDay: " + NEXT_VISITING_DATE.substring(0, 2));
+        return Integer.parseInt(NEXT_VISITING_DATE.substring(0, 2));
+    }
+    private int getMonth(@NonNull String NEXT_VISITING_DATE) {
+        String month=NEXT_VISITING_DATE.substring(3,6);
+        switch (month){
+            case "Jan":
+                return 1;
+            case "Feb":
+                return 2;
+            case "Mar":
+                return 3;
+            case "Apr":
+                return 4;
+            case "May":
+                return 5;
+            case "Jun":
+                return 6;
+            case "Jul":
+                return 7;
+            case "Aug":
+                return 8;
+            case "Sep":
+                return 9;
+            case "Oct":
+                return 10;
+            case "Nov":
+                return 11;
+            default:
+                return 12;
+        }
+    }
+    private int getYear(@NonNull String NEXT_VISITING_DATE) {
+        Log.d(TAG, "getYear: " + NEXT_VISITING_DATE);
+        return Integer.parseInt(NEXT_VISITING_DATE.substring(7,1));
+
     }
 }
