@@ -111,8 +111,8 @@ public class Updates extends AppCompatActivity {
     }
 
     private void setAlarm( String NEXT_VISITING_DATE) {
-        int hour=17;    // TODO
-        int minute=29;  // TODO
+        int hour=18;    // TODO
+        int minute=53;  // TODO
         int visitDay=getDay(NEXT_VISITING_DATE);
         int visitMonth=getMonth(NEXT_VISITING_DATE);
         int visitYear=getYear(NEXT_VISITING_DATE);
@@ -125,17 +125,17 @@ public class Updates extends AppCompatActivity {
         calendarVisitDate.set(Calendar.SECOND, 0);
         calendarVisitDate.set(Calendar.MILLISECOND, 0);
 
-        AlarmManager VisitDateAlarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent VisitDateAlarmReceiverIntent=new Intent(this,AlarmReceiver.class);
-        VisitDateAlarmReceiverIntent.putExtra("NextVisit", NEXT_VISITING_DATE);
-        VisitDateAlarmReceiverIntent.putExtra("Id", visitId);
-        PendingIntent VisitDateBroadcastPendingIntent=PendingIntent.getBroadcast(this,visitId, VisitDateAlarmReceiverIntent, PendingIntent.FLAG_MUTABLE);
-        VisitDateAlarmManager.set(AlarmManager.RTC_WAKEUP, calendarVisitDate.getTimeInMillis(),VisitDateBroadcastPendingIntent);
+//        AlarmManager VisitDateAlarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        Intent VisitDateAlarmReceiverIntent=new Intent(this,AlarmReceiver.class);
+//        VisitDateAlarmReceiverIntent.putExtra("NextVisit", NEXT_VISITING_DATE);
+//        VisitDateAlarmReceiverIntent.putExtra("Id", visitId);
+//        PendingIntent VisitDateBroadcastPendingIntent=PendingIntent.getBroadcast(this,visitId, VisitDateAlarmReceiverIntent, PendingIntent.FLAG_MUTABLE);
+//        VisitDateAlarmManager.set(AlarmManager.RTC_WAKEUP, calendarVisitDate.getTimeInMillis(),VisitDateBroadcastPendingIntent);
 
         Calendar calendarPreviousDate=Calendar.getInstance();
         calendarPreviousDate=calendarVisitDate;
 //        calendarPreviousDate.add(Calendar.DATE,-1 );
-        calendarPreviousDate.add(Calendar.MINUTE,-2 );  // TODO
+//        calendarPreviousDate.add(Calendar.MINUTE,-2 );  // TODO
 //        int previousId=visitId-1;
         int previousId=visitId-10;      // TODO
 
@@ -144,7 +144,23 @@ public class Updates extends AppCompatActivity {
         PreviousDateAlarmReceiverIntent.putExtra("NextVisit", NEXT_VISITING_DATE);
         PreviousDateAlarmReceiverIntent.putExtra("Id", previousId);
         PendingIntent PreviousDateBroadcastPendingIntent=PendingIntent.getBroadcast(this,previousId, PreviousDateAlarmReceiverIntent, PendingIntent.FLAG_MUTABLE);
-        PreviousDateAlarmManager.set(AlarmManager.RTC_WAKEUP, calendarPreviousDate.getTimeInMillis(),PreviousDateBroadcastPendingIntent);
+        Log.d(TAG, "Version:  " + Build.VERSION.SDK_INT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            Log.d(TAG, "SDK VERSION S FOUND");
+            if(PreviousDateAlarmManager.canScheduleExactAlarms()){
+                Log.d(TAG, "Exact Alarmmm");
+                PreviousDateAlarmManager.setExact(AlarmManager.RTC_WAKEUP, calendarPreviousDate.getTimeInMillis(), PreviousDateBroadcastPendingIntent);
+            }
+            else{
+                Log.d(TAG, "Cannot Schedule Exacttt");
+                PreviousDateAlarmManager.set(AlarmManager.RTC_WAKEUP, calendarPreviousDate.getTimeInMillis(),PreviousDateBroadcastPendingIntent);
+            }
+        }
+        else{
+            Log.d(TAG, "Low SDK VERSIONNN");
+            Log.d(TAG, "Exact Alarmmm");
+            PreviousDateAlarmManager.setExact(AlarmManager.RTC_WAKEUP, calendarPreviousDate.getTimeInMillis(), PreviousDateBroadcastPendingIntent);
+        }
 
 
         //        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastPendingIntent);

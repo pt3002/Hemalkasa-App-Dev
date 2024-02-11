@@ -55,6 +55,8 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingdestinationIntent)
                 .setColor(Color.BLUE)
                 .setAutoCancel(true);
+        // TODO
+//         .setCategory(NotificationCompat.CATEGORY_MESSAGE);
 
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
