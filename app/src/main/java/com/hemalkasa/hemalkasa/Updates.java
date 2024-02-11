@@ -111,8 +111,8 @@ public class Updates extends AppCompatActivity {
     }
 
     private void setAlarm( String NEXT_VISITING_DATE) {
-        int hour=18;    // TODO
-        int minute=53;  // TODO
+        int hour=19;    // TODO
+        int minute=8;  // TODO
         int visitDay=getDay(NEXT_VISITING_DATE);
         int visitMonth=getMonth(NEXT_VISITING_DATE);
         int visitYear=getYear(NEXT_VISITING_DATE);
