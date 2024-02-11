@@ -4,53 +4,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Notification_Landing"
     android:background="@color/background_all_pages"
-    >
+    tools:context=".Notification_Landing">
 
     <ImageButton
         android:id="@+id/Notification"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/notification_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/textView"
-        android:scaleType="fitCenter"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/buttonColor"
         android:padding="30dp"
-        />
+        android:scaleType="fitCenter"
+        android:src="@drawable/notification_icon"
+        app:layout_constraintBottom_toTopOf="@+id/notificationHeading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/notificationHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NOTIFICATION"
-        app:layout_constraintEnd_toEndOf="@+id/Notification"
-        app:layout_constraintStart_toStartOf="@+id/Notification"
-        app:layout_constraintTop_toBottomOf="@+id/Notification"
+        android:textColor="@color/buttonColor"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="@color/buttonColor"
-        app:layout_constraintBottom_toTopOf="@id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/lokbiradriHospital"
+        app:layout_constraintEnd_toEndOf="@+id/Notification"
+        app:layout_constraintStart_toStartOf="@+id/Notification"
+        app:layout_constraintTop_toTopOf="@+id/Notification" />
+
+    <ImageButton
+        android:id="@+id/lokbiradriHospital"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/transparent_background"
+        android:src="@drawable/lokbiradri_hospital"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/notificationHeading"
+        app:layout_constraintStart_toStartOf="@+id/notificationHeading"
+        app:layout_constraintTop_toBottomOf="@+id/notificationHeading"
         />
 
+    <ImageButton
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_centerInParent="true"
+        android:background="@color/textAreaColor"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/visit_hospital_marathi"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/lokbiradriHospital"
+        app:layout_constraintStart_toStartOf="@+id/lokbiradriHospital"
+        app:layout_constraintTop_toBottomOf="@+id/lokbiradriHospital" />
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="Please visit to the hospital for USG"-->
+<!--        android:textColor="#FF0000"-->
+<!--        android:textSize="30dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/textView2"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/notificationHeading"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/notificationHeading"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/notificationHeading" />-->
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please visit to the hospital for USG"
-        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:textColor="#FF0000"
-        android:padding="10dp"
-        android:textSize="30dp"
+        android:text="Next Visit Date"
+        android:textColor="@color/buttonColor"
+        android:layout_marginTop="40dp"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/visitDate"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/visitDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Visit Date"
+        android:textColor="@color/buttonColor"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tempText"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        />
+
+    <TextView
+        android:id="@+id/tempText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint=""
+        android:textColor="@color/buttonColor"
+        android:textStyle="bold"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
