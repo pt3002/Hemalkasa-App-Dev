@@ -10,10 +10,15 @@
     <color name="secondary">#0C356A</color>
     <color name="floatingButton">#FFD3A3</color>
     <color name="buttonColor">#2c545b</color>
+    <color name="buttonColorLight">#60c49c</color>
     <color name="allow_color">#22354F</color>
     <color name="light_dark">#74000000</color>
     <color name="background_all_pages">#98bcc4</color>
     <color name="registration_page_color">#b4c4c0</color>
     <color name="textAreaColor">#d4dcdc</color>
     <color name="videoCard">#e8ebec</color>
+    <color name="topBar">#284c6c</color>
+    <color name="notificationBar">#20445c</color>
+    <color name="iconsColor">#428fec</color>
+    <color name="lightTextBoxColor">#f8f4fc</color>
 </resources>
