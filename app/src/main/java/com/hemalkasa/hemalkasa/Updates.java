@@ -99,11 +99,12 @@ public class Updates extends AppCompatActivity {
                 public void onClick(View v) {
                     String NOTES = notes.getText().toString();
                     // TODO Uncomments this lines
-//                    prescriptionTableViewModel.insertPrescription(new Prescription_Table(VISITING_DATE, POG_WEEKS, POG_DAYS, HB, NEXT_VISITING_DATE, DESIGNATION, NOTES));
+                    prescriptionTableViewModel.insertPrescription(new Prescription_Table(VISITING_DATE, POG_WEEKS, POG_DAYS, HB, NEXT_VISITING_DATE, DESIGNATION, NOTES));
                     setAlarm(NEXT_VISITING_DATE);
                     Toast.makeText(Updates.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
-//                    Intent mainActivity = new Intent(Updates.this, MainActivity.class);
-//                    startActivity(mainActivity);
+                    Intent mainActivity = new Intent(Updates.this, MainActivity.class);
+                    mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(mainActivity);
 //                    finish();
                 }
             });
@@ -111,8 +112,8 @@ public class Updates extends AppCompatActivity {
     }
 
     private void setAlarm(String NEXT_VISITING_DATE) {
-        int hour = 20;    // TODO
-        int minute = 3;  // TODO
+        int hour = 9;    // TODO
+        int minute = 0;  // TODO
         int visitDay = getDay(NEXT_VISITING_DATE);
         int visitMonth = getMonth(NEXT_VISITING_DATE);
         int visitYear = getYear(NEXT_VISITING_DATE);
@@ -143,10 +144,10 @@ public class Updates extends AppCompatActivity {
 
         Calendar calendarPreviousDate = Calendar.getInstance();
         calendarPreviousDate = calendarVisitDate;
-//        calendarPreviousDate.add(Calendar.DATE,-1 );
-        calendarPreviousDate.add(Calendar.MINUTE, -2);  // TODO
-//        int previousId = visitId - 1;
-        int previousId=visitId-10;      // TODO
+        calendarPreviousDate.add(Calendar.DATE,-1 );
+//        calendarPreviousDate.add(Calendar.MINUTE, -2);  // TODO
+        int previousId = visitId - 1;
+//        int previousId=visitId-10;      // TODO
 
         AlarmManager PreviousDateAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent PreviousDateAlarmReceiverIntent = new Intent(this, AlarmReceiver.class);

@@ -41,7 +41,7 @@ public class Patient_Registration_Page2 extends Fragment {
     TextView EDD, LMP;
     EditText POGWeeks, POGDays, Gravida, Parity;
     Spinner HIVSpinner, HBSAGSpinner, VDRLSpinner;
-    String fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno;
+    String fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno,ashaworker;
     String edd, lmp, pogWeeks, pogDays, gravida, parity, hiv, hbsag, vdrl;
     String DefaultHIV, DefaultHBSAG, DefaultVDRL;
     PatientDetails_ViewModel patientDetails_viewModel;
@@ -203,7 +203,7 @@ public class Patient_Registration_Page2 extends Fragment {
                     hbsag = HBSAGSpinner.getSelectedItem().toString();
                     vdrl = VDRLSpinner.getSelectedItem().toString();
 
-                    PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp);
+                    PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, ashaworker,edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp);
                     patientDetails_viewModel.updatePatientDetails(patientDetails);
 
                     SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
@@ -226,6 +226,7 @@ public class Patient_Registration_Page2 extends Fragment {
 //                    intent.putExtra("block", block);
 //                    intent.putExtra("village", village);
 //                    intent.putExtra("mobno", mobno);
+//                    intent.putExtra("ashaworker", ashaworker);
 //                    intent.putExtra("edd", edd);
 //                    intent.putExtra("lmp", lmp);
 //                    intent.putExtra("pogWeeks", pogWeeks);
@@ -253,6 +254,7 @@ public class Patient_Registration_Page2 extends Fragment {
                 block = result.getString("block");
                 village = result.getString("village");
                 mobno = result.getString("mobno");
+                ashaworker = result.getString("ashaworker");
             }
         });
         return view;

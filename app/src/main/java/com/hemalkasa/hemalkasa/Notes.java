@@ -23,7 +23,7 @@ public class Notes extends AppCompatActivity {
     private static final String TAG = "pratik";
     private Button submit,clear;
     private EditText Notes;
-    String fullname,mothername,hospRegNo,dateofbirth,bloodgroup,state,district,block,village,mobno, edd,lmp,pogWeeks,pogDays,gravida,parity,hiv,hbsag,vdrl;
+    String fullname,mothername,hospRegNo,dateofbirth,bloodgroup,state,district,block,village,mobno, ashaworker,edd,lmp,pogWeeks,pogDays,gravida,parity,hiv,hbsag,vdrl;
     PatientDetails_ViewModel patientDetails_viewModel;
 
 
@@ -48,6 +48,7 @@ public class Notes extends AppCompatActivity {
         block=intent.getStringExtra("block");
         village=intent.getStringExtra("village");
         mobno=intent.getStringExtra("mobno");
+        ashaworker=intent.getStringExtra("ashaworker");
         edd=intent.getStringExtra("edd");
         lmp=intent.getStringExtra("lmp");
         pogWeeks=intent.getStringExtra("pogWeeks");
@@ -71,7 +72,7 @@ public class Notes extends AppCompatActivity {
                 if(!isEmpty()){
                     String notes=Notes.getText().toString();
 //                    PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp, notes);
-                    PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp);
+                    PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, ashaworker,edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp);
                     patientDetails_viewModel.updatePatientDetails(patientDetails);
 
                     SharedPreferences.Editor sharedPreferencesEditor =PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();

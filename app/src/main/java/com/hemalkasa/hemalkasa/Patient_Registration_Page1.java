@@ -41,7 +41,7 @@ public class Patient_Registration_Page1 extends Fragment {
     ImageView proImg;
     FloatingActionButton fab;
     Button nextpage,showPatients;
-    EditText HospRegNo, FullName,MotherName,State,District,Block,Village,MobNo;
+    EditText HospRegNo, FullName,MotherName,State,District,Block,Village,MobNo,AshaWorker;
     TextView DateOfBirth,BloodGroup;
     String DefaultBloodGroup;
     PatientDetails_ViewModel patientDetails_viewModel;
@@ -81,6 +81,7 @@ public class Patient_Registration_Page1 extends Fragment {
         Block=(EditText) view.findViewById(R.id.Block);
         Village=(EditText) view.findViewById(R.id.Village);
         MobNo=(EditText) view.findViewById(R.id.MobNo);
+        AshaWorker=(EditText) view.findViewById(R.id.AshaWorker);
         DateOfBirth=(TextView) view.findViewById(R.id.DateOfBirth);
 
         patientDetails_viewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
@@ -131,11 +132,6 @@ public class Patient_Registration_Page1 extends Fragment {
             }
         });
 
-//        fab.setOnClickListener(view ->{
-//            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//            launcher.launch(intent);
-//        });
-
         getAllPatientDetails();
 
         nextpage.setOnClickListener(new View.OnClickListener() {
@@ -146,13 +142,13 @@ public class Patient_Registration_Page1 extends Fragment {
                 String fullname=FullName.getText().toString();
                 String mothername=MotherName.getText().toString();
                 String dateofbirth=DateOfBirth.getText().toString();
-//                String bloodgroup=BloodGroup.getText().toString();
                 String bloodgroup=BloodGroupSpinner.getSelectedItem().toString();
                 String state=State.getText().toString();
                 String district=District.getText().toString();
                 String block=Block.getText().toString();
                 String village=Village.getText().toString();
                 String mobno= MobNo.getText().toString();
+                String ashaworker= AshaWorker.getText().toString();
 
 
 //                Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
@@ -171,7 +167,7 @@ public class Patient_Registration_Page1 extends Fragment {
                     bundle.putString("block", block);
                     bundle.putString("village", village);
                     bundle.putString("mobno", mobno);
-//                    // TODO Save in saved preferences. Get Unique Key. Search from DB and assign it to patient
+                    bundle.putString("ashaworker", ashaworker);
 //                    patientDetails_viewModel.updatePatientDetails(new PatientDetails(1,fullname, mothername, hospRegNo, bloodgroup, dateofbirth, state, district, block, village,mobNo));
                     getParentFragmentManager().setFragmentResult("Page1", bundle);
                     Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
@@ -226,6 +222,10 @@ public class Patient_Registration_Page1 extends Fragment {
             Toast.makeText(getContext(), "Enter Mobile No", Toast.LENGTH_SHORT).show();
             return true;
         }
+        else if(AshaWorker.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Enter Asha No", Toast.LENGTH_SHORT).show();
+            return true;
+        }
         return false;
     }
 
@@ -255,6 +255,7 @@ public class Patient_Registration_Page1 extends Fragment {
                             Block.setText( patientDetailsList.get(0).getTehsil());
                             Village.setText( patientDetailsList.get(0).getVillage());
                             MobNo.setText( patientDetailsList.get(0).getPhone_no());
+                            AshaWorker.setText( patientDetailsList.get(0).getAsha_worker());
 
 //                            HospRegNo.setText( patientDetailsList.get(0).getBlood_group());
                             DefaultBloodGroup=patientDetailsList.get(0).getBlood_group();
@@ -272,19 +273,6 @@ public class Patient_Registration_Page1 extends Fragment {
         };
         Thread getPatientDetailsThread=new Thread(runnable);
         getPatientDetailsThread.start();
-
-//        Thread thread = new Thread(new Runnable() {
-//            List<PatientDetails> patientDetailsList;
-//            @Override
-//            public void run() {
-//                patientDetailsList = Database.getInstance(getContext())
-//                        .patientDetails_dao()
-//                        .getAllPatientDetails();
-//
-//                Log.d(TAG, "run: " + patientDetailsList.toString());
-//            }
-//        });
-//        thread.start();
     }
 
 

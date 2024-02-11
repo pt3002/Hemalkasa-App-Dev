@@ -51,7 +51,7 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 1000);
+        }, 100);
     }
 
     private void createNotificationChannel() {

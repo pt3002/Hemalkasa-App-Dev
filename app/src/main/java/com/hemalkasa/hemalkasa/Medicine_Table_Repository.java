@@ -51,7 +51,7 @@ public class Medicine_Table_Repository {
         return x;
     }
 
-        //  TODO This queery is running in main UI Tread. Ttry to run it like normal.
+        //  TODO This queery is running in main UI Tread. Try to run it like normal.
     public LiveData<List<Medicine_Table>> getMedicineByVisitingDate(String visiting_date){
         try{
             return medicineTableDao.getMedicineByVisitingDate(visiting_date);

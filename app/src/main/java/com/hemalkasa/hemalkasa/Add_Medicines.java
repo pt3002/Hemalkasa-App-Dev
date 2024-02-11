@@ -259,7 +259,7 @@ public class Add_Medicines extends AppCompatActivity {
         int year=getYear(NextVisitDate.getText().toString().trim());
         Calendar calendar=Calendar.getInstance();
         calendar.set(year, month, day);
-        calendar.set(Calendar.HOUR_OF_DAY, 23); // TODO Keep Proper Hour time
+        calendar.set(Calendar.HOUR_OF_DAY, 6); // TODO Keep Proper Hour time
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
@@ -352,8 +352,6 @@ public class Add_Medicines extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-            // TODO Once all medicines are cleared, delete the alarm which has being assigned to them
         switch (item.getItemId()){
             case R.id.Delete_All_Medicines:
                 medicineTableViewModel.deleteAllMedicines();

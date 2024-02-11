@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="@+id/Notification"
         app:layout_constraintTop_toTopOf="@+id/Notification" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/lokbiradriHospital"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/notificationHeading"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="110dp"

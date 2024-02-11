@@ -42,6 +42,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Log.d(TAG, String.valueOf(id));
         
         Intent destinationIntent = new Intent(context, Notification_Landing.class);
+        destinationIntent.putExtra("NextVisit", NextVisit);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingdestinationIntent = PendingIntent.getActivity(context,id,destinationIntent,PendingIntent.FLAG_MUTABLE);
 

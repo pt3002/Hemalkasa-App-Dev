@@ -61,6 +61,7 @@
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/custom_playback_view.xml" value="0.1" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/doctor_password_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/each_row.xml" value="0.25416666666666665" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/emergency_contact.xml" value="0.61" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/exo_layout_view.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/exo_player_view.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/fragment_add_new_medicine.xml" value="0.21467391304347827" />
@@ -72,7 +73,7 @@
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/notification_landing.xml" value="0.29683698296836986" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient__registration__page1.xml" value="0.2" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient__registration__page2.xml" value="0.264" />
-        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient_home_page.xml" value="0.11302083333333333" />
+        <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient_home_page.xml" value="0.16799999999999998" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/patient_registration_page.xml" value="0.144" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/risk_factor.xml" value="0.25416666666666665" />
         <entry key="..\:/Programing/APP Development/Hemalkasa/app/src/main/res/layout/risk_factor_item.xml" value="0.25416666666666665" />

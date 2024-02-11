@@ -12,17 +12,22 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class Emergency_Contact extends AppCompatActivity {
     public static final String TAG="pratik";
     LinearLayout ContactAshaWorker,ContactPHC,Contact108,ContactLBPH;
     // TODO Change the phone number
-    private static final String AshaWorker="8452991487",_108="108",PHC="7588231901",LBPH="8452991487";
+    private static final String _108="108",PHC="8275957192",LBPH="7588772819";
+    private String AshaWorker="";
     private static final int REQUEST_CALL_CODE =1;
     private static final String PERMISSION_CALL=Manifest.permission.CALL_PHONE;
 
@@ -34,6 +39,8 @@ public class Emergency_Contact extends AppCompatActivity {
         Contact108=findViewById(R.id.Contact108);
         ContactPHC=findViewById(R.id.ContactPHC);
         ContactLBPH=findViewById(R.id.ContactLBPH);
+
+        getAshaWorkerNumber();
 
         ContactAshaWorker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +71,34 @@ public class Emergency_Contact extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getAshaWorkerNumber() {
+        Handler getPatientDetailsHandler=new Handler();
+
+        Runnable runnable=new Runnable() {
+            List<PatientDetails> patientDetailsList;
+            @Override
+            public void run() {
+                patientDetailsList = Database.getInstance(Emergency_Contact.this)
+                        .patientDetails_dao()
+                        .getAllPatientDetails();
+
+                getPatientDetailsHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            AshaWorker= patientDetailsList.get(0).getAsha_worker();
+                        }catch (Exception e){
+                            Log.d(TAG, e.getMessage());
+                            Toast.makeText(Emergency_Contact.this, "Cannot Fetch Asha Worker Number", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        };
+        Thread getPatientDetailsThread=new Thread(runnable);
+        getPatientDetailsThread.start();
     }
 
     private void requestRunTimePermission(){
@@ -100,8 +135,13 @@ public class Emergency_Contact extends AppCompatActivity {
         if(ContextCompat.checkSelfPermission(Emergency_Contact.this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(Emergency_Contact.this , new String[] {Manifest.permission.CALL_PHONE} , REQUEST_CALL_CODE);
         }else{
-            String dial = "tel:" + number;
-            startActivity(new Intent(Intent.ACTION_CALL , Uri.parse(dial)));
+            if(number.length()==3 || number.length()==10 || number.length()==13){
+                String dial = "tel:" + number;
+                startActivity(new Intent(Intent.ACTION_CALL , Uri.parse(dial)));
+            }
+            else{
+                Toast.makeText(this, "Invalid Number", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

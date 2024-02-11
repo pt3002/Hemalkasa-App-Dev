@@ -41,6 +41,9 @@ public class PatientDetails {
     @ColumnInfo(name = "PHONE_NO")
     private String phone_no;
 
+    @ColumnInfo(name = "ASHA_WORKER")
+    private String asha_worker;
+
     @ColumnInfo(name = "EDD")
     private String edd;
 
@@ -68,7 +71,7 @@ public class PatientDetails {
     @ColumnInfo(name = "LMP")
     private String lmp;
 
-    public PatientDetails(Integer id, String full_name, String mother_name, String hospital_no, String dob, String blood_group, String state, String district, String tehsil, String village, String phone_no, String edd, String pog_weeks, String pog_days, String hiv, String hsbag, String vdrl, String gravida, String parity, String lmp) {
+    public PatientDetails(Integer id, String full_name, String mother_name, String hospital_no, String dob, String blood_group, String state, String district, String tehsil, String village, String phone_no, String asha_worker,String edd, String pog_weeks, String pog_days, String hiv, String hsbag, String vdrl, String gravida, String parity, String lmp) {
         this.id = id;
         this.full_name = full_name;
         this.mother_name = mother_name;
@@ -80,6 +83,7 @@ public class PatientDetails {
         this.tehsil = tehsil;
         this.village = village;
         this.phone_no = phone_no;
+        this.asha_worker = asha_worker;
         this.edd = edd;
         this.pog_weeks = pog_weeks;
         this.pog_days = pog_days;
@@ -177,6 +181,14 @@ public class PatientDetails {
 
     public void setPhone_no(String phone_no) {
         this.phone_no = phone_no;
+    }
+
+    public String getAsha_worker() {
+        return asha_worker;
+    }
+
+    public void setAsha_worker(String asha_worker) {
+        this.asha_worker = asha_worker;
     }
 
     public String getEdd() {
