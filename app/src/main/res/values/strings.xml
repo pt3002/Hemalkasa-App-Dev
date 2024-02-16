@@ -63,4 +63,15 @@
         <item>AB+ve</item>
         <item>AB-ve</item>
     </string-array>
+
+    // Slider Headings
+    <string name="first_trimester">First Trimester</string>
+    <string name="second_trimester">Second Trimester</string>
+    <string name="third_trimester">Third Trimester</string>
+
+    // Slider Description
+    <string name="desc_one">This is first trimester - 3 months</string>
+    <string name="desc_two">This is second trimester - 6 months</string>
+    <string name="desc_three">This is third trimester - 9 months</string>
+
 </resources>

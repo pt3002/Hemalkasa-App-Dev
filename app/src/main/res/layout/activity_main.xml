@@ -98,6 +98,18 @@
                 app:layout_constraintStart_toEndOf="@+id/video"
                 app:layout_constraintTop_toBottomOf="@+id/video" />
 
+            <Button
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="View Slider Page"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/riskFactors"
+                app:layout_constraintTop_toBottomOf="@+id/riskFactors" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

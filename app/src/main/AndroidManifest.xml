@@ -28,6 +28,8 @@
         <activity
             android:name=".RiskFactor"
             android:exported="false" />
+        <activity android:name=".MainActivitySlider"
+            android:exported="false" />
         <activity
             android:name=".Emergency_Contact"
             android:exported="false" />

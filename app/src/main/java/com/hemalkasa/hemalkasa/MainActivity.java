@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = "pratik";
-    Button addMedicinePage,registrationPage, videoPage,historyPage,riskPage;
+    Button addMedicinePage,registrationPage, videoPage,historyPage,riskPage, sliderPage;
     TextView welcome;
     private Prescription_Table_ViewModel prescriptionTableViewModel;
     private PatientDetails_ViewModel patientDetailsViewModel;
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         videoPage =findViewById(R.id.video);
         historyPage =findViewById(R.id.history);
         riskPage =findViewById(R.id.riskFactors);
+        sliderPage = findViewById(R.id.slider);
 //        welcome =findViewById(R.id.welcome);
 
         checkAlarmPermission();
@@ -87,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,RiskFactor.class);
                 intent.putExtra("Access", true);
+                startActivity(intent);
+            }
+        });
+
+        sliderPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainActivitySlider.class);
                 startActivity(intent);
             }
         });
