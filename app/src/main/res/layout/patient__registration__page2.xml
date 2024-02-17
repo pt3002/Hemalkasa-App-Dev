@@ -104,7 +104,7 @@
                     android:id="@+id/HBSAGTextBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HsbAg"
+                    android:text="HBsAg"
                     android:textSize="20sp"
                     android:drawableLeft="@drawable/hiv"
                     android:drawablePadding="20dp"

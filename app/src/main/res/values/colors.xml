@@ -22,4 +22,5 @@
     <color name="iconsColor">#428fec</color>
     <color name="lightTextBoxColor">#f8f4fc</color>
     <color name="grey">#808080</color>
+    <color name="brightYellow">#f2af3d</color>
 </resources>
