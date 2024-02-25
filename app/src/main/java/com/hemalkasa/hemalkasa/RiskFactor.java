@@ -1,6 +1,7 @@
 package com.hemalkasa.hemalkasa;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ public class RiskFactor extends AppCompatActivity {
     RecyclerView riskFactorRecyclerView;
     RiskFactorAdaptor riskFactorAdaptor;
     private List<Risk_Factor_Table> riskFactorTableList=new ArrayList<>();
+    ConstraintLayout ActivityView;
 
 
     @Override
@@ -59,6 +61,26 @@ public class RiskFactor extends AppCompatActivity {
             riskFactorRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             riskFactorRecyclerView.setHasFixedSize(true);
             riskFactorRecyclerView.setAdapter(riskFactorAdaptor);
+
+            ActivityView = findViewById(R.id.ActivityView);
+            //noinspection AndroidLintClickableViewAccessibility
+            ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
+                @Override
+                public void onSwipeRight() {
+                    super.onSwipeRight();
+                    Log.d(TAG, "RIGHTTTTT: ");
+                    Intent intent = new Intent(RiskFactor.this, Summary.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onSwipeLeft() {
+                    super.onSwipeLeft();
+                    Log.d(TAG, "LEFTTTTTTT: ");
+                    Intent intent = new Intent(RiskFactor.this, Emergency_Contact.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 }

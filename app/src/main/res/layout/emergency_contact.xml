@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ActivityView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_all_pages"
@@ -17,22 +18,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/EmergencyLogo"
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/lok_biradri_logo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
-                android:id="@+id/PaReg"
+                android:id="@+id/Ttile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="25dp"
                 android:text="Emergency Contacts"
                 android:textAlignment="center"
                 android:textColor="@color/secondary"
@@ -42,6 +32,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+            <ImageView
+                android:id="@+id/EmergencyLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/lok_biradri_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Ttile" />
+
             <LinearLayout
                 android:id="@+id/ContactLinearLayout"
                 android:layout_width="match_parent"
@@ -49,8 +51,8 @@
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/PaReg"
-                app:layout_constraintTop_toBottomOf="@+id/PaReg">
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/EmergencyLogo">
 
                 <LinearLayout
                     android:id="@+id/ContactAshaWorker"

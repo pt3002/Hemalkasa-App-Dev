@@ -2,6 +2,7 @@ package com.hemalkasa.hemalkasa;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -29,11 +31,14 @@ public class Video_MainScreen extends AppCompatActivity {
     RecyclerView videoRecycler;
     ArrayList<Video_ModalClass> videoArray;
     Video_Adapter videoAdapter;
+    TextView EmptyList;
+    ConstraintLayout ActivityView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_main_screen);
+        EmptyList=findViewById(R.id.EmptyList);
 
         if(permissonGranted){
             checkPermission();
@@ -43,6 +48,26 @@ public class Video_MainScreen extends AppCompatActivity {
         videoRecycler.setHasFixedSize(true);
         videoRecycler.setLayoutManager(new LinearLayoutManager(Video_MainScreen.this));
         getVideos();
+
+        ActivityView = findViewById(R.id.ActivityView);
+        //noinspection AndroidLintClickableViewAccessibility
+        ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @Override
+            public void onSwipeRight() {
+                super.onSwipeRight();
+                Log.d(TAG, "RIGHTTTTT: ");
+                Intent intent = new Intent(Video_MainScreen.this, Emergency_Contact.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onSwipeLeft() {
+                super.onSwipeLeft();
+                Log.d(TAG, "LEFTTTTTTT: ");
+                Intent intent = new Intent(Video_MainScreen.this, Trimester.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getVideos() {
@@ -63,6 +88,12 @@ public class Video_MainScreen extends AppCompatActivity {
 
         videoAdapter=new Video_Adapter(Video_MainScreen.this, videoArray);
         videoRecycler.setAdapter(videoAdapter);
+        if(videoArray.isEmpty()){
+            EmptyList.setVisibility(View.VISIBLE);
+        }
+        else{
+            EmptyList.setVisibility(View.GONE);
+        }
     }
 
     private String readFromFile(File file) {

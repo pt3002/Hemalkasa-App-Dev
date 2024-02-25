@@ -2,6 +2,7 @@ package com.hemalkasa.hemalkasa;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -15,8 +16,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -30,6 +35,10 @@ public class Emergency_Contact extends AppCompatActivity {
     private String AshaWorker="";
     private static final int REQUEST_CALL_CODE =1;
     private static final String PERMISSION_CALL=Manifest.permission.CALL_PHONE;
+    LinearLayout ActivityView;
+    // TODO Hardcoded password
+    final static String password = "1234";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +77,26 @@ public class Emergency_Contact extends AppCompatActivity {
             public void onClick(View v) {
                 requestRunTimePermission();
                 makePhoneCall(LBPH);
+            }
+        });
+
+        ActivityView = findViewById(R.id.ActivityView);
+        //noinspection AndroidLintClickableViewAccessibility
+        ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @Override
+            public void onSwipeRight() {
+                super.onSwipeRight();
+                Log.d(TAG, "RIGHTTTTT: ");
+                Intent intent = new Intent(Emergency_Contact.this, RiskFactor.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onSwipeLeft() {
+                super.onSwipeLeft();
+                Log.d(TAG, "LEFTTTTTTT: ");
+                Intent intent = new Intent(Emergency_Contact.this, Video_MainScreen.class);
+                startActivity(intent);
             }
         });
 
@@ -184,5 +213,56 @@ public class Emergency_Contact extends AppCompatActivity {
                 return;
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.patient_to_doctor, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.ChangeToDoctor:
+                checkpassword();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void checkpassword() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Emergency_Contact.this);
+        builder.setMessage("Access for Lok Biradri Doctors")
+                .setTitle("Enter Password")
+                .setCancelable(true);
+
+        final View PasswordLayout = getLayoutInflater().inflate(R.layout.doctor_password_layout, null);
+        builder.setView(PasswordLayout);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText Password = PasswordLayout.findViewById(R.id.password);
+                        if (Password.getText().toString().equals(password)) {
+                            dialog.dismiss();
+                            Toast.makeText(Emergency_Contact.this, "Successful", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Emergency_Contact.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(Emergency_Contact.this, "Invalid Password", Toast.LENGTH_SHORT).show();
+                            Password.setText("");
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.show();
     }
 }

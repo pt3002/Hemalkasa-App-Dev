@@ -9,7 +9,7 @@
     tools:context=".Add_Medicines">
 
     <TextView
-        android:id="@+id/PaReg"
+        android:id="@+id/Ttile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Prescription"
