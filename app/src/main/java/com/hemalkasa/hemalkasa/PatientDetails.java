@@ -26,6 +26,9 @@ public class PatientDetails {
     @ColumnInfo(name = "BLOOD_GROUP")
     private String blood_group;
 
+    @ColumnInfo(name = "TRIMESTER")
+    private String trimester;
+
     @ColumnInfo(name = "STATE")
     private String state;
 
@@ -71,13 +74,14 @@ public class PatientDetails {
     @ColumnInfo(name = "LMP")
     private String lmp;
 
-    public PatientDetails(Integer id, String full_name, String mother_name, String hospital_no, String dob, String blood_group, String state, String district, String tehsil, String village, String phone_no, String asha_worker,String edd, String pog_weeks, String pog_days, String hiv, String hsbag, String vdrl, String gravida, String parity, String lmp) {
+    public PatientDetails(Integer id, String full_name, String mother_name, String hospital_no, String dob, String blood_group, String trimester, String state, String district, String tehsil, String village, String phone_no, String asha_worker,String edd, String pog_weeks, String pog_days, String hiv, String hsbag, String vdrl, String gravida, String parity, String lmp) {
         this.id = id;
         this.full_name = full_name;
         this.mother_name = mother_name;
         this.hospital_no = hospital_no;
         this.dob = dob;
         this.blood_group = blood_group;
+        this.trimester = trimester;
         this.state = state;
         this.district = district;
         this.tehsil = tehsil;
@@ -143,6 +147,11 @@ public class PatientDetails {
         this.blood_group = blood_group;
     }
 
+    public String getTrimester() {
+        return trimester;
+    }
+
+    public void setTrimester(String trimester) { this.trimester = trimester;}
     public String getState() {
         return state;
     }
@@ -272,6 +281,7 @@ public class PatientDetails {
                 ", hospital_no='" + hospital_no + '\'' +
                 ", dob='" + dob + '\'' +
                 ", blood_group='" + blood_group + '\'' +
+                ", trimester='" + trimester + '\'' +
                 ", state='" + state + '\'' +
                 ", district='" + district + '\'' +
                 ", tehsil='" + tehsil + '\'' +

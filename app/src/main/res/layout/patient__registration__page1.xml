@@ -134,6 +134,40 @@
                     android:textSize="20sp"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/TrimsterLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Trimester"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/trimester"
+                    android:drawablePadding="20dp"
+                    android:gravity=""
+                    android:padding="20dp"
+                    android:text="Trimester"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/secondary" />
+
+                <Spinner
+                    android:id="@+id/TrimesterSpinner"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    app:layout_constraintVertical_weight="1.0"
+                    android:layout_alignRight="@+id/Trimester"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+
             <EditText
                 android:id="@+id/State"
                 android:layout_width="match_parent"
@@ -144,9 +178,9 @@
                 android:drawableLeft="@drawable/city"
                 android:drawablePadding="20dp"
                 android:hint="State"
-                android:textColorHint="@color/secondary"
                 android:padding="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/secondary" />
 
             <EditText
                 android:id="@+id/District"

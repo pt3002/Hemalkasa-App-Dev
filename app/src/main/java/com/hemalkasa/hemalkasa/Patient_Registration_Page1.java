@@ -42,10 +42,12 @@ public class Patient_Registration_Page1 extends Fragment {
     FloatingActionButton fab;
     Button nextpage,showPatients;
     EditText HospRegNo, FullName,MotherName,State,District,Block,Village,MobNo,AshaWorker;
-    TextView DateOfBirth,BloodGroup;
+    TextView DateOfBirth,BloodGroup, Trimester;
     String DefaultBloodGroup;
+    String DefaultTrimester;
     PatientDetails_ViewModel patientDetails_viewModel;
     Spinner BloodGroupSpinner;
+    Spinner TrimesterSpinner;
     SimpleDateFormat format;
     int SEC = 1;
     String TAG="Pratik";
@@ -76,6 +78,8 @@ public class Patient_Registration_Page1 extends Fragment {
         MotherName=(EditText) view.findViewById(R.id.MotherName);
         BloodGroup=(TextView) view.findViewById(R.id.BloodGroup);
         BloodGroupSpinner=(Spinner) view.findViewById(R.id.BloodGroupSpinner);
+        Trimester = (TextView) view.findViewById(R.id.Trimester);
+        TrimesterSpinner = (Spinner) view.findViewById(R.id.TrimesterSpinner);
         State=(EditText) view.findViewById(R.id.State);
         District=(EditText) view.findViewById(R.id.District);
         Block=(EditText) view.findViewById(R.id.Block);
@@ -89,6 +93,7 @@ public class Patient_Registration_Page1 extends Fragment {
 
         DefaultBloodGroup=getResources().getStringArray(R.array.bloodGroup)[0]; // Initilize as 1st default Blood Group
 //        getAllPatientDetails();
+        DefaultTrimester=getResources().getStringArray(R.array.trimester)[0];
 
         ArrayAdapter<CharSequence> bloodGroupAdapter = ArrayAdapter.createFromResource(getContext(), R.array.bloodGroup, android.R.layout.simple_spinner_item);
         bloodGroupAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
@@ -107,6 +112,24 @@ public class Patient_Registration_Page1 extends Fragment {
                 int spinnerPosition = bloodGroupAdapter.getPosition(DefaultBloodGroup);
 //                Log.d(TAG, "onNothingSelected: " + DefaultBloodGroup + String.valueOf(spinnerPosition));
                 BloodGroupSpinner.setSelection(spinnerPosition);
+            }
+        });
+
+        ArrayAdapter<CharSequence> trimesterAdapter = ArrayAdapter.createFromResource(getContext(), R.array.trimester, android.R.layout.simple_spinner_item);
+        trimesterAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        TrimesterSpinner.setAdapter(trimesterAdapter);
+        int trimesterSpinnerPosition = trimesterAdapter.getPosition(DefaultTrimester);
+        TrimesterSpinner.setSelection(trimesterSpinnerPosition);
+        TrimesterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                TrimesterSpinner.setSelection(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                int trimesterSpinnerPosition = trimesterAdapter.getPosition(DefaultTrimester);
+                TrimesterSpinner.setSelection(trimesterSpinnerPosition);
             }
         });
 
@@ -143,6 +166,7 @@ public class Patient_Registration_Page1 extends Fragment {
                 String mothername=MotherName.getText().toString();
                 String dateofbirth=DateOfBirth.getText().toString();
                 String bloodgroup=BloodGroupSpinner.getSelectedItem().toString();
+                String trimester=TrimesterSpinner.getSelectedItem().toString();
                 String state=State.getText().toString();
                 String district=District.getText().toString();
                 String block=Block.getText().toString();
@@ -162,6 +186,7 @@ public class Patient_Registration_Page1 extends Fragment {
                     bundle.putString("hospRegNo", hospRegNo);
                     bundle.putString("dateofbirth", dateofbirth);
                     bundle.putString("bloodgroup", bloodgroup);
+                    bundle.putString("trimester", trimester);
                     bundle.putString("state", state);
                     bundle.putString("district", district);
                     bundle.putString("block", block);
@@ -200,6 +225,10 @@ public class Patient_Registration_Page1 extends Fragment {
         }
         else if(BloodGroup.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "Enter Blood Group", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(Trimester.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Enter Trimester", Toast.LENGTH_SHORT).show();
             return true;
         }
         else if(State.getText().toString().trim().isEmpty()){
@@ -263,6 +292,11 @@ public class Patient_Registration_Page1 extends Fragment {
                             int spinnerPosition = bloodGroupAdapter.getPosition(DefaultBloodGroup);
                             Log.d(TAG, "onNothingSelected: " + DefaultBloodGroup + "    : "+String.valueOf(spinnerPosition));
                             BloodGroupSpinner.setSelection(spinnerPosition);
+
+                            DefaultTrimester=patientDetailsList.get(0).getTrimester();
+                            ArrayAdapter<CharSequence> trimesterAdapter = ArrayAdapter.createFromResource(getContext(), R.array.trimester, android.R.layout.simple_spinner_item);
+                            int trimesterSpinnerPosition = trimesterAdapter.getPosition(DefaultTrimester);
+                            TrimesterSpinner.setSelection(trimesterSpinnerPosition);
                         }catch (Exception e){
                             Log.d(TAG, e.getMessage());
                             Toast.makeText(getContext(), "Cannot Fetch Details", Toast.LENGTH_SHORT).show();

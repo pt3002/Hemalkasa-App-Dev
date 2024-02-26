@@ -64,6 +64,12 @@
         <item>AB-ve</item>
     </string-array>
 
+    <string-array name="trimester">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     // Slider Headings
     <string name="first_trimester">First Trimester</string>
     <string name="second_trimester">Second Trimester</string>

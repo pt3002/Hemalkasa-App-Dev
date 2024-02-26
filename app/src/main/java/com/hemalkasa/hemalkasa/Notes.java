@@ -72,7 +72,7 @@ public class Notes extends AppCompatActivity {
                 if(!isEmpty()){
                     String notes=Notes.getText().toString();
 //                    PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp, notes);
-                    PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, state, district, block, village, mobno, ashaworker,edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp);
+                    PatientDetails patientDetails=new PatientDetails(1,"FullName", "MotherName", "HospitalNo", "DOB", "A+ve","1", "State","District","Tehsil","Village","Patient Phone No","Asha Worker Phone No","EDD","POG Weeks","POG Days","Negative","Negative","Negative","Gravida","Parity","LMP");
                     patientDetails_viewModel.updatePatientDetails(patientDetails);
 
                     SharedPreferences.Editor sharedPreferencesEditor =PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
