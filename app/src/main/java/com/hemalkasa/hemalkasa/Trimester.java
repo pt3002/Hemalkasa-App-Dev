@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class Trimester extends AppCompatActivity {
     final static String password = "1234";
 
     private TextView trimesterNumber;
+    private TextView description;
+    private ImageView trimesterImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class Trimester extends AppCompatActivity {
 
         //Log.d(TAG, "before set trimester: ");
         trimesterNumber = findViewById(R.id.TrimesterNumberHeading);
+        trimesterImage = findViewById(R.id.titleImage);
 
         setTrimester();
 
@@ -79,12 +83,15 @@ public class Trimester extends AppCompatActivity {
                             //Log.d(TAG, "run: " + patientDetailsList.get(0).getTrimester());
                             if(patientDetailsList.get(0).getTrimester().equals("1")){
                                 trimesterNumber.setText(R.string.first_trimester);
+                                trimesterImage.setImageResource(R.drawable.trimester_1_min);
                             }
                             else if(patientDetailsList.get(0).getTrimester().equals("2")){
                                 trimesterNumber.setText(R.string.second_trimester);
+                                trimesterImage.setImageResource(R.drawable.trimester_2_min);
                             }
                             else if(patientDetailsList.get(0).getTrimester().equals("3")){
                                 trimesterNumber.setText(R.string.third_trimester);
+                                trimesterImage.setImageResource(R.drawable.trimester_3_min);
                             }
 
                         }catch (Exception e){
