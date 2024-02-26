@@ -17,9 +17,9 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     int images[] = {
 
-            R.drawable.first_trimester,
-            R.drawable.second_trimester,
-            R.drawable.third_trimester
+            R.drawable.trimester_1,
+            R.drawable.trimester_2,
+            R.drawable.trimester_3
 
     };
 

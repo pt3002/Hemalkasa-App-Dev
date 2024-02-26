@@ -8,13 +8,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class Trimester extends AppCompatActivity {
 
@@ -23,10 +27,17 @@ public class Trimester extends AppCompatActivity {
     // TODO Hardcoded password
     final static String password = "1234";
 
+    private TextView trimesterNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trimester);
+
+        //Log.d(TAG, "before set trimester: ");
+        trimesterNumber = findViewById(R.id.TrimesterNumberHeading);
+
+        setTrimester();
 
         ActivityView = findViewById(R.id.ActivityView);
         //noinspection AndroidLintClickableViewAccessibility
@@ -47,6 +58,46 @@ public class Trimester extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void setTrimester() {
+        Handler getTrimester = new Handler();
+
+        Runnable runnable = new Runnable() {
+
+            List<PatientDetails> patientDetailsList;
+            @Override
+            public void run() {
+                patientDetailsList = Database.getInstance(Trimester.this)
+                        .patientDetails_dao()
+                        .getAllPatientDetails();
+                Log.d(TAG,patientDetailsList.get(0).getTrimester());
+                getTrimester.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            //Log.d(TAG, "run: " + patientDetailsList.get(0).getTrimester());
+                            if(patientDetailsList.get(0).getTrimester().equals("1")){
+                                trimesterNumber.setText(R.string.first_trimester);
+                            }
+                            else if(patientDetailsList.get(0).getTrimester().equals("2")){
+                                trimesterNumber.setText(R.string.second_trimester);
+                            }
+                            else if(patientDetailsList.get(0).getTrimester().equals("3")){
+                                trimesterNumber.setText(R.string.third_trimester);
+                            }
+
+                        }catch (Exception e){
+                            Log.d(TAG, e.getMessage());
+                            Toast.makeText(Trimester.this, "No Trimester Present", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        };
+
+        Thread getTrimesterThread = new Thread(runnable);
+        getTrimesterThread.start();
     }
 
     @Override

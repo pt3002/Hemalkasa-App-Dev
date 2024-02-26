@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/first_trimester"/>
+        android:src="@drawable/trimester_1"/>
 
     <TextView
         android:id="@+id/textTitle"
