@@ -5,7 +5,7 @@
     android:id="@+id/ActivityView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_all_pages"
+    android:background="@drawable/patient_slider_background"
     tools:context=".Trimester">
 
     <LinearLayout
@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:flow_horizontalAlign="center"
-        app:layout_constraintBottom_toTopOf="@+id/ellipse1"
+        app:layout_constraintBottom_toTopOf="@+id/BackButtonImage"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,39 +39,43 @@
 
     </LinearLayout>
 
-        <ImageView
-            android:id="@+id/ellipse1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ellipse1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    <ImageView
+        android:id="@+id/BackButtonImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/ellipse2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ellipse2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <ImageView
+        android:id="@+id/NextButtonImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
-            android:id="@+id/backbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:text="Back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/BackButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#00000000"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/BackButtonImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/BackButtonImage" />
 
-        <Button
-            android:id="@+id/nextbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:text="Next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/ellipse2" />
+    <Button
+        android:id="@+id/NextButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#00000000"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/NextButtonImage"
+        app:layout_constraintStart_toStartOf="@id/NextButtonImage"
+        app:layout_constraintTop_toTopOf="@id/NextButtonImage" />
 
 
 

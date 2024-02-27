@@ -3,6 +3,7 @@ package com.hemalkasa.hemalkasa;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Dao
 public interface PatientDetails_DAO {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPatientDetails(PatientDetails patientDetails);   //Inserting the entity
 
     @Insert

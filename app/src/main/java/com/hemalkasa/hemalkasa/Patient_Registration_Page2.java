@@ -204,7 +204,8 @@ public class Patient_Registration_Page2 extends Fragment {
                     vdrl = VDRLSpinner.getSelectedItem().toString();
 
                     PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, trimester, state, district, block, village, mobno, ashaworker,edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp);
-                    patientDetails_viewModel.updatePatientDetails(patientDetails);
+//                    patientDetails_viewModel.updatePatientDetails(patientDetails);
+                    patientDetails_viewModel.insertPatientDetails(patientDetails);
 
                     SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
                     sharedPreferencesEditor.putBoolean("Registration", true);

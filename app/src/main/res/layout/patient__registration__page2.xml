@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Patient_Registration_Page2"
-    android:background="@color/registration_page_color"
+    android:background="@drawable/patient_slider_background"
     >
 
     <ScrollView
@@ -217,7 +217,7 @@
                     android:id="@+id/Submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Next"
+                    android:text="Submit"
                     android:backgroundTint="@color/buttonColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

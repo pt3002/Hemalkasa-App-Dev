@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +35,15 @@ public class Video_MainScreen extends AppCompatActivity {
     Video_Adapter videoAdapter;
     TextView EmptyList;
     ConstraintLayout ActivityView;
+    private Button NextButton,BackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_main_screen);
         EmptyList=findViewById(R.id.EmptyList);
+        NextButton = findViewById(R.id.NextButton);
+        BackButton = findViewById(R.id.BackButton);
 
         if(permissonGranted){
             checkPermission();
@@ -48,6 +53,23 @@ public class Video_MainScreen extends AppCompatActivity {
         videoRecycler.setHasFixedSize(true);
         videoRecycler.setLayoutManager(new LinearLayoutManager(Video_MainScreen.this));
         getVideos();
+
+
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Video_MainScreen.this, Trimester.class);
+                startActivity(intent);
+            }
+        });
+
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Video_MainScreen.this, Emergency_Contact.class);
+                startActivity(intent);
+            }
+        });
 
         ActivityView = findViewById(R.id.ActivityView);
         //noinspection AndroidLintClickableViewAccessibility

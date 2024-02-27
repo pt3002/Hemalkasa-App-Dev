@@ -25,8 +25,8 @@ public class MainActivitySlider extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainscreen);
 
-        backbtn = findViewById(R.id.backbtn);
-        nextbtn = findViewById(R.id.nextbtn);
+        backbtn = findViewById(R.id.BackButton);
+        nextbtn = findViewById(R.id.NextButton);
         skipbtn = findViewById(R.id.skipButton);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
