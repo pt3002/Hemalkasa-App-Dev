@@ -52,6 +52,7 @@ public class Trimester extends AppCompatActivity {
                 Log.d(TAG, "RIGHTTTTT: ");
                 Intent intent = new Intent(Trimester.this, Video_MainScreen.class);
                 startActivity(intent);
+                //overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             }
 
             @Override
@@ -60,6 +61,7 @@ public class Trimester extends AppCompatActivity {
                 Log.d(TAG, "LEFTTTTTTT: ");
                 Intent intent = new Intent(Trimester.this, Summary.class);
                 startActivity(intent);
+                //overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             }
         });
     }
