@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -78,16 +79,18 @@ public class Video_MainScreen extends AppCompatActivity {
             public void onSwipeRight() {
                 super.onSwipeRight();
                 Log.d(TAG, "RIGHTTTTT: ");
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_right, R.anim.slide_to_left );
                 Intent intent = new Intent(Video_MainScreen.this, Emergency_Contact.class);
-                startActivity(intent);
+                startActivity(intent, options.toBundle());
             }
 
             @Override
             public void onSwipeLeft() {
                 super.onSwipeLeft();
                 Log.d(TAG, "LEFTTTTTTT: ");
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_left, R.anim.slide_to_right);
                 Intent intent = new Intent(Video_MainScreen.this, Trimester.class);
-                startActivity(intent);
+                startActivity(intent, options.toBundle());
             }
         });
     }
