@@ -21,6 +21,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -35,9 +36,10 @@ public class Emergency_Contact extends AppCompatActivity {
     private String AshaWorker="";
     private static final int REQUEST_CALL_CODE =1;
     private static final String PERMISSION_CALL=Manifest.permission.CALL_PHONE;
-    LinearLayout ActivityView;
+    ConstraintLayout ActivityView;
     // TODO Hardcoded password
     final static String password = "1234";
+    private Button NextButton,BackButton;
 
 
     @Override
@@ -48,6 +50,8 @@ public class Emergency_Contact extends AppCompatActivity {
         Contact108=findViewById(R.id.Contact108);
         ContactPHC=findViewById(R.id.ContactPHC);
         ContactLBPH=findViewById(R.id.ContactLBPH);
+        NextButton = findViewById(R.id.NextButton);
+        BackButton = findViewById(R.id.BackButton);
 
         getAshaWorkerNumber();
 
@@ -77,6 +81,23 @@ public class Emergency_Contact extends AppCompatActivity {
             public void onClick(View v) {
                 requestRunTimePermission();
                 makePhoneCall(LBPH);
+            }
+        });
+
+
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Emergency_Contact.this, Video_MainScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Emergency_Contact.this, RiskFactor.class);
+                startActivity(intent);
             }
         });
 

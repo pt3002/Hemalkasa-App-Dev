@@ -269,7 +269,7 @@ public class Patient_Registration_Page1 extends Fragment {
                         .patientDetails_dao()
                         .getAllPatientDetails();
 
-//                Log.d(TAG, "run: " + patientDetailsList.toString());
+                Log.d(TAG, "run: " + patientDetailsList.toString());
                 getPatientDetailsHandler.post(new Runnable() {
                     @Override
                     public void run() {

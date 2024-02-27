@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class Trimester extends AppCompatActivity {
     private TextView trimesterNumber;
     private TextView description;
     private ImageView trimesterImage;
+    private Button NextButton,BackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +42,26 @@ public class Trimester extends AppCompatActivity {
         //Log.d(TAG, "before set trimester: ");
         trimesterNumber = findViewById(R.id.TrimesterNumberHeading);
         trimesterImage = findViewById(R.id.titleImage);
+        NextButton = findViewById(R.id.NextButton);
+        BackButton = findViewById(R.id.BackButton);
 
         setTrimester();
+
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Trimester.this, Summary.class);
+                startActivity(intent);
+            }
+        });
+
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Trimester.this, Video_MainScreen.class);
+                startActivity(intent);
+            }
+        });
 
         ActivityView = findViewById(R.id.ActivityView);
         //noinspection AndroidLintClickableViewAccessibility
@@ -98,7 +118,7 @@ public class Trimester extends AppCompatActivity {
 
                         }catch (Exception e){
                             Log.d(TAG, e.getMessage());
-                            Toast.makeText(Trimester.this, "No Trimester Present", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Trimester.this, "No Trimester Set Yet", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

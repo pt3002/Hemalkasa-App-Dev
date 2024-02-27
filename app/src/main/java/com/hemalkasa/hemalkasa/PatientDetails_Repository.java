@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class PatientDetails_Repository {
 
     private PatientDetails_DAO patientDetails_dao;
