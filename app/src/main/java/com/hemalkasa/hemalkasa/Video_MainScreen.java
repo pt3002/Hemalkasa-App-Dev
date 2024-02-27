@@ -37,6 +37,7 @@ public class Video_MainScreen extends AppCompatActivity {
     TextView EmptyList;
     ConstraintLayout ActivityView;
     private Button NextButton,BackButton;
+    private boolean pendingTransaction = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +60,24 @@ public class Video_MainScreen extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: ");
+//                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_left, R.anim.slide_to_right );
                 Intent intent = new Intent(Video_MainScreen.this, Trimester.class);
+//                pendingTransaction = false;
                 startActivity(intent);
+//                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+//                overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
+//                startActivity(intent, options.toBundle());
             }
         });
 
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_right, R.anim.slide_to_left);
                 Intent intent = new Intent(Video_MainScreen.this, Emergency_Contact.class);
                 startActivity(intent);
+//                startActivity(intent, options.toBundle());
             }
         });
 
@@ -217,8 +226,17 @@ public class Video_MainScreen extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+//        if (pendingTransaction) {
+//            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+//        }
+        super.onPause();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         getVideos();
+//        pendingTransaction = true;
     }
 }

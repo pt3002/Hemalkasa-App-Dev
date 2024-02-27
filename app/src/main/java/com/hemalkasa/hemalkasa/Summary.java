@@ -2,6 +2,7 @@ package com.hemalkasa.hemalkasa;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -41,7 +42,7 @@ public class Summary extends AppCompatActivity {
     Button Remarks;
     private Random randomId=new Random();
     String DESIGNATION="",NOTES="";
-    LinearLayout ActivityView;
+    ConstraintLayout ActivityView;
     // TODO Hardcoded password
     final static String password = "1234";
 
@@ -51,38 +52,10 @@ public class Summary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.summary);
 
-        EDD = findViewById(R.id.EDD);
-        POGWeeks = findViewById(R.id.POGWeeks);
-        POGDays = findViewById(R.id.POGDays);
-        HB = findViewById(R.id.HB);
-        VisitDate = findViewById(R.id.VisitDate);
-        NextVisitDate = findViewById(R.id.NextVisitDate);
-        Remarks = findViewById(R.id.Remarks);
+
         medicineTableViewModel=  ViewModelProviders.of(this).get(Medicine_Table_ViewModel.class);
 
-        medicineAdapter = new MedicineAdapter(true);
-        medicineRecyclerView = findViewById(R.id.RecyclerView);
-        medicineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        medicineRecyclerView.setHasFixedSize(true);
-        medicineRecyclerView.setAdapter(medicineAdapter);
-        medicineRecyclerView.addItemDecoration(new DividerItemDecoration(medicineRecyclerView.getContext(), DividerItemDecoration.VERTICAL));  //Normal Horizontal Separator
-
         fetchSummary();
-
-        Remarks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!DESIGNATION.isEmpty() && !NOTES.isEmpty()) {
-                    Intent notesIntent = new Intent(Summary.this, Updates.class);
-                    notesIntent.putExtra("DESIGNATION", DESIGNATION);
-                    notesIntent.putExtra("NOTES", NOTES);
-                    startActivity(notesIntent);
-                }
-                else{
-                    Toast.makeText(Summary.this, "No Remarks Yet", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
         ActivityView = findViewById(R.id.ActivityView);
         //noinspection AndroidLintClickableViewAccessibility
