@@ -88,7 +88,7 @@ public class Emergency_Contact extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Emergency_Contact.this, Video_MainScreen.class);
+                Intent intent = new Intent(Emergency_Contact.this, Patient_Home_Page.class);
                 startActivity(intent);
             }
         });

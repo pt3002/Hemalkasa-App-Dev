@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         videoPage =findViewById(R.id.video);
         historyPage =findViewById(R.id.history);
         riskPage =findViewById(R.id.riskFactors);
-        sliderPage = findViewById(R.id.slider);
+//        sliderPage = findViewById(R.id.slider);
 //        welcome =findViewById(R.id.welcome);
 
         checkAlarmPermission();
@@ -92,13 +92,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sliderPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivitySlider.class);
-                startActivity(intent);
-            }
-        });
+//        sliderPage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, MainActivitySlider.class);
+//                startActivity(intent);
+//            }
+//        });
 
         prescriptionTableViewModel=  ViewModelProviders.of(this).get(Prescription_Table_ViewModel.class);
         patientDetailsViewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.ChangeToPatient:
-                Intent intent = new Intent(MainActivity.this, Patient_Home_Page.class);
+                Intent intent = new Intent(MainActivity.this, Video_MainScreen.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 MainActivity.this.finish();

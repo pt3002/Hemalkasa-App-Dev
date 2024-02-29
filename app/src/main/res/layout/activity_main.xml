@@ -30,13 +30,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--    <TextView-->
-            <!--        android:id="@+id/welcome"-->
-            <!--        android:layout_width="match_parent"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:textColor="@color/secondary"-->
-            <!--        android:text="Welcome"-->
-            <!--        android:textSize="30sp"/>-->
+                <TextView
+                    android:id="@+id/welcome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondary"
+                    android:text="Hemalkasa Doctors"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/appLogo"
+                    app:layout_constraintTop_toBottomOf="@+id/appLogo"
+                    android:gravity="center"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintBottom_toTopOf="@+id/registrationPage"
+                    android:textSize="30sp"/>
 
             <Button
                 android:id="@+id/registrationPage"
@@ -47,8 +53,8 @@
                 android:backgroundTint="@color/buttonColor"
                 android:text="Edit Profile"
                 app:layout_constraintEnd_toEndOf="@+id/addMedicinePage"
-                app:layout_constraintStart_toEndOf="@+id/appLogo"
-                app:layout_constraintTop_toBottomOf="@+id/appLogo" />
+                app:layout_constraintStart_toEndOf="@+id/welcome"
+                app:layout_constraintTop_toBottomOf="@+id/welcome" />
 
             <Button
                 android:id="@+id/addMedicinePage"
@@ -97,18 +103,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/video"
                 app:layout_constraintTop_toBottomOf="@+id/video" />
-
-            <Button
-                android:id="@+id/slider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="15dp"
-                android:backgroundTint="@color/buttonColor"
-                android:text="View Slider Page"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/riskFactors"
-                app:layout_constraintTop_toBottomOf="@+id/riskFactors" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
