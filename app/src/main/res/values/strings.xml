@@ -1,3 +1,83 @@
 <resources>
     <string name="app_name">Hemalkasa</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="medicine">
+        <item>Medicine 1</item>
+        <item>Medicine 2</item>
+        <item>Medicine 3</item>
+        <item>Medicine 4</item>
+    </string-array>
+
+    <string-array name="testResult">
+        <item>Negative</item>
+        <item>Positive</item>
+    </string-array>
+
+    <string-array name="designation">
+        <item>PHC Doctor</item>
+        <item>Nurse</item>
+        <item>Health Worker</item>
+    </string-array>
+
+    <string-array name="name">
+        <item>Folic Acid 5mg</item>
+        <item>Acetylsalicylic Acid 75mg</item>
+        <item>Doxylamine(10mg) + Vitamin B6(Pyridoxine) (10mg)</item>
+        <item>Ferrous Sulphate</item>
+        <item>Calcuim lactate</item>
+        <item>FCM 1gm</item>
+    </string-array>
+
+    <string-array name="form">
+        <item>Tablet</item>
+        <item>Injection</item>
+    </string-array>
+
+    <string-array name="dose">
+        <item>1/2 tablet</item>
+        <item>1 tablet</item>
+        <item>...gm</item>
+    </string-array>
+
+    <string-array name="frequency">
+        <item>Once a day</item>
+        <item>Once a night</item>
+        <item>Twice a day</item>
+        <item>Stat</item>
+    </string-array>
+
+    <string-array name="route">
+        <item>Oral</item>
+        <item>Intravenous</item>
+    </string-array>
+
+    <string-array name="bloodGroup">
+        <item>A+ve</item>
+        <item>A-ve</item>
+        <item>B+ve</item>
+        <item>B-ve</item>
+        <item>O+ve</item>
+        <item>O-ve</item>
+        <item>AB+ve</item>
+        <item>AB-ve</item>
+    </string-array>
+
+    <string-array name="trimester">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    // Slider Headings
+    <string name="first_trimester">First Trimester</string>
+    <string name="second_trimester">Second Trimester</string>
+    <string name="third_trimester">Third Trimester</string>
+
+    // Slider Description
+    <string name="desc_one">This is first trimester - 3 months</string>
+    <string name="desc_two">This is second trimester - 6 months</string>
+    <string name="desc_three">This is third trimester - 9 months</string>
+
 </resources>

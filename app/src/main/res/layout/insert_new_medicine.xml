@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/registration_page_color"
+    tools:context=".InsertEditMedicine">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Medicine Name"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <Spinner
+        android:id="@+id/nameSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintBottom_toTopOf="@+id/formSpinner"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Form"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name"/>
+
+    <Spinner
+        android:id="@+id/formSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/nameSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/nameSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/doseSpinner"/>
+
+    <TextView
+        android:id="@+id/dose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dose"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/form"
+        app:layout_constraintTop_toBottomOf="@+id/form"/>
+
+    <Spinner
+        android:id="@+id/doseSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/formSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/formSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/frequencySpinner"/>
+
+    <TextView
+        android:id="@+id/frequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Frequency"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/dose"
+        app:layout_constraintTop_toBottomOf="@+id/dose"/>
+
+
+    <Spinner
+        android:id="@+id/frequencySpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/doseSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/doseSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/routeSpinner"/>
+
+
+    <TextView
+        android:id="@+id/route"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Route"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/frequency"
+        app:layout_constraintTop_toBottomOf="@+id/frequency"/>
+
+
+    <Spinner
+        android:id="@+id/routeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/frequencySpinner"
+        app:layout_constraintTop_toBottomOf="@+id/frequencySpinner"
+        app:layout_constraintBottom_toTopOf="@+id/periods"/>
+
+
+    <EditText
+        android:id="@+id/periods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/custom_input"
+        android:drawableLeft="@drawable/calendar"
+        android:drawablePadding="20dp"
+        android:hint="Periods in Days"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/secondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/route"/>
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textSize="20sp"
+        android:backgroundTint="@color/buttonColor"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/periods" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

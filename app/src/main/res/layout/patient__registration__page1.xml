@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Patient_Registration_Page1"
+    android:background="@color/registration_page_color"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="147dp"
+                    android:layout_height="130dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/add_pregnant_patient" />
+
+<!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                    android:id="@+id/floatingActionButton"-->
+<!--                    android:layout_width="34dp"-->
+<!--                    android:layout_height="34dp"-->
+<!--                    android:layout_alignEnd="@+id/profile_image"-->
+<!--                    android:layout_alignBottom="@+id/profile_image"-->
+<!--                    android:backgroundTint="@color/floatingButton"-->
+<!--                    android:src="@drawable/plus"-->
+<!--                    android:clickable="true"/>-->
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/HospRegNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/hospital"
+                android:drawablePadding="20dp"
+                android:hint="Hospital Registration Number"
+                android:textColorHint="@color/secondary"
+                android:padding="20dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/fullname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/person"
+                android:drawablePadding="20dp"
+                android:hint="Full Name"
+                android:textColorHint="@color/secondary"
+                android:padding="20dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/MotherName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/person"
+                android:drawablePadding="20dp"
+                android:hint="Mother's Full Name"
+                android:textColorHint="@color/secondary"
+                android:padding="20dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/DateOfBirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="20dp"
+                android:hint="Date of Birth"
+                android:textColorHint="@color/secondary"
+                android:padding="20dp"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/BloodGroupLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/BloodGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_bloodtype_24"
+                    android:drawablePadding="20dp"
+                    android:gravity=""
+                    android:padding="20dp"
+                    android:text="Blood Group"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/secondary" />
+
+                <Spinner
+                    android:id="@+id/BloodGroupSpinner"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    app:layout_constraintVertical_weight="1.0"
+                    android:layout_alignRight="@+id/BloodGroup"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/TrimsterLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Trimester"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/trimester"
+                    android:drawablePadding="20dp"
+                    android:gravity=""
+                    android:padding="20dp"
+                    android:text="Trimester"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/secondary" />
+
+                <Spinner
+                    android:id="@+id/TrimesterSpinner"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    app:layout_constraintVertical_weight="1.0"
+                    android:layout_alignRight="@+id/Trimester"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/State"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/city"
+                android:drawablePadding="20dp"
+                android:hint="State"
+                android:padding="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/secondary" />
+
+            <EditText
+                android:id="@+id/District"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/location_pin"
+                android:drawablePadding="20dp"
+                android:hint="District"
+                android:textColorHint="@color/secondary"
+                android:padding="20dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/Block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/city"
+                android:drawablePadding="20dp"
+                android:hint="Block/Tehsil"
+                android:textColorHint="@color/secondary"
+                android:padding="20dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/Village"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/location_pin"
+                android:drawablePadding="20dp"
+                android:hint="Village"
+                android:textColorHint="@color/secondary"
+                android:padding="20dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/MobNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/phone"
+                android:drawablePadding="20dp"
+                android:hint="Mobile Number"
+                android:textColorHint="@color/secondary"
+                android:inputType="phone"
+                android:padding="20dp"
+                android:textColor="@color/black" />
+
+
+            <EditText
+                android:id="@+id/AshaWorker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/phone"
+                android:drawablePadding="20dp"
+                android:padding="20dp"
+                android:hint="Asha Worker Phone Number"
+                android:textColorHint="@color/secondary"
+                android:textColor="@color/black"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Next"
+                    android:backgroundTint="@color/buttonColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/show" />
+
+                <Button
+                    android:id="@+id/show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Show"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/next"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
