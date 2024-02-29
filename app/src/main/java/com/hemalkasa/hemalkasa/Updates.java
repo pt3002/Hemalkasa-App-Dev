@@ -98,7 +98,6 @@ public class Updates extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String NOTES = notes.getText().toString();
-                    // TODO Uncomments this lines
                     prescriptionTableViewModel.insertPrescription(new Prescription_Table(VISITING_DATE, POG_WEEKS, POG_DAYS, HB, NEXT_VISITING_DATE, DESIGNATION, NOTES));
                     setAlarm(NEXT_VISITING_DATE);
                     Toast.makeText(Updates.this, "Saved Successfully", Toast.LENGTH_SHORT).show();

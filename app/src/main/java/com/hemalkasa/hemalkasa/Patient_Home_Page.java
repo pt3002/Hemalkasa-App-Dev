@@ -38,6 +38,7 @@ public class Patient_Home_Page extends AppCompatActivity {
     // TODO Hardcoded password
     final static String password = "1234";
     public static final String TAG = "pratik";
+    private Button BackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class Patient_Home_Page extends AppCompatActivity {
         Notification = findViewById(R.id.Notification);
         Risk = findViewById(R.id.Risk);
         Emergency = findViewById(R.id.Emergency);
+        BackButton = findViewById(R.id.BackButton);
 
         Video.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,24 +83,15 @@ public class Patient_Home_Page extends AppCompatActivity {
         Emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "Emergency button clicked");
                 Intent intent = new Intent(Patient_Home_Page.this, Emergency_Contact.class);
                 startActivity(intent);
             }
         });
-
-        ActivityView = findViewById(R.id.ActivityView);
-        //noinspection AndroidLintClickableViewAccessibility
-        ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
+        BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSwipeRight() {
-                super.onSwipeRight();
-                Log.d(TAG, "RIGHTTTTT: ");
-            }
-
-            @Override
-            public void onSwipeLeft() {
-                super.onSwipeLeft();
-                Log.d(TAG, "LEFTTTTTTT: ");
+            public void onClick(View v) {
+                finish();
             }
         });
     }

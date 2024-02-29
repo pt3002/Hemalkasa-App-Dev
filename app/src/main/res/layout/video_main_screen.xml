@@ -5,7 +5,7 @@
     android:id="@+id/ActivityView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/patient_slider_background"
+    android:background="@color/background_all_pages"
     tools:context=".Video_MainScreen">
 
     <TextView
@@ -53,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ellipse1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -70,6 +71,7 @@
         android:layout_height="0dp"
         android:background="#00000000"
         android:text="Back"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="@+id/BackButtonImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

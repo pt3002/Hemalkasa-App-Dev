@@ -30,6 +30,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:text="Hemalkasa Doctors"
+                android:textColor="@color/secondary"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/registrationPage"
+                app:layout_constraintStart_toEndOf="@+id/appLogo"
+                app:layout_constraintTop_toBottomOf="@+id/appLogo" />
+
+            >>>>>>> 776bc3e6aa8833159552506c67e5044c5577fb09
+
             <Button
                 android:id="@+id/registrationPage"
                 android:layout_width="match_parent"
@@ -39,8 +55,8 @@
                 android:backgroundTint="@color/buttonColor"
                 android:text="Edit Profile"
                 app:layout_constraintEnd_toEndOf="@+id/addMedicinePage"
-                app:layout_constraintStart_toEndOf="@+id/appLogo"
-                app:layout_constraintTop_toBottomOf="@+id/appLogo" />
+                app:layout_constraintStart_toEndOf="@+id/welcome"
+                app:layout_constraintTop_toBottomOf="@+id/welcome" />
 
             <Button
                 android:id="@+id/addMedicinePage"

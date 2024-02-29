@@ -6,7 +6,7 @@
     android:id="@+id/ActivityView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/patient_slider_background"
+    android:background="@color/background_all_pages"
     android:orientation="vertical"
     tools:context=".Emergency_Contact">
 

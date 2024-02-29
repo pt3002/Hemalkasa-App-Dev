@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,39 +38,42 @@ public class Summary extends AppCompatActivity {
     private List<Medicine_Table> medicineList = new ArrayList<>();
     private Medicine_Table_ViewModel medicineTableViewModel;
     private static final String TAG = "pratik";
-    private Random randomId=new Random();
-    private String Designation="",Notes="",NextVisitDate="";
+    private Random randomId = new Random();
+    private String Designation = "", Notes = "", NextVisitDate = "";
     ConstraintLayout ActivityView;
     // TODO Hardcoded password
     final static String password = "1234";
-    private TextView HIVStatus,HBsAgStatus,VDRLStatus,EDDStatus,VisitingDateStatus,PogWeeks,PogDays,HBReading,CheckPrescription;
-    private Button NextButton,BackButton;
+    private TextView HIVStatus, HBsAgStatus, VDRLStatus, EDDStatus, VisitingDateStatus, PogWeeks, PogDays, HBReading, CheckPrescription, EmptyList;
+    private Button NextButton, BackButton;
+    private ScrollView SummaryScrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.summary);
 
-        HIVStatus=findViewById(R.id.HIVStatus);
-        HBsAgStatus=findViewById(R.id.HBsAgStatus);
-        VDRLStatus=findViewById(R.id.VDRLStatus);
-        EDDStatus=findViewById(R.id.EDDStatus);
-        VisitingDateStatus=findViewById(R.id.VisitingDateStatus);
-        PogWeeks=findViewById(R.id.PogWeeks);
-        PogDays=findViewById(R.id.PogDays);
-        HBReading=findViewById(R.id.HBReading);
-        CheckPrescription=findViewById(R.id.CheckPrescription);
+        SummaryScrollView = findViewById(R.id.SummaryScrollView);
+        EmptyList = findViewById(R.id.EmptyList);
+        HIVStatus = findViewById(R.id.HIVStatus);
+        HBsAgStatus = findViewById(R.id.HBsAgStatus);
+        VDRLStatus = findViewById(R.id.VDRLStatus);
+        EDDStatus = findViewById(R.id.EDDStatus);
+        VisitingDateStatus = findViewById(R.id.VisitingDateStatus);
+        PogWeeks = findViewById(R.id.PogWeeks);
+        PogDays = findViewById(R.id.PogDays);
+        HBReading = findViewById(R.id.HBReading);
+        CheckPrescription = findViewById(R.id.CheckPrescription);
         NextButton = findViewById(R.id.NextButton);
         BackButton = findViewById(R.id.BackButton);
 
-        medicineTableViewModel=  ViewModelProviders.of(this).get(Medicine_Table_ViewModel.class);
+        medicineTableViewModel = ViewModelProviders.of(this).get(Medicine_Table_ViewModel.class);
 
         fetchSummary();
 
         CheckPrescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!Notes.isEmpty()) {
+                if (!NextVisitDate.isEmpty()) {
                     Intent intent = new Intent(Summary.this, Add_Medicines.class);
                     intent.putExtra("VISITING_DATE", VisitingDateStatus.getText());
                     intent.putExtra("POG_WEEKS", PogWeeks.getText());
@@ -79,8 +83,7 @@ public class Summary extends AppCompatActivity {
                     intent.putExtra("DESIGNATION", Designation);
                     intent.putExtra("NOTES", Notes);
                     startActivity(intent);
-                }
-                else{
+                } else {
                     Toast.makeText(Summary.this, "No Prescription Added Yet", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -126,15 +129,16 @@ public class Summary extends AppCompatActivity {
     }
 
     private void fetchSummary() {
-        Handler summaryHandler =new Handler();
+        Handler summaryHandler = new Handler();
 
-        Runnable runnable=new Runnable() {
+        Runnable runnable = new Runnable() {
             List<Prescription_Table> lastPrescription;
             List<PatientDetails> patientDetailsList;
+
             @Override
             public void run() {
 //                lastPrescription=prescriptionTableViewModel.getLastPrescription();
-                lastPrescription=Database.getInstance(Summary.this)
+                lastPrescription = Database.getInstance(Summary.this)
                         .prescriptionTableDao()
                         .getLastPrescription();
 
@@ -142,13 +146,13 @@ public class Summary extends AppCompatActivity {
                         .patientDetails_dao()
                         .getAllPatientDetails();
 
-                Log.d(TAG, "last Prescription: "+ lastPrescription.toString());
-                Log.d(TAG, "Detailssss "+ patientDetailsList.toString());
+                Log.d(TAG, "last Prescription: " + lastPrescription.toString());
+                Log.d(TAG, "Detailssss " + patientDetailsList.toString());
                 summaryHandler.post(new Runnable() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
-                        try{
+                        try {
                             HIVStatus.setText(patientDetailsList.get(0).getHiv());
                             HBsAgStatus.setText(patientDetailsList.get(0).getHsbag());
                             VDRLStatus.setText(patientDetailsList.get(0).getVdrl());
@@ -157,10 +161,14 @@ public class Summary extends AppCompatActivity {
                             PogWeeks.setText(lastPrescription.get(0).getPog_weeks());
                             PogDays.setText(lastPrescription.get(0).getPog_days());
                             HBReading.setText(lastPrescription.get(0).getHb());
-                            NextVisitDate=lastPrescription.get(0).getNext_visiting_date();
-                            Designation=lastPrescription.get(0).getDesignation();
-                            Notes=lastPrescription.get(0).getNotes();
-                        }catch (Exception e){
+                            NextVisitDate = lastPrescription.get(0).getNext_visiting_date();
+                            Designation = lastPrescription.get(0).getDesignation();
+                            Notes = lastPrescription.get(0).getNotes();
+                            if (!NextVisitDate.isEmpty()) {
+                                SummaryScrollView.setVisibility(View.VISIBLE);
+                                EmptyList.setVisibility(View.GONE);
+                            }
+                        } catch (Exception e) {
                             Log.d(TAG, e.getMessage());
                             Toast.makeText(Summary.this, "No Data Present", Toast.LENGTH_SHORT).show();
                         }
@@ -169,7 +177,7 @@ public class Summary extends AppCompatActivity {
             }
         };
 
-        Thread getSummaryThread=new Thread(runnable);
+        Thread getSummaryThread = new Thread(runnable);
         getSummaryThread.start();
     }
 

@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
 //            @Override
 //            public void onClick(View v) {
 //                Intent intent = new Intent(MainActivity.this, Slider_MainPage.class);
+//                Intent intent = new Intent(MainActivity.this, MainActivitySlider.class);
 //                startActivity(intent);
 //            }
 //        });

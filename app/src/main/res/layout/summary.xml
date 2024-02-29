@@ -5,7 +5,7 @@
     android:id="@+id/ActivityView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/patient_slider_background"
+    android:background="@color/background_all_pages"
     android:orientation="vertical"
     tools:context=".Summary">
 
@@ -23,259 +23,364 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/EmptyList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/Title">
+        android:text="No Summary Added Yet"
+        android:textAlignment="center"
+        android:textColor="@color/secondary"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/SummaryScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="10dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:layout_constraintBottom_toTopOf="@id/BackButtonImage">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="#889c4c">
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/Title">
 
             <TextView
-                android:id="@+id/HIVTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:text="HIV"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="Serological Results"
+                android:textColor="@color/secondary"
+                android:textSize="23sp"
+                android:textStyle="italic" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@color/exo_black_opacity_70"
+                app:cardCornerRadius="5dp">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:background="#889c4c"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/HIVTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="HIV"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/HIVStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="Negative"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@id/HBsAgStatus"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/HBsAgTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="HBsAg"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/HIVTitle" />
+
+                    <TextView
+                        android:id="@+id/HBsAgStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="Negative"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/HBsAgTitle"
+                        app:layout_constraintTop_toBottomOf="@id/HIVStatus" />
+
+
+                    <TextView
+                        android:id="@+id/VDRLTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
+                        android:gravity="center"
+                        android:text="VRDL"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/HBsAgStatus" />
+
+                    <TextView
+                        android:id="@+id/VDRLStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
+                        android:gravity="center"
+                        android:text="Negative"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@id/HBsAgStatus"
+                        app:layout_constraintTop_toBottomOf="@id/HBsAgStatus" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/HIVStatus"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:text="Negative"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@id/HBsAgStatus"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="USG Results"
+                android:textColor="@color/secondary"
+                android:textSize="23sp"
+                android:textStyle="italic" />
 
-
-            <TextView
-                android:id="@+id/HBsAgTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:gravity="center"
-                android:text="HBsAg"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/HIVTitle" />
-
-            <TextView
-                android:id="@+id/HBsAgStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:gravity="center"
-                android:text="Negative"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/HBsAgTitle"
-                app:layout_constraintTop_toBottomOf="@id/HIVStatus" />
-
-
-            <TextView
-                android:id="@+id/VDRLTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:gravity="center"
-                android:text="VRDL"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/HBsAgStatus" />
-
-            <TextView
-                android:id="@+id/VDRLStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Negative"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@id/HBsAgStatus"
-                app:layout_constraintTop_toBottomOf="@id/HBsAgStatus" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="15dp"
-            app:cardMaxElevation="20dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="5dp"
-            android:background="@color/lightTextBoxColor"
-            >
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#b74a45">
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@color/exo_black_opacity_70"
+                app:cardCornerRadius="5dp">
 
-                <TextView
-                    android:id="@+id/EDDTitle"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:background="#b74a45"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/EDDTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="EDD"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/EDDStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="DDth Month, Year"
+                        android:textColor="@color/secondary"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/VisitingDate"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/VisitingDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="Visiting Date"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/EDDTitle" />
+
+                    <TextView
+                        android:id="@+id/VisitingDateStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="DDth Month, Year"
+                        android:textColor="@color/secondary"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/VisitingDate"
+                        app:layout_constraintTop_toBottomOf="@id/EDDStatus" />
+
+                    <TextView
+                        android:id="@+id/PogWeeks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:text="00"
+                        android:textSize="20sp"
+                        android:textStyle="italic"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/VisitingDate" />
+
+                    <TextView
+                        android:id="@+id/weeks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:text="Weeks"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@id/PogWeeks"
+                        app:layout_constraintTop_toBottomOf="@id/VisitingDate" />
+
+                    <TextView
+                        android:id="@+id/hypen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:text="-"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@id/weeks"
+                        app:layout_constraintTop_toBottomOf="@id/VisitingDate" />
+
+                    <TextView
+                        android:id="@+id/PogDays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:text="00"
+                        android:textSize="20sp"
+                        android:textStyle="italic"
+                        app:layout_constraintStart_toEndOf="@id/hypen"
+                        app:layout_constraintTop_toBottomOf="@id/VisitingDate" />
+
+                    <TextView
+                        android:id="@+id/Days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:text="Days"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@id/PogDays"
+                        app:layout_constraintTop_toBottomOf="@id/VisitingDate" />
+
+                    <TextView
+                        android:id="@+id/HB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="HB"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/PogWeeks" />
+
+                    <TextView
+                        android:id="@+id/HBReading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="00"
+                        android:textSize="20sp"
+                        android:textStyle="italic"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/HB"
+                        app:layout_constraintTop_toBottomOf="@id/PogWeeks" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
+                android:text="" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@color/exo_black_opacity_70"
+                app:cardCornerRadius="5dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="EDD"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="7dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_margin="6dp"
+                    android:background="#306c54"
+                    android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/EDDStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="DDth Month, Year"
-                    android:textColor="@color/secondary"
-                    android:textSize="20sp"
-                    android:layout_marginTop="7dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/VisitingDate"/>
+                    <TextView
+                        android:id="@+id/CheckPrescription"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Check Prescription >>"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/VisitingDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Visiting Date"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/EDDTitle"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/VisitingDateStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="DDth Month, Year"
-                    android:textColor="@color/secondary"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@id/EDDStatus"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/VisitingDate"/>
+            </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/PogWeeks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XX"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
 
-                <TextView
-                    android:id="@+id/weeks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Weeks"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintStart_toEndOf="@id/PogWeeks"
-                    app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/hypen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintStart_toEndOf="@id/weeks"
-                    app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
-
-                <TextView
-                    android:id="@+id/PogDays"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="YY"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintStart_toEndOf="@id/hypen"
-                    app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
-
-                <TextView
-                    android:id="@+id/Days"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Days"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintStart_toEndOf="@id/PogDays"
-                    app:layout_constraintTop_toBottomOf="@id/VisitingDate"/>
-
-                <TextView
-                    android:id="@+id/HB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="HB"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="7dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/PogWeeks"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <TextView
-                    android:id="@+id/HBReading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ZZ"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="7dp"
-                    app:layout_constraintStart_toEndOf="@id/HB"
-                    app:layout_constraintTop_toBottomOf="@id/PogWeeks"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="#306c54">
-
-        <TextView
-            android:id="@+id/CheckPrescription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Check Presciption"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
     <ImageView
         android:id="@+id/BackButtonImage"
