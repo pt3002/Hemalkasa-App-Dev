@@ -273,20 +273,22 @@ public class Patient_Registration_Page1 extends Fragment {
                 getPatientDetailsHandler.post(new Runnable() {
                     @Override
                     public void run() {
-//                        Toast.makeText(getContext(), patientDetailsList.get(0).getFull_name(), Toast.LENGTH_SHORT).show();
                         try {
-                            HospRegNo.setText( patientDetailsList.get(0).getHospital_no());
-                            FullName.setText( patientDetailsList.get(0).getFull_name());
-                            MotherName.setText( patientDetailsList.get(0).getMother_name());
-                            DateOfBirth.setText( patientDetailsList.get(0).getDob());
-                            State.setText( patientDetailsList.get(0).getState());
-                            District.setText( patientDetailsList.get(0).getDistrict());
-                            Block.setText( patientDetailsList.get(0).getTehsil());
-                            Village.setText( patientDetailsList.get(0).getVillage());
-                            MobNo.setText( patientDetailsList.get(0).getPhone_no());
-                            AshaWorker.setText( patientDetailsList.get(0).getAsha_worker());
-
-//                            HospRegNo.setText( patientDetailsList.get(0).getBlood_group());
+                            if(patientDetailsList.get(0).getHospital_no().equals("HospitalNo")){
+                                Toast.makeText(getContext(), "Please Fill The Details", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                HospRegNo.setText(patientDetailsList.get(0).getHospital_no());
+                                FullName.setText(patientDetailsList.get(0).getFull_name());
+                                MotherName.setText(patientDetailsList.get(0).getMother_name());
+                                DateOfBirth.setText(patientDetailsList.get(0).getDob());
+                                State.setText(patientDetailsList.get(0).getState());
+                                District.setText(patientDetailsList.get(0).getDistrict());
+                                Block.setText(patientDetailsList.get(0).getTehsil());
+                                Village.setText(patientDetailsList.get(0).getVillage());
+                                MobNo.setText(patientDetailsList.get(0).getPhone_no());
+                                AshaWorker.setText(patientDetailsList.get(0).getAsha_worker());
+                            }
                             DefaultBloodGroup=patientDetailsList.get(0).getBlood_group();
                             ArrayAdapter<CharSequence> bloodGroupAdapter = ArrayAdapter.createFromResource(getContext(), R.array.bloodGroup, android.R.layout.simple_spinner_item);
                             int spinnerPosition = bloodGroupAdapter.getPosition(DefaultBloodGroup);

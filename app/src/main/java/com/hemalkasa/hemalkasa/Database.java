@@ -75,6 +75,7 @@ public abstract class Database extends RoomDatabase{
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PET",false));
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PIH",false));
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("PREV.LSCS",false));
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("No Risk Factor Present",true));
             return null;
         }
 
