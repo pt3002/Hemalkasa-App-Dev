@@ -34,7 +34,7 @@
             android:name=".RiskFactor"
             android:exported="false" />
         <activity
-            android:name=".MainActivitySlider"
+            android:name=".Slider_MainPage"
             android:exported="false" />
         <activity
             android:name=".Emergency_Contact"

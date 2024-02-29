@@ -9,7 +9,7 @@ public class SliderScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mainscreen);
+        setContentView(R.layout.slider_mainpage);
     }
 
 }

@@ -30,14 +30,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--    <TextView-->
-            <!--        android:id="@+id/welcome"-->
-            <!--        android:layout_width="match_parent"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:textColor="@color/secondary"-->
-            <!--        android:text="Welcome"-->
-            <!--        android:textSize="30sp"/>-->
-
             <Button
                 android:id="@+id/registrationPage"
                 android:layout_width="match_parent"
@@ -58,7 +50,7 @@
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/buttonColor"
                 android:text="Prescription"
-                app:layout_constraintEnd_toEndOf="@+id/history"
+                app:layout_constraintEnd_toEndOf="@+id/registrationPage"
                 app:layout_constraintStart_toEndOf="@+id/registrationPage"
                 app:layout_constraintTop_toBottomOf="@+id/registrationPage" />
 
@@ -70,21 +62,9 @@
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/buttonColor"
                 android:text="Past History"
-                app:layout_constraintEnd_toEndOf="@+id/video"
+                app:layout_constraintEnd_toEndOf="@+id/addMedicinePage"
                 app:layout_constraintStart_toEndOf="@+id/addMedicinePage"
                 app:layout_constraintTop_toBottomOf="@+id/addMedicinePage" />
-
-            <Button
-                android:id="@+id/video"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="15dp"
-                android:backgroundTint="@color/buttonColor"
-                android:text="View Videos"
-                app:layout_constraintEnd_toEndOf="@+id/riskFactors"
-                app:layout_constraintStart_toEndOf="@+id/history"
-                app:layout_constraintTop_toBottomOf="@+id/history" />
 
             <Button
                 android:id="@+id/riskFactors"
@@ -95,17 +75,17 @@
                 android:backgroundTint="@color/buttonColor"
                 android:text="Risk Factor"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/video"
-                app:layout_constraintTop_toBottomOf="@+id/video" />
+                app:layout_constraintStart_toEndOf="@+id/history"
+                app:layout_constraintTop_toBottomOf="@+id/history" />
 
             <Button
-                android:id="@+id/slider"
+                android:id="@+id/VideoPath"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/buttonColor"
-                android:text="View Slider Page"
+                android:text="View Video Folder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/riskFactors"
                 app:layout_constraintTop_toBottomOf="@+id/riskFactors" />

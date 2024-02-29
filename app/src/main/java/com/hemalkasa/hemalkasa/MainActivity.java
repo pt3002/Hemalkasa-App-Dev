@@ -23,13 +23,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = "pratik";
-    Button addMedicinePage,registrationPage, videoPage,historyPage,riskPage, sliderPage;
+    Button addMedicinePage,registrationPage,historyPage,riskPage, videoPath,sliderPage;
     TextView welcome;
     private Prescription_Table_ViewModel prescriptionTableViewModel;
     private PatientDetails_ViewModel patientDetailsViewModel;
@@ -43,11 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
         registrationPage=findViewById(R.id.registrationPage);
         addMedicinePage=findViewById(R.id.addMedicinePage);
-        videoPage =findViewById(R.id.video);
+        videoPath =findViewById(R.id.VideoPath);
         historyPage =findViewById(R.id.history);
         riskPage =findViewById(R.id.riskFactors);
-        sliderPage = findViewById(R.id.slider);
-//        welcome =findViewById(R.id.welcome);
+//        sliderPage = findViewById(R.id.slider);
 
         checkAlarmPermission();
 
@@ -75,11 +75,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        videoPage.setOnClickListener(new View.OnClickListener() {
+        videoPath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,Video_MainScreen.class);
-                startActivity(intent);
+                File path=getExternalFilesDir("Videos");
+                Log.d(TAG, "Video Directory: " + path.getAbsolutePath());
+                Toast.makeText(MainActivity.this, "Video Directory: " + path.getAbsolutePath(), Toast.LENGTH_LONG).show();
+//                Intent intent=new Intent(MainActivity.this,Video_MainScreen.class);
+//                startActivity(intent);
             }
         });
 
@@ -92,13 +95,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sliderPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivitySlider.class);
-                startActivity(intent);
-            }
-        });
+//        sliderPage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, Slider_MainPage.class);
+//                startActivity(intent);
+//            }
+//        });
 
         prescriptionTableViewModel=  ViewModelProviders.of(this).get(Prescription_Table_ViewModel.class);
         patientDetailsViewModel=  ViewModelProviders.of(this).get(PatientDetails_ViewModel.class);
@@ -200,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.ChangeToPatient:
-                Intent intent = new Intent(MainActivity.this, Patient_Home_Page.class);
+                Intent intent = new Intent(MainActivity.this, Video_MainScreen.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 MainActivity.this.finish();
