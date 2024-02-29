@@ -216,28 +216,6 @@ public class Patient_Registration_Page2 extends Fragment {
                     startActivity(mainActivity);
                     getActivity().finish();
 
-//                    Intent intent = new Intent(getContext(), Notes.class);
-//                    intent.putExtra("fullname", fullname);
-//                    intent.putExtra("mothername", mothername);
-//                    intent.putExtra("hospRegNo", hospRegNo);
-//                    intent.putExtra("dateofbirth", dateofbirth);
-//                    intent.putExtra("bloodgroup", bloodgroup);
-//                    intent.putExtra("state", state);
-//                    intent.putExtra("district", district);
-//                    intent.putExtra("block", block);
-//                    intent.putExtra("village", village);
-//                    intent.putExtra("mobno", mobno);
-//                    intent.putExtra("ashaworker", ashaworker);
-//                    intent.putExtra("edd", edd);
-//                    intent.putExtra("lmp", lmp);
-//                    intent.putExtra("pogWeeks", pogWeeks);
-//                    intent.putExtra("pogDays", pogDays);
-//                    intent.putExtra("hiv", hiv);
-//                    intent.putExtra("hbsag", hbsag);
-//                    intent.putExtra("vdrl", vdrl);
-//                    intent.putExtra("gravida", gravida);
-//                    intent.putExtra("parity", parity);
-//                    startActivity(intent);
                 }
             }
         });
@@ -310,25 +288,25 @@ public class Patient_Registration_Page2 extends Fragment {
                         .patientDetails_dao()
                         .getAllPatientDetails();
 
-//                Log.d(TAG, "run: " + patientDetailsList.toString());
                 getPatientDetailsHandler.post(new Runnable() {
                     @Override
                     public void run() {
-//                        Toast.makeText(getContext(), patientDetailsList.get(0).getFull_name(), Toast.LENGTH_SHORT).show();
                         try {
-                            EDD.setText(patientDetailsList.get(0).getEdd());
-                            POGWeeks.setText(patientDetailsList.get(0).getPog_weeks());
-                            POGDays.setText(patientDetailsList.get(0).getPog_days());
-                            Gravida.setText(patientDetailsList.get(0).getGravida());
-                            Parity.setText(patientDetailsList.get(0).getParity());
-                            LMP.setText(patientDetailsList.get(0).getLmp());
-
+                            if(patientDetailsList.get(0).getEdd().equals("EDD")){
+                                Toast.makeText(getContext(), "Please Fill The Details", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                EDD.setText(patientDetailsList.get(0).getEdd());
+                                POGWeeks.setText(patientDetailsList.get(0).getPog_weeks());
+                                POGDays.setText(patientDetailsList.get(0).getPog_days());
+                                Gravida.setText(patientDetailsList.get(0).getGravida());
+                                Parity.setText(patientDetailsList.get(0).getParity());
+                                LMP.setText(patientDetailsList.get(0).getLmp());
+                            }
                             ArrayAdapter<CharSequence> testResultAdapter = ArrayAdapter.createFromResource(getContext(), R.array.testResult, android.R.layout.simple_spinner_item);
                             DefaultHIV = patientDetailsList.get(0).getHiv();
                             int HIVSpinnerPosition = testResultAdapter.getPosition(DefaultHIV);
                             HIVSpinner.setSelection(HIVSpinnerPosition);
-//                            Log.d(TAG, "HIV33333333333: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
-
 
                             DefaultHBSAG = patientDetailsList.get(0).getHsbag();
                             int HBSAGSpinnerPosition = testResultAdapter.getPosition(DefaultHBSAG);

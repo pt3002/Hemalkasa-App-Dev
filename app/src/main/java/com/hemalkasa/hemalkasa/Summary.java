@@ -33,29 +33,75 @@ import java.util.List;
 import java.util.Random;
 
 public class Summary extends AppCompatActivity {
-    RecyclerView medicineRecyclerView;
     MedicineAdapter medicineAdapter;
     private List<Medicine_Table> medicineList = new ArrayList<>();
     private Medicine_Table_ViewModel medicineTableViewModel;
     private static final String TAG = "pratik";
-    EditText POGWeeks,POGDays,HB,EDD,VisitDate,NextVisitDate;
-    Button Remarks;
     private Random randomId=new Random();
-    String DESIGNATION="",NOTES="";
+    private String Designation="",Notes="",NextVisitDate="";
     ConstraintLayout ActivityView;
     // TODO Hardcoded password
     final static String password = "1234";
-
+    private TextView HIVStatus,HBsAgStatus,VDRLStatus,EDDStatus,VisitingDateStatus,PogWeeks,PogDays,HBReading,CheckPrescription;
+    private Button NextButton,BackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.summary);
 
+        HIVStatus=findViewById(R.id.HIVStatus);
+        HBsAgStatus=findViewById(R.id.HBsAgStatus);
+        VDRLStatus=findViewById(R.id.VDRLStatus);
+        EDDStatus=findViewById(R.id.EDDStatus);
+        VisitingDateStatus=findViewById(R.id.VisitingDateStatus);
+        PogWeeks=findViewById(R.id.PogWeeks);
+        PogDays=findViewById(R.id.PogDays);
+        HBReading=findViewById(R.id.HBReading);
+        CheckPrescription=findViewById(R.id.CheckPrescription);
+        NextButton = findViewById(R.id.NextButton);
+        BackButton = findViewById(R.id.BackButton);
 
         medicineTableViewModel=  ViewModelProviders.of(this).get(Medicine_Table_ViewModel.class);
 
         fetchSummary();
+
+        CheckPrescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!Notes.isEmpty()) {
+                    Intent intent = new Intent(Summary.this, Add_Medicines.class);
+                    intent.putExtra("VISITING_DATE", VisitingDateStatus.getText());
+                    intent.putExtra("POG_WEEKS", PogWeeks.getText());
+                    intent.putExtra("POG_DAYS", PogDays.getText());
+                    intent.putExtra("HB", HBReading.getText());
+                    intent.putExtra("NEXT_VISITING_DATE", NextVisitDate);
+                    intent.putExtra("DESIGNATION", Designation);
+                    intent.putExtra("NOTES", Notes);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(Summary.this, "No Prescription Added Yet", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Summary.this, RiskFactor.class);
+                startActivity(intent);
+            }
+        });
+
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+//                Intent intent = new Intent(Summary.this, Trimester.class);
+//                startActivity(intent);
+            }
+        });
 
         ActivityView = findViewById(R.id.ActivityView);
         //noinspection AndroidLintClickableViewAccessibility
@@ -96,21 +142,24 @@ public class Summary extends AppCompatActivity {
                         .patientDetails_dao()
                         .getAllPatientDetails();
 
-                Log.d(TAG, "run: "+ lastPrescription.toString());
+                Log.d(TAG, "last Prescription: "+ lastPrescription.toString());
+                Log.d(TAG, "Detailssss "+ patientDetailsList.toString());
                 summaryHandler.post(new Runnable() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
                         try{
-                            EDD.setText("EDD: " + patientDetailsList.get(0).getEdd());
-                            VisitDate.setText("Last Visit: " + lastPrescription.get(0).getVisiting_date());
-                            POGWeeks.setText("POG Weeks: " + lastPrescription.get(0).getPog_weeks());
-                            POGDays.setText("POG Days: " + lastPrescription.get(0).getPog_days());
-                            HB.setText("HB: " + lastPrescription.get(0).getHb());
-                            NextVisitDate.setText("Next Visit: " + lastPrescription.get(0).getNext_visiting_date());
-                            setAdapter(lastPrescription.get(0).getVisiting_date());
-                            DESIGNATION=lastPrescription.get(0).getDesignation();
-                            NOTES=lastPrescription.get(0).getNotes();
+                            HIVStatus.setText(patientDetailsList.get(0).getHiv());
+                            HBsAgStatus.setText(patientDetailsList.get(0).getHsbag());
+                            VDRLStatus.setText(patientDetailsList.get(0).getVdrl());
+                            EDDStatus.setText(patientDetailsList.get(0).getEdd());
+                            VisitingDateStatus.setText(lastPrescription.get(0).getVisiting_date());
+                            PogWeeks.setText(lastPrescription.get(0).getPog_weeks());
+                            PogDays.setText(lastPrescription.get(0).getPog_days());
+                            HBReading.setText(lastPrescription.get(0).getHb());
+                            NextVisitDate=lastPrescription.get(0).getNext_visiting_date();
+                            Designation=lastPrescription.get(0).getDesignation();
+                            Notes=lastPrescription.get(0).getNotes();
                         }catch (Exception e){
                             Log.d(TAG, e.getMessage());
                             Toast.makeText(Summary.this, "No Data Present", Toast.LENGTH_SHORT).show();
