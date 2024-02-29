@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Patient_Registration_Page2"
-    android:background="@drawable/patient_slider_background"
+    android:background="@color/registration_page_color"
     >
 
     <ScrollView
