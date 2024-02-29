@@ -81,6 +81,7 @@ public class Patient_Home_Page extends AppCompatActivity {
         Emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "Emergency button clicked");
                 Intent intent = new Intent(Patient_Home_Page.this, Emergency_Contact.class);
                 startActivity(intent);
             }
