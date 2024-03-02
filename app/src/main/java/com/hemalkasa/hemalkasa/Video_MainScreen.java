@@ -10,8 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.ActivityOptions;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -38,6 +42,7 @@ public class Video_MainScreen extends AppCompatActivity {
     ConstraintLayout ActivityView;
     private Button NextButton,BackButton;
     private boolean pendingTransaction = true;
+    public static final String CHANNEL_ID = "Hemalkasa";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class Video_MainScreen extends AppCompatActivity {
         EmptyList=findViewById(R.id.EmptyList);
         NextButton = findViewById(R.id.NextButton);
         BackButton = findViewById(R.id.BackButton);
+
+        createNotificationChannel();
 
         if(permissonGranted){
             checkPermission();
@@ -224,6 +231,29 @@ public class Video_MainScreen extends AppCompatActivity {
                 break;
         }
     }
+
+    private void createNotificationChannel() {
+        Log.d(TAG, "Notification Channel");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Log.d(TAG, "Inside IFFF");
+            CharSequence name = "Visit Reminders";
+            String description = "Reminders about next upcoming visit";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            channel.enableVibration(true);
+            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+        else{
+            Log.d(TAG, "Denined  " +  String.valueOf(Build.VERSION.SDK_INT));
+        }
+        Log.d(TAG, "Notification Channel Complete");
+    }
+
 
     @Override
     protected void onPause() {

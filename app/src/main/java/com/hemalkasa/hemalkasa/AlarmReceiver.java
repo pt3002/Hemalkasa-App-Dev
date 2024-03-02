@@ -76,7 +76,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 Log.d(TAG, "Music Stop   " +  String.valueOf(Calendar.getInstance().getTimeInMillis()));
                 mediaPlayer.stop();
             }
-        }, 10000);
+        }, 15000);
     }
 
 }
