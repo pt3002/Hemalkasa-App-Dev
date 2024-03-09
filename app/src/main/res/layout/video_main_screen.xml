@@ -8,11 +8,51 @@
     android:background="@color/background_all_pages"
     tools:context=".Video_MainScreen">
 
+    <ImageView
+        android:id="@+id/lokbiradriHospital"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/transparent_background"
+        android:scaleType="fitCenter"
+        android:src="@drawable/lokbiradri_hospital"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Next Visit Date"
+        android:textColor="@color/buttonColor"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lokbiradriHospital" />
+
+    <TextView
+        android:id="@+id/visitDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="No Date Added"
+        android:textColor="@color/buttonColor"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
     <TextView
         android:id="@+id/Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:text="Videos"
         android:textAlignment="center"
         android:textColor="@color/secondary"
@@ -20,16 +60,16 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/visitDate"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/VideoRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/NextRelativeLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Title"
-        app:layout_constraintBottom_toTopOf="@+id/BackButtonImage"
-        android:paddingBottom="10dp"
         tools:listitem="@layout/video_card_item" />
 
     <TextView
@@ -42,50 +82,62 @@
         android:textSize="30dp"
         android:textStyle="bold"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/Title"/>
 
-    <ImageView
-        android:id="@+id/BackButtonImage"
+    <RelativeLayout
+        android:id="@+id/BackRelativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ellipse1"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageView
-        android:id="@+id/NextButtonImage"
+        <ImageView
+            android:id="@+id/BackButtonImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ellipse1" />
+
+        <Button
+            android:id="@+id/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/BackButtonImage"
+            android:layout_alignTop="@id/BackButtonImage"
+            android:layout_alignEnd="@id/BackButtonImage"
+            android:layout_alignBottom="@id/BackButtonImage"
+            android:layout_alignParentTop="true"
+            android:background="#00000000"
+            android:text="Back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/NextRelativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ellipse2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <Button
-        android:id="@+id/BackButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#00000000"
-        android:text="Back"
-        android:visibility="invisible"
-        app:layout_constraintTop_toTopOf="@+id/BackButtonImage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/BackButtonImage"/>
+        <ImageView
+            android:id="@+id/NextButtonImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ellipse2" />
 
-    <Button
-        android:id="@+id/NextButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#00000000"
-        android:text="Next"
-        app:layout_constraintTop_toTopOf="@id/NextButtonImage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/NextButtonImage"
-        app:layout_constraintStart_toStartOf="@id/NextButtonImage"/>
+        <Button
+            android:id="@+id/NextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/NextButtonImage"
+            android:layout_alignTop="@id/NextButtonImage"
+            android:layout_alignEnd="@id/NextButtonImage"
+            android:layout_alignBottom="@id/NextButtonImage"
+            android:layout_alignParentTop="true"
+            android:background="#00000000"
+            android:text="Next" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

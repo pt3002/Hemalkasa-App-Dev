@@ -39,54 +39,53 @@ public class Trimester extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trimester);
 
-        //Log.d(TAG, "before set trimester: ");
-        trimesterNumber = findViewById(R.id.TrimesterNumberHeading);
-        trimesterImage = findViewById(R.id.titleImage);
-        NextButton = findViewById(R.id.NextButton);
-        BackButton = findViewById(R.id.BackButton);
+        try {
+            trimesterNumber = findViewById(R.id.TrimesterNumberHeading);
+            trimesterImage = findViewById(R.id.titleImage);
+            NextButton = findViewById(R.id.NextButton);
+            BackButton = findViewById(R.id.BackButton);
 
-        setTrimester();
+            setTrimester();
 
-        NextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Trimester.this, Summary.class);
-                startActivity(intent);
-            }
-        });
+            NextButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Trimester.this, Summary.class);
+                    startActivity(intent);
+                }
+            });
 
-        BackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-//                Intent intent = new Intent(Trimester.this, Video_MainScreen.class);
-//                startActivity(intent);
-            }
-        });
+            BackButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 
-        ActivityView = findViewById(R.id.ActivityView);
-        //noinspection AndroidLintClickableViewAccessibility
-        ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
-            @Override
-            public void onSwipeRight() {
-                super.onSwipeRight();
-                Log.d(TAG, "RIGHTTTTT: ");
-                Intent intent = new Intent(Trimester.this, Video_MainScreen.class);
-                startActivity(intent);
-//                finish();
-//                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            }
+            ActivityView = findViewById(R.id.ActivityView);
+            //noinspection AndroidLintClickableViewAccessibility
+            ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
+                @Override
+                public void onSwipeRight() {
+                    super.onSwipeRight();
+                    Log.d(TAG, "RIGHTTTTT: ");
+                    Intent intent = new Intent(Trimester.this, Video_MainScreen.class);
+                    startActivity(intent);
+                }
 
-            @Override
-            public void onSwipeLeft() {
-                super.onSwipeLeft();
-                Log.d(TAG, "LEFTTTTTTT: ");
-                Intent intent = new Intent(Trimester.this, Summary.class);
-                startActivity(intent);
-//                finish();
-//                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-            }
-        });
+                @Override
+                public void onSwipeLeft() {
+                    super.onSwipeLeft();
+                    Log.d(TAG, "LEFTTTTTTT: ");
+                    Intent intent = new Intent(Trimester.this, Summary.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        catch (Exception e){
+            // Todo Remove this toast
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setTrimester() {
@@ -118,7 +117,6 @@ public class Trimester extends AppCompatActivity {
                                 trimesterNumber.setText(R.string.third_trimester);
                                 trimesterImage.setImageResource(R.drawable.trimester_3_min);
                             }
-
                         }catch (Exception e){
                             Log.d(TAG, e.getMessage());
                             Toast.makeText(Trimester.this, "No Trimester Set Yet", Toast.LENGTH_SHORT).show();

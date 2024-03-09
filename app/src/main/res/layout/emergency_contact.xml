@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/BackButtonImage">
+        app:layout_constraintBottom_toTopOf="@+id/BackRelativeLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -83,31 +83,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ContactPHC"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:src="@drawable/phone_icon" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:text="PHC"
-                        android:textColor="@color/black"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/Contact108"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -164,43 +139,57 @@
     </ScrollView>
 
 
-    <ImageView
-        android:id="@+id/BackButtonImage"
+    <RelativeLayout
+        android:id="@+id/BackRelativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ellipse1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageView
-        android:id="@+id/NextButtonImage"
+        <ImageView
+            android:id="@+id/BackButtonImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ellipse1" />
+
+        <Button
+            android:id="@+id/BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/BackButtonImage"
+            android:layout_alignTop="@id/BackButtonImage"
+            android:layout_alignEnd="@id/BackButtonImage"
+            android:layout_alignBottom="@id/BackButtonImage"
+            android:layout_alignParentTop="true"
+            android:background="#00000000"
+            android:text="Back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/NextRelativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ellipse2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" >
 
-    <Button
-        android:id="@+id/BackButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#00000000"
-        android:text="Back"
-        app:layout_constraintTop_toTopOf="@+id/BackButtonImage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/BackButtonImage"/>
+        <ImageView
+            android:id="@+id/NextButtonImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ellipse2"/>
 
-    <Button
-        android:id="@+id/NextButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#00000000"
-        android:text="Next"
-        app:layout_constraintTop_toTopOf="@id/NextButtonImage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/NextButtonImage"
-        app:layout_constraintStart_toStartOf="@id/NextButtonImage"/>
+        <Button
+            android:id="@+id/NextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="Next"
+            android:layout_alignParentTop="true"
+            android:layout_alignTop="@id/NextButtonImage"
+            android:layout_alignBottom="@id/NextButtonImage"
+            android:layout_alignStart="@id/NextButtonImage"
+            android:layout_alignEnd="@id/NextButtonImage"/>
+    </RelativeLayout>
 
 
 

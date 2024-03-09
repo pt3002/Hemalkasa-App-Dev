@@ -30,7 +30,7 @@ import java.util.List;
 
 public class Emergency_Contact extends AppCompatActivity {
     public static final String TAG="pratik";
-    LinearLayout ContactAshaWorker,ContactPHC,Contact108,ContactLBPH;
+    LinearLayout ContactAshaWorker,Contact108,ContactLBPH;
     // TODO Change the phone number
     private static final String _108="108",PHC="8275957192",LBPH="7588772819";
     private String AshaWorker="";
@@ -48,7 +48,6 @@ public class Emergency_Contact extends AppCompatActivity {
         setContentView(R.layout.emergency_contact);
         ContactAshaWorker=findViewById(R.id.ContactAshaWorker);
         Contact108=findViewById(R.id.Contact108);
-        ContactPHC=findViewById(R.id.ContactPHC);
         ContactLBPH=findViewById(R.id.ContactLBPH);
         NextButton = findViewById(R.id.NextButton);
         BackButton = findViewById(R.id.BackButton);
@@ -67,13 +66,6 @@ public class Emergency_Contact extends AppCompatActivity {
             public void onClick(View v) {
                 requestRunTimePermission();
                 makePhoneCall(_108);
-            }
-        });
-        ContactPHC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestRunTimePermission();
-                makePhoneCall(PHC);
             }
         });
         ContactLBPH.setOnClickListener(new View.OnClickListener() {

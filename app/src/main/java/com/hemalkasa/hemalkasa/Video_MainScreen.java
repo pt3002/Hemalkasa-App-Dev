@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -18,6 +19,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +31,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Video_MainScreen extends AppCompatActivity {
 
@@ -38,7 +41,7 @@ public class Video_MainScreen extends AppCompatActivity {
     RecyclerView videoRecycler;
     ArrayList<Video_ModalClass> videoArray;
     Video_Adapter videoAdapter;
-    TextView EmptyList;
+    TextView EmptyList,visitDate;
     ConstraintLayout ActivityView;
     private Button NextButton,BackButton;
     private boolean pendingTransaction = true;
@@ -49,12 +52,13 @@ public class Video_MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_main_screen);
         EmptyList=findViewById(R.id.EmptyList);
+        visitDate=findViewById(R.id.visitDate);
         NextButton = findViewById(R.id.NextButton);
         BackButton = findViewById(R.id.BackButton);
 
         createNotificationChannel();
 
-        if(permissonGranted){
+        if(permissonGranted) {
             checkPermission();
         }
         videoArray=new ArrayList<Video_ModalClass>();
@@ -62,29 +66,24 @@ public class Video_MainScreen extends AppCompatActivity {
         videoRecycler.setHasFixedSize(true);
         videoRecycler.setLayoutManager(new LinearLayoutManager(Video_MainScreen.this));
         getVideos();
-
+        setNextVisitDate();
 
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: ");
+                try {
 //                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_left, R.anim.slide_to_right );
-                Intent intent = new Intent(Video_MainScreen.this, Trimester.class);
+                    Intent intent = new Intent(Video_MainScreen.this, Trimester.class);
 //                pendingTransaction = false;
-                startActivity(intent);
+                    startActivity(intent);
 //                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
 //                overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
 //                startActivity(intent, options.toBundle());
-            }
-        });
-
-        BackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_right, R.anim.slide_to_left);
-                Intent intent = new Intent(Video_MainScreen.this, Emergency_Contact.class);
-                startActivity(intent);
-//                startActivity(intent, options.toBundle());
+                }
+                catch (Exception e){
+                    // TODO remove this toast
+                    Toast.makeText(Video_MainScreen.this, "Cannot go to Next" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -94,7 +93,6 @@ public class Video_MainScreen extends AppCompatActivity {
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
-                Log.d(TAG, "RIGHTTTTT: ");
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_right, R.anim.slide_to_left );
                 Intent intent = new Intent(Video_MainScreen.this, Emergency_Contact.class);
                 startActivity(intent, options.toBundle());
@@ -103,7 +101,6 @@ public class Video_MainScreen extends AppCompatActivity {
             @Override
             public void onSwipeLeft() {
                 super.onSwipeLeft();
-                Log.d(TAG, "LEFTTTTTTT: ");
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_left, R.anim.slide_to_right);
                 Intent intent = new Intent(Video_MainScreen.this, Trimester.class);
                 startActivity(intent, options.toBundle());
@@ -112,29 +109,65 @@ public class Video_MainScreen extends AppCompatActivity {
     }
 
     private void getVideos() {
-        videoArray.clear();
-        File path=getExternalFilesDir("Videos");
-        Log.d(TAG, "Path Directory " + path.getAbsolutePath());
-        if(!path.exists()){
-            path.mkdir();
-        }
-        File[] files=path.listFiles();
-        if(files!=null){
-            for(File file:files){
-                if(file.getPath().endsWith(".mp4")){
-                    videoArray.add(new Video_ModalClass(file.getPath(),file.getName()));
+        try {
+            videoArray.clear();
+            File path = getExternalFilesDir("Videos");
+            Log.d(TAG, "Path Directory " + path.getAbsolutePath());
+            if (!path.exists()) {
+                path.mkdir();
+            }
+            File[] files = path.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.getPath().endsWith(".mp4")) {
+                        videoArray.add(new Video_ModalClass(file.getPath(), file.getName()));
+                    }
                 }
             }
-        }
 
-        videoAdapter=new Video_Adapter(Video_MainScreen.this, videoArray);
-        videoRecycler.setAdapter(videoAdapter);
-        if(videoArray.isEmpty()){
-            EmptyList.setVisibility(View.VISIBLE);
+            videoAdapter = new Video_Adapter(Video_MainScreen.this, videoArray);
+            videoRecycler.setAdapter(videoAdapter);
+            if (videoArray.isEmpty()) {
+                EmptyList.setVisibility(View.VISIBLE);
+            } else {
+                EmptyList.setVisibility(View.GONE);
+            }
         }
-        else{
-            EmptyList.setVisibility(View.GONE);
+        catch (Exception e){
+            // TODO remove this toast
+            Toast.makeText(this, "Error Fetching Videos" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void setNextVisitDate() {
+        Handler summaryHandler =new Handler();
+
+        Runnable runnable=new Runnable() {
+            List<Prescription_Table> lastPrescription;
+            @Override
+            public void run() {
+                lastPrescription=Database.getInstance(Video_MainScreen.this)
+                        .prescriptionTableDao()
+                        .getLastPrescription();
+
+                summaryHandler.post(new Runnable() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void run() {
+                        try{
+                            Log.d(TAG, "run: " + lastPrescription.get(0).getNext_visiting_date());
+                            visitDate.setText(lastPrescription.get(0).getNext_visiting_date());
+                        }catch (Exception e){
+                            Log.d(TAG, e.getMessage());
+                            Toast.makeText(Video_MainScreen.this, "No Data Present", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        };
+
+        Thread getSummaryThread=new Thread(runnable);
+        getSummaryThread.start();
     }
 
     private String readFromFile(File file) {
@@ -233,9 +266,7 @@ public class Video_MainScreen extends AppCompatActivity {
     }
 
     private void createNotificationChannel() {
-        Log.d(TAG, "Notification Channel");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Log.d(TAG, "Inside IFFF");
             CharSequence name = "Visit Reminders";
             String description = "Reminders about next upcoming visit";
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -251,7 +282,6 @@ public class Video_MainScreen extends AppCompatActivity {
         else{
             Log.d(TAG, "Denined  " +  String.valueOf(Build.VERSION.SDK_INT));
         }
-        Log.d(TAG, "Notification Channel Complete");
     }
 
 
@@ -267,6 +297,7 @@ public class Video_MainScreen extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getVideos();
+        setNextVisitDate();
 //        pendingTransaction = true;
     }
 }

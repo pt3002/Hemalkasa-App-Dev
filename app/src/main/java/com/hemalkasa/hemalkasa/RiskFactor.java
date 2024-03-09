@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class RiskFactor extends AppCompatActivity {
     ConstraintLayout ActivityView;
     private ImageView NextButtonImage,BackButtonImage;
     private Button NextButton,BackButton;
+    private RelativeLayout BackRelativeLayout,NextRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class RiskFactor extends AppCompatActivity {
         BackButton = findViewById(R.id.BackButton);
         NextButtonImage = findViewById(R.id.NextButtonImage);
         BackButtonImage = findViewById(R.id.BackButtonImage);
+        BackRelativeLayout = findViewById(R.id.BackRelativeLayout);
+        NextRelativeLayout = findViewById(R.id.NextRelativeLayout);
 
         Intent riskIntent=getIntent();
         if(riskIntent.hasExtra("Access")) {
@@ -46,6 +50,8 @@ public class RiskFactor extends AppCompatActivity {
             BackButton.setVisibility(View.GONE);
             NextButtonImage.setVisibility(View.GONE);
             BackButtonImage.setVisibility(View.GONE);
+            NextRelativeLayout.setVisibility(View.GONE);
+            BackRelativeLayout.setVisibility(View.GONE);
             riskFactorAdaptor = new RiskFactorAdaptor(true);
             riskFactorTableViewModel = ViewModelProviders.of(this).get(Risk_Factor_Table_ViewModel.class);
             riskFactorTableViewModel.getAllRiskFactors(riskFactorAdaptor);

@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.List;
 
-@androidx.room.Database(entities = {PatientDetails.class,Medicine_Table.class,Prescription_Table.class,Risk_Factor_Table.class},version = 1 ,exportSchema = false)
+@androidx.room.Database(entities = {PatientDetails.class,Medicine_Table.class,Prescription_Table.class,Risk_Factor_Table.class},version = 2 ,exportSchema = false)
 public abstract class Database extends RoomDatabase{
     private static final String TAG = "pratik";
 
