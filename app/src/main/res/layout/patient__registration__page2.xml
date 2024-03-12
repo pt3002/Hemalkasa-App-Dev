@@ -44,6 +44,7 @@
                 android:drawablePadding="20dp"
                 android:hint="POG Weeks"
                 android:padding="20dp"
+                android:inputType="number"
                 android:textColorHint="@color/secondary"
                 android:textColor="@color/black" />
 
@@ -57,6 +58,7 @@
                 android:drawableLeft="@drawable/days_icon"
                 android:drawablePadding="20dp"
                 android:hint="POG Days"
+                android:inputType="number"
                 android:padding="20dp"
                 android:textColorHint="@color/secondary"
                 android:textColor="@color/black" />

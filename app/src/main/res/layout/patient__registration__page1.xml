@@ -251,6 +251,7 @@
                 android:drawablePadding="20dp"
                 android:padding="20dp"
                 android:hint="Asha Worker Phone Number"
+                android:inputType="phone"
                 android:textColorHint="@color/secondary"
                 android:textColor="@color/black"
                 />
