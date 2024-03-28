@@ -41,8 +41,8 @@ public class Patient_Registration_Page2 extends Fragment {
     TextView EDD, LMP;
     EditText POGWeeks, POGDays, Gravida, Parity;
     Spinner HIVSpinner, HBSAGSpinner, VDRLSpinner;
-    String fullname, mothername, hospRegNo, dateofbirth, bloodgroup, trimester, state, district, block, village, mobno,ashaworker;
-    String edd="EDD", lmp, pogWeeks="0", pogDays="0", gravida, parity, hiv, hbsag, vdrl;
+    String fullname, mothername, hospRegNo, dateofbirth, bloodgroup, trimester, state, district, block, village, mobno, ashaworker;
+    String edd = "EDD", lmp, pogWeeks = "0", pogDays = "0", gravida, parity, hiv, hbsag, vdrl;
     String DefaultHIV, DefaultHBSAG, DefaultVDRL;
     PatientDetails_ViewModel patientDetails_viewModel;
     SimpleDateFormat format;
@@ -89,7 +89,7 @@ public class Patient_Registration_Page2 extends Fragment {
             public void onPositiveButtonClick(Long selection) {
                 Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
                 calendar.setTimeInMillis(selection);
-                String formattedDate  = format.format(calendar.getTime());
+                String formattedDate = format.format(calendar.getTime());
                 EDD.setText(formattedDate);
             }
         });
@@ -100,13 +100,13 @@ public class Patient_Registration_Page2 extends Fragment {
             }
         });
 
-        MaterialDatePicker <Long> lmpDatePicker = materialDateBuilder.build();
+        MaterialDatePicker<Long> lmpDatePicker = materialDateBuilder.build();
         lmpDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
             public void onPositiveButtonClick(Long selection) {
                 Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
                 calendar.setTimeInMillis(selection);
-                String formattedDate  = format.format(calendar.getTime());
+                String formattedDate = format.format(calendar.getTime());
                 LMP.setText(formattedDate);
             }
         });
@@ -123,20 +123,16 @@ public class Patient_Registration_Page2 extends Fragment {
         DefaultHIV = getResources().getStringArray(R.array.testResult)[0];
         int HIVSpinnerPosition = testResultAdapter.getPosition(DefaultHIV);
         HIVSpinner.setSelection(HIVSpinnerPosition);
-//        Log.d(TAG, "HIV00000000: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
         HIVSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 HIVSpinner.setSelection(i);
-//                Log.d(TAG, "HIV1111111111111: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
-//                hiv = HIVSpinner.getSelectedItem().toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 int HIVSpinnerPosition = testResultAdapter.getPosition(DefaultHIV);
                 HIVSpinner.setSelection(HIVSpinnerPosition);
-//                Log.d(TAG, "HIV22222222222222222: " + DefaultHIV + String.valueOf(HIVSpinnerPosition));
             }
         });
 
@@ -148,7 +144,6 @@ public class Patient_Registration_Page2 extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 HBSAGSpinner.setSelection(i);
-//                hbsag = HBSAGSpinner.getSelectedItem().toString();
             }
 
             @Override
@@ -166,7 +161,6 @@ public class Patient_Registration_Page2 extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 VDRLSpinner.setSelection(i);
-//                vdrl = VDRLSpinner.getSelectedItem().toString();
             }
 
             @Override
@@ -190,12 +184,7 @@ public class Patient_Registration_Page2 extends Fragment {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                    // TODO
-                // WE have set String edd ="EDD"
-                // IF EDD is required field then add the non null validation -->  if(EDD.getText().toString().trim().isEmpty()) --> Totast-->  edd=EDD.getText().toString();
-                // IF EDD field cab be left empty then instead of --> edd="EDD" Same values which are present in the DATABASE.java
-                if (!isEmpty()) {
+                if (!isEmpty() && validateFields()) {
                     edd = EDD.getText().toString();
                     lmp = LMP.getText().toString();
                     pogWeeks = POGWeeks.getText().toString();
@@ -207,7 +196,7 @@ public class Patient_Registration_Page2 extends Fragment {
                     hbsag = HBSAGSpinner.getSelectedItem().toString();
                     vdrl = VDRLSpinner.getSelectedItem().toString();
 
-                    PatientDetails patientDetails=new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, trimester, state, district, block, village, mobno, ashaworker,edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp);
+                    PatientDetails patientDetails = new PatientDetails(1, fullname, mothername, hospRegNo, dateofbirth, bloodgroup, trimester, state, district, block, village, mobno, ashaworker, edd, pogWeeks, pogDays, hiv, hbsag, vdrl, gravida, parity, lmp);
 //                    patientDetails_viewModel.updatePatientDetails(patientDetails);
                     patientDetails_viewModel.insertPatientDetails(patientDetails);
 
@@ -215,7 +204,7 @@ public class Patient_Registration_Page2 extends Fragment {
                     sharedPreferencesEditor.putBoolean("Registration", true);
                     sharedPreferencesEditor.apply();
 
-                    Intent mainActivity=new Intent(getContext(),MainActivity.class);
+                    Intent mainActivity = new Intent(getContext(), MainActivity.class);
 //                    mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(mainActivity);
                     getActivity().finish();
@@ -244,9 +233,25 @@ public class Patient_Registration_Page2 extends Fragment {
         return view;
     }
 
+    private boolean validateFields() {
+        pogDays = POGDays.getText().toString().trim();
+        Integer days;
+        try {
+            days = Integer.parseInt(pogDays);
+        } catch (NumberFormatException nfe) {
+            Toast.makeText(getContext(), "Enter Numerical Value in POG DAYS", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(days>6 || days <0){
+            Toast.makeText(getContext(), "POG DAY range should be between 0 to 6", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
     private boolean isEmpty() {
-        // TODO remove unwanted required fields from here
-        // TODO POG DAYS Validation can be added here
         if (EDD.getText().toString().trim().isEmpty()) {
             Toast.makeText(getContext(), "Enter EDD", Toast.LENGTH_SHORT).show();
             return true;
@@ -257,16 +262,16 @@ public class Patient_Registration_Page2 extends Fragment {
             Toast.makeText(getContext(), "Enter POG Days", Toast.LENGTH_SHORT).show();
             return true;
         }
-        else if (Gravida.getText().toString().trim().isEmpty()) {
-            Toast.makeText(getContext(), "Enter Gravida", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (Parity.getText().toString().trim().isEmpty()) {
-            Toast.makeText(getContext(), "Enter Parity", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (LMP.getText().toString().trim().isEmpty()) {
-            Toast.makeText(getContext(), "Enter LMP", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+//        } else if (Gravida.getText().toString().trim().isEmpty()) {
+//            Toast.makeText(getContext(), "Enter Gravida", Toast.LENGTH_SHORT).show();
+//            return true;
+//        } else if (Parity.getText().toString().trim().isEmpty()) {
+//            Toast.makeText(getContext(), "Enter Parity", Toast.LENGTH_SHORT).show();
+//            return true;
+//        } else if (LMP.getText().toString().trim().isEmpty()) {
+//            Toast.makeText(getContext(), "Enter LMP", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
         return false;
     }
 
@@ -286,27 +291,19 @@ public class Patient_Registration_Page2 extends Fragment {
                     @Override
                     public void run() {
                         try {
-                                // TODO
-                                // If EDD field is changed from DB that means new entry in DB is added. So We need to set the EditText
-                                if(!patientDetailsList.get(0).getEdd().equals("EDD")) {
-                                    EDD.setText(patientDetailsList.get(0).getEdd());
-                                }
-                                if(!patientDetailsList.get(0).getPog_days().equals("0")){
-                                    POGDays.setText(patientDetailsList.get(0).getPog_days());
-                                }
-                                // TODO Continue in this manner
-
-//                            if(patientDetailsList.get(0).getEdd().equals("EDD")){
-//                                Toast.makeText(getContext(), "Please Fill The Details", Toast.LENGTH_SHORT).show();
-//                            }
-//                            else {
-//                                EDD.setText(patientDetailsList.get(0).getEdd());
-//                                POGWeeks.setText(patientDetailsList.get(0).getPog_weeks());
-//                                POGDays.setText(patientDetailsList.get(0).getPog_days());
-//                                Gravida.setText(patientDetailsList.get(0).getGravida());
-//                                Parity.setText(patientDetailsList.get(0).getParity());
-//                                LMP.setText(patientDetailsList.get(0).getLmp());
-//                            }
+                            // If EDD field is changed from DB that means new entry in DB is added. So We need to set the EditText
+                            if (!patientDetailsList.get(0).getEdd().equals("EDD")) {
+                                EDD.setText(patientDetailsList.get(0).getEdd());
+                            }
+                            if (!patientDetailsList.get(0).getPog_weeks().equals("0")) {
+                                POGWeeks.setText(patientDetailsList.get(0).getPog_weeks());
+                            }
+                            if (!patientDetailsList.get(0).getPog_days().equals("0")) {
+                                POGDays.setText(patientDetailsList.get(0).getPog_days());
+                            }
+                            Gravida.setText(patientDetailsList.get(0).getGravida());
+                            Parity.setText(patientDetailsList.get(0).getParity());
+                            LMP.setText(patientDetailsList.get(0).getLmp());
                             ArrayAdapter<CharSequence> testResultAdapter = ArrayAdapter.createFromResource(getContext(), R.array.testResult, android.R.layout.simple_spinner_item);
                             DefaultHIV = patientDetailsList.get(0).getHiv();
                             int HIVSpinnerPosition = testResultAdapter.getPosition(DefaultHIV);

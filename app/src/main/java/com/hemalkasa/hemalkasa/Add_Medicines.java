@@ -197,7 +197,12 @@ public class Add_Medicines extends AppCompatActivity {
             VisitDate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    visitDatePicker.show(getSupportFragmentManager(), "VISIT_DATE_PICKER");
+                    if(visitDatePicker.isAdded()) {
+                        visitDatePicker.dismiss();
+                    }
+                    else{
+                        visitDatePicker.show(getSupportFragmentManager(), "VISIT_DATE_PICKER");
+                    }
                 }
             });
 
@@ -214,7 +219,12 @@ public class Add_Medicines extends AppCompatActivity {
             NextVisitDate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    nextVisitDatePicker.show(getSupportFragmentManager(), "NEXT_VISIT_DATE_PICKER");
+                    if(nextVisitDatePicker.isAdded()) {
+                        nextVisitDatePicker.dismiss();
+                    }
+                    else{
+                        nextVisitDatePicker.show(getSupportFragmentManager(), "NEXT_VISIT_DATE_PICKER");
+                    }
                 }
             });
 
@@ -222,7 +232,7 @@ public class Add_Medicines extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Add_Medicines.this, Updates.class);
-                    if (!isempty()) {
+                    if (!isempty() && validateFields()) {
                         intent.putExtra("VISITING_DATE", visitingDate);
                         intent.putExtra("POG_WEEKS", POGWeeks.getText().toString().trim());
                         intent.putExtra("POG_DAYS", POGDays.getText().toString().trim());
@@ -233,6 +243,24 @@ public class Add_Medicines extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private boolean validateFields() {
+        String pogDays = POGDays.getText().toString().trim();
+        Integer days;
+        try {
+            days = Integer.parseInt(pogDays);
+        } catch (NumberFormatException nfe) {
+            Toast.makeText(Add_Medicines.this, "Enter Numerical Value in POG DAYS", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(days>6 || days <0){
+            Toast.makeText(Add_Medicines.this, "POG DAY range should be between 0 to 6", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     private boolean isempty() {

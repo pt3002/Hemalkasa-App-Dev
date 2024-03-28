@@ -66,7 +66,7 @@ public abstract class Database extends RoomDatabase{
 
         @Override
         protected Void doInBackground(Void... voids) {
-            patientDetails_dao.insertPatientDetails(new PatientDetails(1,"FullName", "MotherName", "HospitalNo", "DOB", "A+ve","1", "State","District","Tehsil","Village","Patient Phone No","Asha Worker Phone No","EDD","0","0","Negative","Negative","Negative","Gravida","Parity","LMP"));
+            patientDetails_dao.insertPatientDetails(new PatientDetails(1,"", "", "", "", "A+ve","1", "","","","","","0","EDD","0","0","Negative","Negative","Negative","","",""));
                 // Manually inserting the Risk Factors
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("ANEMIA",false));
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("GDM",false));

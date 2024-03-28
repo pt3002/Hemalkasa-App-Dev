@@ -24,7 +24,7 @@ import java.util.List;
 
 public class Trimester extends AppCompatActivity {
 
-    public static final String TAG="pratik";
+    public static final String TAG = "pratik";
     ConstraintLayout ActivityView;
     // TODO Hardcoded password
     final static String password = "1234";
@@ -32,60 +32,54 @@ public class Trimester extends AppCompatActivity {
     private TextView trimesterNumber;
     private TextView description;
     private ImageView trimesterImage;
-    private Button NextButton,BackButton;
+    private Button NextButton, BackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trimester);
 
-        try {
-            trimesterNumber = findViewById(R.id.TrimesterNumberHeading);
-            trimesterImage = findViewById(R.id.titleImage);
-            NextButton = findViewById(R.id.NextButton);
-            BackButton = findViewById(R.id.BackButton);
+        trimesterNumber = findViewById(R.id.TrimesterNumberHeading);
+        trimesterImage = findViewById(R.id.titleImage);
+        NextButton = findViewById(R.id.NextButton);
+        BackButton = findViewById(R.id.BackButton);
 
-            setTrimester();
+        setTrimester();
 
-            NextButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Trimester.this, Summary.class);
-                    startActivity(intent);
-                }
-            });
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Trimester.this, Summary.class);
+                startActivity(intent);
+            }
+        });
 
-            BackButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-            ActivityView = findViewById(R.id.ActivityView);
-            //noinspection AndroidLintClickableViewAccessibility
-            ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
-                @Override
-                public void onSwipeRight() {
-                    super.onSwipeRight();
-                    Log.d(TAG, "RIGHTTTTT: ");
-                    Intent intent = new Intent(Trimester.this, Video_MainScreen.class);
-                    startActivity(intent);
-                }
-
-                @Override
-                public void onSwipeLeft() {
-                    super.onSwipeLeft();
-                    Log.d(TAG, "LEFTTTTTTT: ");
-                    Intent intent = new Intent(Trimester.this, Summary.class);
-                    startActivity(intent);
-                }
-            });
-        }
-        catch (Exception e){
-            // Todo Remove this toast
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+//            ActivityView = findViewById(R.id.ActivityView);
+//            //noinspection AndroidLintClickableViewAccessibility
+//            ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
+//                @Override
+//                public void onSwipeRight() {
+//                    super.onSwipeRight();
+//                    Log.d(TAG, "RIGHTTTTT: ");
+//                    Intent intent = new Intent(Trimester.this, Video_MainScreen.class);
+//                    startActivity(intent);
+//                }
+//
+//                @Override
+//                public void onSwipeLeft() {
+//                    super.onSwipeLeft();
+//                    Log.d(TAG, "LEFTTTTTTT: ");
+//                    Intent intent = new Intent(Trimester.this, Summary.class);
+//                    startActivity(intent);
+//                }
+//            });
     }
 
     private void setTrimester() {
@@ -94,30 +88,29 @@ public class Trimester extends AppCompatActivity {
         Runnable runnable = new Runnable() {
 
             List<PatientDetails> patientDetailsList;
+
             @Override
             public void run() {
                 patientDetailsList = Database.getInstance(Trimester.this)
                         .patientDetails_dao()
                         .getAllPatientDetails();
-                Log.d(TAG,patientDetailsList.get(0).getTrimester());
+                Log.d(TAG, patientDetailsList.get(0).getTrimester());
                 getTrimester.post(new Runnable() {
                     @Override
                     public void run() {
-                        try{
+                        try {
                             //Log.d(TAG, "run: " + patientDetailsList.get(0).getTrimester());
-                            if(patientDetailsList.get(0).getTrimester().equals("1")){
+                            if (patientDetailsList.get(0).getTrimester().equals("1")) {
                                 trimesterNumber.setText(R.string.first_trimester);
                                 trimesterImage.setImageResource(R.drawable.trimester_1_min);
-                            }
-                            else if(patientDetailsList.get(0).getTrimester().equals("2")){
+                            } else if (patientDetailsList.get(0).getTrimester().equals("2")) {
                                 trimesterNumber.setText(R.string.second_trimester);
                                 trimesterImage.setImageResource(R.drawable.trimester_2_min);
-                            }
-                            else if(patientDetailsList.get(0).getTrimester().equals("3")){
+                            } else if (patientDetailsList.get(0).getTrimester().equals("3")) {
                                 trimesterNumber.setText(R.string.third_trimester);
                                 trimesterImage.setImageResource(R.drawable.trimester_3_min);
                             }
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             Log.d(TAG, e.getMessage());
                             Toast.makeText(Trimester.this, "No Trimester Set Yet", Toast.LENGTH_SHORT).show();
                         }

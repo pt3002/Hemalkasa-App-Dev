@@ -98,25 +98,25 @@ public class RiskFactor extends AppCompatActivity {
                 }
             });
 
-            ActivityView = findViewById(R.id.ActivityView);
-            //noinspection AndroidLintClickableViewAccessibility
-            ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
-                @Override
-                public void onSwipeRight() {
-                    super.onSwipeRight();
-                    Log.d(TAG, "RIGHTTTTT: ");
-                    Intent intent = new Intent(RiskFactor.this, Summary.class);
-                    startActivity(intent);
-                }
-
-                @Override
-                public void onSwipeLeft() {
-                    super.onSwipeLeft();
-                    Log.d(TAG, "LEFTTTTTTT: ");
-                    Intent intent = new Intent(RiskFactor.this, Emergency_Contact.class);
-                    startActivity(intent);
-                }
-            });
+//            ActivityView = findViewById(R.id.ActivityView);
+//            //noinspection AndroidLintClickableViewAccessibility
+//            ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
+//                @Override
+//                public void onSwipeRight() {
+//                    super.onSwipeRight();
+//                    Log.d(TAG, "RIGHTTTTT: ");
+//                    Intent intent = new Intent(RiskFactor.this, Summary.class);
+//                    startActivity(intent);
+//                }
+//
+//                @Override
+//                public void onSwipeLeft() {
+//                    super.onSwipeLeft();
+//                    Log.d(TAG, "LEFTTTTTTT: ");
+//                    Intent intent = new Intent(RiskFactor.this, Emergency_Contact.class);
+//                    startActivity(intent);
+//                }
+//            });
         }
     }
 }

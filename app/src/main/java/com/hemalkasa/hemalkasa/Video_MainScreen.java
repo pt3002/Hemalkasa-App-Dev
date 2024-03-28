@@ -87,25 +87,25 @@ public class Video_MainScreen extends AppCompatActivity {
             }
         });
 
-        ActivityView = findViewById(R.id.ActivityView);
-        //noinspection AndroidLintClickableViewAccessibility
-        ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
-            @Override
-            public void onSwipeRight() {
-                super.onSwipeRight();
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_right, R.anim.slide_to_left );
-                Intent intent = new Intent(Video_MainScreen.this, Emergency_Contact.class);
-                startActivity(intent, options.toBundle());
-            }
-
-            @Override
-            public void onSwipeLeft() {
-                super.onSwipeLeft();
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_left, R.anim.slide_to_right);
-                Intent intent = new Intent(Video_MainScreen.this, Trimester.class);
-                startActivity(intent, options.toBundle());
-            }
-        });
+//        ActivityView = findViewById(R.id.ActivityView);
+//        //noinspection AndroidLintClickableViewAccessibility
+//        ActivityView.setOnTouchListener(new OnSwipeTouchListener(this) {
+//            @Override
+//            public void onSwipeRight() {
+//                super.onSwipeRight();
+//                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_right, R.anim.slide_to_left );
+//                Intent intent = new Intent(Video_MainScreen.this, Emergency_Contact.class);
+//                startActivity(intent, options.toBundle());
+//            }
+//
+//            @Override
+//            public void onSwipeLeft() {
+//                super.onSwipeLeft();
+//                ActivityOptions options = ActivityOptions.makeCustomAnimation(Video_MainScreen.this,R.anim.slide_from_left, R.anim.slide_to_right);
+//                Intent intent = new Intent(Video_MainScreen.this, Trimester.class);
+//                startActivity(intent, options.toBundle());
+//            }
+//        });
     }
 
     private void getVideos() {
@@ -284,20 +284,10 @@ public class Video_MainScreen extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    protected void onPause() {
-//        if (pendingTransaction) {
-//            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-//        }
-        super.onPause();
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         getVideos();
         setNextVisitDate();
-//        pendingTransaction = true;
     }
 }
