@@ -22,18 +22,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.hemalkasa.hemalkasa.MarathiTextView
         android:id="@+id/notificationHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NOTIFICATION"
+        android:text="सूचना"
         android:textColor="@color/buttonColor"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/lokbiradriHospital"
         app:layout_constraintEnd_toEndOf="@+id/Notification"
         app:layout_constraintStart_toStartOf="@+id/Notification"
-        app:layout_constraintTop_toTopOf="@+id/Notification" />
+        app:layout_constraintTop_toTopOf="@+id/Notification"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/notificationHeading"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="NOTIFICATION"-->
+<!--        android:textColor="@color/buttonColor"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/lokbiradriHospital"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/Notification"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/Notification"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/Notification" />-->
 
     <ImageView
         android:id="@+id/lokbiradriHospital"
@@ -80,12 +93,13 @@
 <!--        app:layout_constraintStart_toStartOf="@+id/notificationHeading"-->
 <!--        app:layout_constraintTop_toTopOf="@+id/notificationHeading" />-->
 
-    <TextView
+    <com.hemalkasa.hemalkasa.MarathiTextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Next Visit Date"
+        android:text="पुढील तपसणीची तारीख"
+        android:paddingVertical="5dp"
         android:textColor="@color/buttonColor"
         android:layout_marginTop="40dp"
         android:textSize="30sp"
@@ -93,7 +107,22 @@
         app:layout_constraintBottom_toBottomOf="@+id/visitDate"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/textView"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Next Visit Date"-->
+<!--        android:textColor="@color/buttonColor"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textStyle="italic"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/visitDate"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/textView"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/textView" />-->
 
     <TextView
         android:id="@+id/visitDate"

@@ -60,14 +60,20 @@ public class RiskFactor extends AppCompatActivity {
             riskFactorRecyclerView.setHasFixedSize(true);
             riskFactorRecyclerView.setAdapter(riskFactorAdaptor);
 
+            int activeNoRisks = riskFactorAdaptor.getActiveRisks();
+            Log.d(TAG, "onCreate: Active Risks" + activeNoRisks);
+
+
             riskFactorAdaptor.setOnItemClickListener(new RiskFactorAdaptor.OnItemClickListener() {
                 @Override
                 public void toggleRisk(Risk_Factor_Table riskFactorTable) {
+                    //Log.d(TAG, "toggleRisk: " + riskFactorTable);
                     Boolean isActive = riskFactorTable.getRisk();
                     riskFactorTable.setRisk(!isActive);
                     riskFactorTableViewModel.updateRiskFactor(riskFactorTable);
                     riskFactorTableViewModel.getAllRiskFactors(riskFactorAdaptor);
-                    Log.d(TAG, riskFactorTable.getName() + ": Editeddd");
+
+                    //Log.d(TAG, riskFactorTable.getName() + ": Editeddd");
                 }
             });
         }

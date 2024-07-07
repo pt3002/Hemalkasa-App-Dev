@@ -19,6 +19,8 @@ public class RiskFactorAdaptor extends RecyclerView.Adapter<RiskFactorAdaptor.Vi
     private OnItemClickListener listener;
     private Boolean isAccess;
 
+    public int activeRisks = 0;
+
     public RiskFactorAdaptor(Boolean isAccess) {
         this.isAccess = isAccess;
     }
@@ -41,16 +43,24 @@ public class RiskFactorAdaptor extends RecyclerView.Adapter<RiskFactorAdaptor.Vi
             holder.RiskName.setCheckMarkDrawable(R.drawable.checked);
             holder.RiskName.setBackgroundColor(R.color.white);
             holder.RiskName.setChecked(true);
+            this.activeRisks += 1;
         } else {
             holder.RiskName.setBackground(null);
             holder.RiskName.setCheckMarkDrawable(null);
             holder.RiskName.setChecked(false);
         }
+
+        //Log.d(TAG, "onBindViewHolder: " + activeRisks);
     }
 
     @Override
     public int getItemCount() {
         return riskFactorTableList.size();
+    }
+
+    public int getActiveRisks() {
+        Log.d(TAG, "getActiveRisks: " + this.activeRisks);
+        return this.activeRisks;
     }
 
     public void setRiskFactorTableList(List<Risk_Factor_Table> riskFactorTables) {

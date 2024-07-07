@@ -9,22 +9,38 @@
     tools:context=".RiskFactor"
     >
 
-    <TextView
+    <com.hemalkasa.hemalkasa.MarathiTextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/secondary"
-        android:text="Risk Factors"
+        android:text="प्रेग्नन्सीला असलेले धोके"
         android:textSize="30sp"
         android:textAlignment="center"
         android:textStyle="bold"
         android:scrollHorizontally="false"
+        android:paddingVertical="5dp"
         android:maxLines="4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="20dp"
-        />
+        android:layout_margin="20dp"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/title"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="@color/secondary"-->
+<!--        android:text="Risk Factors"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textStyle="bold"-->
+<!--        android:scrollHorizontally="false"-->
+<!--        android:maxLines="4"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_margin="20dp"-->
+<!--        />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RiskFactorRecyclerView"
