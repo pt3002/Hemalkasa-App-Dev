@@ -255,8 +255,8 @@ public class Add_Medicines extends AppCompatActivity {
             return false;
         }
 
-        if(days>6 || days <0){
-            Toast.makeText(Add_Medicines.this, "POG DAY range should be between 0 to 6", Toast.LENGTH_SHORT).show();
+        if(days>6 || days <1){
+            Toast.makeText(Add_Medicines.this, "POG DAY range should be between 1 to 6", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -276,8 +276,8 @@ public class Add_Medicines extends AppCompatActivity {
             Toast.makeText(this, "Enter POG Days", Toast.LENGTH_SHORT).show();
             return true;
         }
-        else if(Integer.parseInt(POGDays.getText().toString().trim()) > 6){
-            Toast.makeText(this, "POG Days should be less than 7", Toast.LENGTH_SHORT).show();
+        else if(Integer.parseInt(POGDays.getText().toString().trim()) > 6 || Integer.parseInt(POGDays.getText().toString().trim()) < 1){
+            Toast.makeText(this, "POG Days between 1 and 6", Toast.LENGTH_SHORT).show();
             return true;
         }
         else if(HB.getText().toString().trim().isEmpty()){

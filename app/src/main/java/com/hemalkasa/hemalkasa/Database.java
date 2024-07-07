@@ -67,13 +67,16 @@ public abstract class Database extends RoomDatabase{
         @Override
         protected Void doInBackground(Void... voids) {
             patientDetails_dao.insertPatientDetails(new PatientDetails(1,"", "", "", "", "A+ve","1", "","","","","","0","EDD","0","0","Negative","Negative","Negative","","",""));
-                // Manually inserting the Risk Factors
+
+            // Manually inserting the Risk Factors
+            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("कोणताही धोका नाही",true));
+//            No risk
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("रक्ताची कमी",false));
 //            ANAEMIA
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("शुगर / गर्भावस्थेतील साखर",false));
 //            GDM
-            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("IUGR",false));
-            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("OLIGOHYDRAMNIOS",false));
+//            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("IUGR",false));
+//            riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("OLIGOHYDRAMNIOS",false));
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("उच्च रक्तदाब",false));
 //            PET
             riskFactorTableDao.insertRiskFactor(new Risk_Factor_Table("डिलिव्हरी आधीचा उच्च रक्तदाब",false));
