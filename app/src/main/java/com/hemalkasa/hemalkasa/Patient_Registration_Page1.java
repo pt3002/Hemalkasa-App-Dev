@@ -201,96 +201,6 @@ public class Patient_Registration_Page1 extends Fragment {
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
                 }
-                else{
-                    Bundle bundle=new Bundle();
-                    if(HospRegNo.getText().toString().trim().isEmpty()){
-                        bundle.putString("hospRegNo", "");
-                    }
-                    else{
-                        bundle.putString("hospRegNo", hospRegNo);
-                    }
-
-                    if(FullName.getText().toString().trim().isEmpty()){
-                        bundle.putString("fullname", "");
-                    }
-                    else{
-                        bundle.putString("fullname", fullname);
-                    }
-
-                    if(MotherName.getText().toString().trim().isEmpty()){
-                        bundle.putString("mothername", "");
-                    }
-                    else{
-                        bundle.putString("mothername", mothername);
-                    }
-
-                    if(DateOfBirth.getText().toString().trim().isEmpty()){
-                        bundle.putString("dateofbirth", "");
-                    }
-                    else{
-                        bundle.putString("dateofbirth", dateofbirth);
-                    }
-
-                    if(BloodGroup.getText().toString().trim().isEmpty()){
-                        bundle.putString("bloodgroup", "A+ve");
-                    }
-                    else{
-                        bundle.putString("bloodgroup", bloodgroup);
-                    }
-
-                    if(Trimester.getText().toString().trim().isEmpty()){
-                        bundle.putString("trimester", "1");
-                    }
-                    else{
-                        bundle.putString("trimester", trimester);
-                    }
-
-                    if(State.getText().toString().trim().isEmpty()){
-                        bundle.putString("state", "");
-                    }
-                    else{
-                        bundle.putString("state", state);
-                    }
-
-                    if(District.getText().toString().trim().isEmpty()){
-                        bundle.putString("district", "");
-                    }
-                    else{
-                        bundle.putString("district", district);
-                    }
-
-                    if(Block.getText().toString().trim().isEmpty()){
-                        bundle.putString("block", "");
-                    }
-                    else{
-                        bundle.putString("block", block);
-                    }
-
-                    if(Village.getText().toString().trim().isEmpty()){
-                        bundle.putString("village", "");
-                    }
-                    else{
-                        bundle.putString("village", village);
-                    }
-
-                    if(MobNo.getText().toString().trim().isEmpty()){
-                        bundle.putString("mobno", "");
-                    }
-                    else{
-                        bundle.putString("mobno", mobno);
-                    }
-
-                    if(AshaWorker.getText().toString().trim().isEmpty()){
-                        bundle.putString("ashaworker", "");
-                    }
-                    else{
-                        bundle.putString("ashaworker", ashaworker);
-                    }
-                    getParentFragmentManager().setFragmentResult("Page1", bundle);
-                    Patient_Registration_Page2 patient_registration_page2 = new Patient_Registration_Page2();
-                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.FragContainer, patient_registration_page2).addToBackStack("patientRegistration").commit();
-                }
             }
         });
 
@@ -298,53 +208,53 @@ public class Patient_Registration_Page1 extends Fragment {
     }
 
     private boolean isEmpty() {
-            //.trim Removes leading empty Spaces..
-        if(HospRegNo.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Hospital No", Toast.LENGTH_SHORT).show();
+        //.trim Removes leading empty Spaces..
+//        if(HospRegNo.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter Hospital No", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        else if(FullName.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter Full Name", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        else if(MotherName.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter Mother's Name", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        else if(DateOfBirth.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter Date of Birth", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        else if(BloodGroup.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter Blood Group", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+        if (Trimester.getText().toString().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Enter Trimester", Toast.LENGTH_SHORT).show();
             return true;
         }
-        else if(FullName.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Full Name", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(MotherName.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Mother's Name", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(DateOfBirth.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Date of Birth", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(BloodGroup.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Blood Group", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(Trimester.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Trimester", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(State.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter State", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(District.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter District", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(Block.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Block", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(Village.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Village", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(MobNo.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Mobile No", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(AshaWorker.getText().toString().trim().isEmpty()){
-            //Toast.makeText(getContext(), "Enter Asha No", Toast.LENGTH_SHORT).show();
+//        else if(State.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter State", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        else if(District.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter District", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        else if(Block.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter Block", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        else if(Village.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter Village", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        else if(MobNo.getText().toString().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Enter Mobile No", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+        else if (AshaWorker.getText().toString().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Enter Asha No", Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;

@@ -77,9 +77,9 @@ public class Add_Medicines extends AppCompatActivity {
             medicineRecyclerView.addItemDecoration(new DividerItemDecoration(medicineRecyclerView.getContext(), DividerItemDecoration.VERTICAL));  //Normal Horizontal Separator
 
             VisitDate.setText("शेवटच्या तपासणीची तारीख: " + historyIntent.getStringExtra("VISITING_DATE"));
-            POGWeeks.setText("POG Weeks: " + historyIntent.getStringExtra("POG_WEEKS"));
-            POGDays.setText("POG Days: " + historyIntent.getStringExtra("POG_DAYS"));
-            HB.setText("HB: " + historyIntent.getStringExtra("HB"));
+            POGWeeks.setText("गर्भधारणेचा कालावधी आठवडे: " + historyIntent.getStringExtra("POG_WEEKS"));
+            POGDays.setText("गर्भधारणेचा कालावधी दिवस: " + historyIntent.getStringExtra("POG_DAYS"));
+            HB.setText("हिमोग्लोबिन: " + historyIntent.getStringExtra("HB"));
             NextVisitDate.setText("पुढील तपसणीची तारीख: " + historyIntent.getStringExtra("NEXT_VISITING_DATE"));
 
                 // Disabling the editable field

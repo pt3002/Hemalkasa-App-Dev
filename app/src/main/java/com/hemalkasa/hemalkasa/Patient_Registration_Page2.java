@@ -262,12 +262,14 @@ public class Patient_Registration_Page2 extends Fragment {
             Toast.makeText(getContext(), "Enter POG Days", Toast.LENGTH_SHORT).show();
             return true;
         }
-        else if(Integer.parseInt(POGDays.getText().toString().trim()) > 6){
-            Toast.makeText(getContext(), "POG Days should be less than 7", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-//        else if(hiv.isEmpty()){
-//            Toast.makeText(getContext(), "Select HIV", Toast.LENGTH_SHORT).show();
+//        } else if (Gravida.getText().toString().trim().isEmpty()) {
+//            Toast.makeText(getContext(), "Enter Gravida", Toast.LENGTH_SHORT).show();
+//            return true;
+//        } else if (Parity.getText().toString().trim().isEmpty()) {
+//            Toast.makeText(getContext(), "Enter Parity", Toast.LENGTH_SHORT).show();
+//            return true;
+//        } else if (LMP.getText().toString().trim().isEmpty()) {
+//            Toast.makeText(getContext(), "Enter LMP", Toast.LENGTH_SHORT).show();
 //            return true;
 //        }
         return false;
