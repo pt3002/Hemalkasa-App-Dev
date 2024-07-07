@@ -5,7 +5,7 @@
     android:id="@+id/ActivityView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/patient_slider_background"
+    android:background="@color/background_all_pages"
     android:orientation="vertical"
     tools:context=".Summary">
 
@@ -34,16 +34,28 @@
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/Title">
 
-            <TextView
+            <com.hemalkasa.hemalkasa.MarathiTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:text="Serological Results"
+                android:text="रक्ताच्या तपासण्या"
                 android:textColor="@color/secondary"
                 android:textSize="23sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+            />
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Serological Results"-->
+<!--                android:textColor="@color/secondary"-->
+<!--                android:textSize="23sp"-->
+<!--                android:textStyle="italic" />-->
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -150,16 +162,29 @@
 
             </androidx.cardview.widget.CardView>
 
-            <TextView
+            <com.hemalkasa.hemalkasa.MarathiTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:text="USG Results"
+                android:text="सोनोग्राफी तपासणी रिपोर्ट"
                 android:textColor="@color/secondary"
-                android:textSize="23sp"
-                android:textStyle="italic" />
+                android:padding="5dp"
+                android:textSize="20sp"
+                android:textStyle="italic"
+            />
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="USG Results"-->
+<!--                android:textColor="@color/secondary"-->
+<!--                android:textSize="23sp"-->
+<!--                android:textStyle="italic" />-->
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -176,19 +201,35 @@
                     android:background="#b74a45"
                     android:padding="5dp">
 
-                    <TextView
+                    <com.hemalkasa.hemalkasa.MarathiTextView
                         android:id="@+id/EDDTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="7dp"
                         android:gravity="center"
-                        android:text="EDD"
+                        android:text="अंदाजे डिलिव्हरीची तारीख"
                         android:textColor="@color/black"
+                        android:paddingVertical="5dp"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                    />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/EDDTitle"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginTop="7dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="EDD"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
                     <TextView
                         android:id="@+id/EDDStatus"
@@ -203,19 +244,35 @@
                         app:layout_constraintStart_toEndOf="@id/VisitingDate"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
+                    <com.hemalkasa.hemalkasa.MarathiTextView
                         android:id="@+id/VisitingDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="7dp"
                         android:gravity="center"
-                        android:text="Visiting Date"
+                        android:text="तपासणीची तारीख"
+                        android:paddingVertical="5dp"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/EDDTitle" />
+                        app:layout_constraintTop_toBottomOf="@id/EDDTitle"
+                    />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/VisitingDate"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginTop="7dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Visiting Date"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/EDDTitle" />-->
 
                     <TextView
                         android:id="@+id/VisitingDateStatus"
@@ -287,18 +344,33 @@
                         app:layout_constraintStart_toEndOf="@id/PogDays"
                         app:layout_constraintTop_toBottomOf="@id/VisitingDate" />
 
-                    <TextView
+                    <com.hemalkasa.hemalkasa.MarathiTextView
                         android:id="@+id/HB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="7dp"
                         android:layout_marginBottom="7dp"
-                        android:text="HB"
+                        android:text="हिमोग्लोबिन"
+                        android:paddingVertical="5dp"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/PogWeeks" />
+                        app:layout_constraintTop_toBottomOf="@id/PogWeeks"
+                    />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/HB"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginTop="7dp"-->
+<!--                        android:layout_marginBottom="7dp"-->
+<!--                        android:text="HB"-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/PogWeeks" />-->
 
                     <TextView
                         android:id="@+id/HBReading"
@@ -339,19 +411,33 @@
                     android:background="#306c54"
                     android:padding="5dp">
 
-                    <TextView
+                    <com.hemalkasa.hemalkasa.MarathiTextView
                         android:id="@+id/CheckPrescription"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Check Prescription >>"
+                        android:text="उपचार पहा"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/CheckPrescription"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:padding="5dp"-->
+<!--                        android:text="Check Prescription >>"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

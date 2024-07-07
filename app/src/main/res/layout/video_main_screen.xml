@@ -5,22 +5,37 @@
     android:id="@+id/ActivityView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/patient_slider_background"
+    android:background="@color/background_all_pages"
     tools:context=".Video_MainScreen">
 
-    <TextView
+    <com.hemalkasa.hemalkasa.MarathiTextView
         android:id="@+id/Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="Videos"
+        android:text="व्हिडीओ"
         android:textAlignment="center"
         android:textColor="@color/secondary"
+        android:padding="5dp"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/Title"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="25dp"-->
+<!--        android:text="Videos"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/secondary"-->
+<!--        android:textSize="30dp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/VideoRecycler"

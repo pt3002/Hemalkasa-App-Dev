@@ -6,7 +6,7 @@
     android:id="@+id/ActivityView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/patient_slider_background"
+    android:background="@color/background_all_pages"
     android:orientation="vertical"
     tools:context=".Emergency_Contact">
 
@@ -22,19 +22,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <com.hemalkasa.hemalkasa.MarathiTextView
                 android:id="@+id/Ttile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="Emergency Contacts"
+                android:text="इमर्जन्सी संपर्क"
+                android:paddingVertical="5dp"
                 android:textAlignment="center"
                 android:textColor="@color/secondary"
                 android:textSize="30dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
+
+<!--            <TextView-->
+<!--                android:id="@+id/Ttile"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:text="Emergency Contacts"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="@color/secondary"-->
+<!--                android:textSize="30dp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
 
             <ImageView

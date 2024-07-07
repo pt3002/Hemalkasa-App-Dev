@@ -76,11 +76,11 @@ public class Add_Medicines extends AppCompatActivity {
             medicineRecyclerView.setAdapter(medicineAdapter);
             medicineRecyclerView.addItemDecoration(new DividerItemDecoration(medicineRecyclerView.getContext(), DividerItemDecoration.VERTICAL));  //Normal Horizontal Separator
 
-            VisitDate.setText("Last Visit: " + historyIntent.getStringExtra("VISITING_DATE"));
+            VisitDate.setText("शेवटच्या तपासणीची तारीख: " + historyIntent.getStringExtra("VISITING_DATE"));
             POGWeeks.setText("POG Weeks: " + historyIntent.getStringExtra("POG_WEEKS"));
             POGDays.setText("POG Days: " + historyIntent.getStringExtra("POG_DAYS"));
             HB.setText("HB: " + historyIntent.getStringExtra("HB"));
-            NextVisitDate.setText("Next Visit: " + historyIntent.getStringExtra("NEXT_VISITING_DATE"));
+            NextVisitDate.setText("पुढील तपसणीची तारीख: " + historyIntent.getStringExtra("NEXT_VISITING_DATE"));
 
                 // Disabling the editable field
 //            POGWeeks.setEnabled(false);
@@ -247,7 +247,12 @@ public class Add_Medicines extends AppCompatActivity {
         else if(POGDays.getText().toString().trim().isEmpty()){
             Toast.makeText(this, "Enter POG Days", Toast.LENGTH_SHORT).show();
             return true;
-        }else if(HB.getText().toString().trim().isEmpty()){
+        }
+        else if(Integer.parseInt(POGDays.getText().toString().trim()) > 6){
+            Toast.makeText(this, "POG Days should be less than 7", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(HB.getText().toString().trim().isEmpty()){
             Toast.makeText(this, "Enter HB", Toast.LENGTH_SHORT).show();
             return true;
         }else if(NextVisitDate.getText().toString().trim().isEmpty()){
